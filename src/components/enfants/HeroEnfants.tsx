@@ -8,7 +8,7 @@ import { Button } from "@/components/Button";
 import { reassurancesEnfants } from "@/data/parcours-enfants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const IMG = "/images/enfants/hero-enfants.webp";
+const IMG = "/images/enfants/hero-enfants-v2.webp";
 const ALT =
   "Trois enfants réunis devant un ordinateur portable, entourés d'icônes d'intelligence artificielle";
 

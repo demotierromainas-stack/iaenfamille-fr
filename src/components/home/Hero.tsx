@@ -9,7 +9,7 @@ import { STAGES_HREF } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const HERO_IMG = "/images/home/hero-famille.webp";
+const HERO_IMG = "/images/home/hero-famille-v2.webp";
 const HERO_ALT =
   "Une famille réunie devant un ordinateur portable, entourée d'icônes d'intelligence artificielle";
 
