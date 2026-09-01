@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Logo } from "@/components/Logo";
 import { NewsletterForm } from "@/components/NewsletterForm";
@@ -72,7 +73,16 @@ export function Footer() {
             </nav>
           ))}
 
-          <div>
+          <div className="relative">
+            {/* avion en papier de la maquette */}
+            <Image
+              src="/images/home/avion.png"
+              alt=""
+              width={200}
+              height={131}
+              aria-hidden
+              className="pointer-events-none absolute -right-10 -top-2 hidden w-36 opacity-80 lg:block"
+            />
             <h2 className="font-display text-lg font-bold">Restez informés !</h2>
             <p className="mt-2 text-sm leading-relaxed text-white/60">
               Recevez nos conseils, nouveautés et offres spéciales.

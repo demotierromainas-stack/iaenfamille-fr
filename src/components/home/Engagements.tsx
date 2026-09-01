@@ -1,4 +1,4 @@
-import { Lock } from "lucide-react";
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { engagements } from "@/data/home";
@@ -48,12 +48,15 @@ export function Engagements() {
               {/* cadenas néon de la maquette */}
               <div
                 aria-hidden
-                className="relative hidden size-44 shrink-0 place-items-center lg:grid"
+                className="relative hidden size-48 shrink-0 lg:block"
               >
-                <span className="absolute inset-0 rounded-full bg-brand-indigo/25 blur-2xl" />
-                <span className="relative grid size-28 place-items-center rounded-3xl border border-brand-cyan/40 bg-navy-900/80 shadow-[0_0_50px_rgb(34_211_238/0.35)]">
-                  <Lock className="size-12 text-brand-cyan" />
-                </span>
+                <Image
+                  src="/images/home/cadenas.png"
+                  alt=""
+                  fill
+                  sizes="192px"
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>

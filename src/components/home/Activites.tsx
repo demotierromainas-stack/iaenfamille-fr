@@ -1,5 +1,5 @@
 import { Container } from "@/components/Container";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { Media } from "@/components/Media";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LiftCard, RevealGroup, RevealItem } from "@/components/Reveal";
 import { activites } from "@/data/home";
@@ -17,21 +17,18 @@ export function Activites() {
           className="mt-9 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5"
           stagger={0.07}
         >
-          {activites.map(({ icon: Icon, title, text, tone }) => (
+          {activites.map(({ title, text, tone, src }) => (
             <RevealItem key={title}>
               <LiftCard>
                 <article className="card group h-full p-3 text-center">
-                  <PlaceholderImage
+                  <Media
+                    src={src}
                     label={title}
                     tone={tone}
-                    showLabel={false}
-                    className="mb-3 grid aspect-[4/3] w-full place-items-center rounded-xl"
-                  >
-                    <Icon
-                      className="size-8 text-white drop-shadow-[0_2px_10px_rgb(0_0_0/0.4)] transition-transform duration-300 group-hover:scale-110"
-                      aria-hidden
-                    />
-                  </PlaceholderImage>
+                    sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 190px"
+                    className="mb-3 aspect-[4/3] w-full rounded-xl"
+                    imgClassName="transition-transform duration-500 group-hover:scale-105"
+                  />
                   <h3 className="font-display text-[13.5px] font-bold leading-tight">
                     {title}
                   </h3>

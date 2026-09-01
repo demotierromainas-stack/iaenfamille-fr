@@ -1,52 +1,64 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion, type Variants } from "motion/react";
 import { cn } from "@/lib/cn";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Toutes les entrées au scroll du site passent par ici : un seul endroit à
- * toucher pour ajuster le rythme global, et `prefers-reduced-motion` est
- * neutralisé une bonne fois pour toutes.
+ * Déclencheur commun des entrées au scroll.
+ *
+ * Le filet de sécurité est essentiel : ces composants partent à `opacity: 0`,
+ * donc si l'IntersectionObserver ne se déclenche pas (navigateur sans
+ * animation, crawler, capture headless, onglet en arrière-plan), la page
+ * resterait vide. Passé le délai, on affiche quoi qu'il arrive.
  */
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [failsafe, setFailsafe] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setFailsafe(true), 1200);
+    return () => clearTimeout(t);
+  }, []);
+
+  return { ref, show: inView || failsafe };
+}
+
 export function Reveal({
   children,
   className,
   delay = 0,
   y = 24,
-  as = "div",
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   y?: number;
-  as?: "div" | "section" | "li" | "span" | "h2" | "p";
 }) {
   const reduced = useReducedMotion();
-  const MotionTag = motion[as];
+  const { ref, show } = useReveal();
 
-  if (reduced) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
-  }
+  if (reduced) return <div className={className}>{children}</div>;
 
   return (
-    <MotionTag
+    <motion.div
+      ref={ref}
       className={className}
       initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      animate={show ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.6, delay, ease: EASE }}
     >
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }
 
 /**
- * Conteneur qui fait entrer ses enfants en cascade. Les enfants directs
- * doivent être des <RevealItem>.
+ * Fait entrer ses enfants en cascade. Les enfants directs doivent être
+ * des <RevealItem>.
  */
 export function RevealGroup({
   children,
@@ -60,17 +72,21 @@ export function RevealGroup({
   delay?: number;
 }) {
   const reduced = useReducedMotion();
+  const { ref, show } = useReveal();
 
   if (reduced) return <div className={className}>{children}</div>;
 
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+      animate={show ? "visible" : "hidden"}
       variants={{
-        visible: { transition: { staggerChildren: stagger, delayChildren: delay } },
+        hidden: {},
+        visible: {
+          transition: { staggerChildren: stagger, delayChildren: delay },
+        },
       }}
     >
       {children}

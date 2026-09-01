@@ -44,8 +44,8 @@ export const offers: {
   bullets: string[];
   cta: string;
   href: string;
-  image: { label: string; tone: Tone };
-  ages?: { range: string; text: string; label: string }[];
+  image: { label: string; tone: Tone; src?: string };
+  ages?: { range: string; text: string; label: string; src?: string }[];
 }[] = [
   {
     icon: UsersRound,
@@ -59,7 +59,11 @@ export const offers: {
     ],
     cta: "En savoir plus",
     href: "/formations-parents",
-    image: { label: "Mère utilisant un ordinateur portable", tone: "warm" },
+    image: {
+      label: "Mère utilisant un ordinateur portable",
+      tone: "warm",
+      src: "/images/home/formations-parents.webp",
+    },
   },
   {
     icon: Baby,
@@ -68,9 +72,24 @@ export const offers: {
     text: "Des parcours adaptés à chaque âge pour découvrir, comprendre et créer avec l'IA en s'amusant.",
     bullets: [],
     ages: [
-      { range: "5–8 ans", text: "Découvrir et s'amuser", label: "Enfant 5–8 ans" },
-      { range: "8–11 ans", text: "Comprendre et créer", label: "Enfant 8–11 ans" },
-      { range: "12–16 ans", text: "Innover et construire", label: "Ado 12–16 ans" },
+      {
+        range: "5–8 ans",
+        text: "Découvrir et s'amuser",
+        label: "Enfant 5–8 ans",
+        src: "/images/home/age-5-8.webp",
+      },
+      {
+        range: "8–11 ans",
+        text: "Comprendre et créer",
+        label: "Enfant 8–11 ans",
+        src: "/images/home/age-8-11.webp",
+      },
+      {
+        range: "12–16 ans",
+        text: "Innover et construire",
+        label: "Ado 12–16 ans",
+        src: "/images/home/age-12-16.webp",
+      },
     ],
     cta: "Voir tous les parcours",
     href: "/formations-enfants",
@@ -88,7 +107,11 @@ export const offers: {
     ],
     cta: "Découvrir les stages",
     href: STAGES_HREF,
-    image: { label: "Villa avec piscine au coucher du soleil", tone: "dubai" },
+    image: {
+      label: "Villa avec piscine au coucher du soleil",
+      tone: "dubai",
+      src: "/images/home/stages-villa.webp",
+    },
   },
 ];
 
@@ -98,36 +121,42 @@ export const activites: {
   title: string;
   text: string;
   tone: Tone;
+  src?: string;
 }[] = [
   {
     icon: Palette,
     title: "Coloriages à créer",
     text: "Générez des coloriages uniques en quelques clics.",
     tone: "kids",
+    src: "/images/home/act-coloriages.webp",
   },
   {
     icon: Sparkles,
     title: "Histoires personnalisées",
     text: "Créez des histoires sur mesure avec vos personnages.",
     tone: "warm",
+    src: "/images/home/act-histoires.webp",
   },
   {
     icon: Images,
     title: "Images illustrées",
     text: "Imaginez et créez des images époustouflantes.",
     tone: "maurice",
+    src: "/images/home/act-images.webp",
   },
   {
     icon: Gamepad2,
     title: "Jeux créatifs",
     text: "Inventez des jeux, quiz et défis avec l'aide de l'IA.",
     tone: "brand",
+    src: "/images/home/act-jeux.webp",
   },
   {
     icon: UsersRound,
     title: "Projets en famille",
     text: "Réalisez ensemble des projets utiles et inspirants.",
     tone: "france",
+    src: "/images/home/act-projets.webp",
   },
 ];
 
