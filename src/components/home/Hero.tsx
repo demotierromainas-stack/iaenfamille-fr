@@ -26,38 +26,31 @@ export function Hero() {
         };
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950 pt-28 pb-12 text-white sm:pt-32 sm:pb-14 lg:min-h-[560px]">
+    <section className="relative isolate overflow-hidden bg-navy-950 pt-28 text-white sm:pt-32 lg:min-h-[560px] lg:pb-14">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 hero-glow animate-drift"
       />
 
-      {/* Visuel de droite : il déborde jusqu'au bord et se fond dans le fond
-          sombre, comme sur la maquette. Masqué en dessous de lg, où il repasse
-          en bloc sous le texte. */}
+      {/*
+        Un seul visuel à toutes les tailles : ancré en bas à droite, il déborde
+        sur mobile pour cadrer sur la partie droite de la photo, et se replie
+        sur la moitié droite à partir de lg. Le fondu haut est gravé dans
+        l'alpha de l'image, le fondu latéral vient de .hero-media.
+      */}
       <motion.div
         aria-hidden
         initial={reduced ? undefined : { opacity: 0, scale: 1.04 }}
         animate={reduced ? undefined : { opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE }}
-        className="pointer-events-none absolute bottom-0 right-0 hidden aspect-[1.93/1] w-[62%] lg:block"
-        style={{
-          // fondu à gauche pour rejoindre le fond, et fondu haut/bas pour
-          // effacer la limite du cadre de l'image
-          maskImage:
-            "linear-gradient(to right, transparent 0%, #000 34%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 94%, transparent 100%)",
-          maskComposite: "intersect",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, #000 34%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 94%, transparent 100%)",
-          WebkitMaskComposite: "source-in",
-        }}
+        className="hero-media pointer-events-none absolute bottom-0 right-0 aspect-[1.93/1] w-[140%] max-w-none sm:w-[105%] lg:w-[62%]"
       >
         <Image
           src={HERO_IMG}
           alt=""
           fill
           priority
-          sizes="62vw"
+          sizes="(max-width: 1024px) 140vw, 62vw"
           className="object-contain object-right-bottom"
         />
       </motion.div>
@@ -77,8 +70,8 @@ export function Hero() {
             {...rise(0.12)}
             className="mt-5 max-w-md text-[17px] leading-relaxed text-white/70"
           >
-            Parents et enfants apprennent, créent et découvrent l&apos;intelligence
-            artificielle ensemble, en toute simplicité.
+            Parents et enfants apprennent, créent et découvrent
+            l&apos;intelligence artificielle ensemble, en toute simplicité.
           </motion.p>
 
           <motion.div {...rise(0.22)} className="mt-8 flex flex-wrap gap-3">
@@ -91,26 +84,9 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* visuel en version mobile / tablette */}
-        <motion.div
-          initial={reduced ? undefined : { opacity: 0, y: 20 }}
-          animate={reduced ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
-          className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/10 lg:hidden"
-        >
-          <Image
-            src={HERO_IMG}
-            alt={HERO_ALT}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        </motion.div>
-
         <motion.ul
           {...rise(0.34)}
-          className="relative mt-10 grid gap-5 sm:grid-cols-3 lg:mt-14 lg:max-w-[46%]"
+          className="relative mt-10 grid gap-5 sm:grid-cols-3 lg:mt-12 lg:max-w-[46%]"
         >
           {heroPoints.map(({ icon: Icon, title, text }) => (
             <li key={title} className="flex items-start gap-3">
@@ -126,6 +102,10 @@ export function Hero() {
             </li>
           ))}
         </motion.ul>
+
+        {/* réserve la place du visuel sous le contenu, hors desktop */}
+        <div aria-hidden className="h-[76vw] sm:h-[58vw] lg:hidden" />
+        <span className="sr-only">{HERO_ALT}</span>
       </Container>
     </section>
   );

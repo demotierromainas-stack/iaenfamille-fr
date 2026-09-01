@@ -107,6 +107,22 @@ body {
   background: rgb(99 102 241 / 0.25);
 }
 
+/* Visuel de hero : sur mobile il occupe le bas de la section et se fond
+   grâce à l'alpha gravé dans l'image ; à partir de lg il glisse à droite et
+   reçoit en plus un fondu latéral. Un seul dégradé de masque, car composer
+   deux `mask-image` se fait en union et laissait un bord franc. */
+.hero-media {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-media {
+    mask-image: linear-gradient(to right, transparent 0%, #000 34%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%);
+  }
+}
+
 /* Le dégradé du hero respire lentement */
 @keyframes drift {
   0%,
