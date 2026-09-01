@@ -27,10 +27,6 @@ export function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden bg-navy-950 pt-28 text-white sm:pt-32 lg:min-h-[560px] lg:pb-14">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 hero-glow animate-drift"
-      />
 
       {/*
         Un seul visuel à toutes les tailles : ancré en bas à droite, il déborde
@@ -54,6 +50,11 @@ export function Hero() {
           className="object-contain object-right-bottom"
         />
       </motion.div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 hero-glow animate-drift mix-blend-screen"
+      />
 
       <Container className="relative">
         <div className="lg:max-w-[46%]">

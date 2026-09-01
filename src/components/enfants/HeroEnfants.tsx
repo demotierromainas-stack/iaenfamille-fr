@@ -26,10 +26,6 @@ export function HeroEnfants() {
 
   return (
     <section className="relative isolate overflow-hidden bg-navy-950 pt-28 text-white sm:pt-32 lg:min-h-[540px] lg:pb-14">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 hero-glow animate-drift"
-      />
 
       <motion.div
         aria-hidden
@@ -47,6 +43,11 @@ export function HeroEnfants() {
           className="object-contain object-right-bottom"
         />
       </motion.div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 hero-glow animate-drift mix-blend-screen"
+      />
 
       <Container className="relative">
         <div className="lg:max-w-[46%]">
