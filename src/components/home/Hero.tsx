@@ -26,7 +26,7 @@ export function Hero() {
         };
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950 pt-28 pb-14 text-white sm:pt-32 sm:pb-20">
+    <section className="relative isolate overflow-hidden bg-navy-950 pt-28 pb-12 text-white sm:pt-32 sm:pb-14 lg:min-h-[560px]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 hero-glow animate-drift"
@@ -40,13 +40,15 @@ export function Hero() {
         initial={reduced ? undefined : { opacity: 0, scale: 1.04 }}
         animate={reduced ? undefined : { opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE }}
-        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] lg:block"
+        className="pointer-events-none absolute bottom-0 right-0 hidden aspect-[1.93/1] w-[62%] lg:block"
         style={{
+          // fondu à gauche pour rejoindre le fond, et fondu haut/bas pour
+          // effacer la limite du cadre de l'image
           maskImage:
-            "linear-gradient(to right, transparent 0%, #000 26%), linear-gradient(to bottom, #000 82%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, #000 34%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 94%, transparent 100%)",
           maskComposite: "intersect",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, #000 26%), linear-gradient(to bottom, #000 82%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, #000 34%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 94%, transparent 100%)",
           WebkitMaskComposite: "source-in",
         }}
       >
@@ -56,7 +58,7 @@ export function Hero() {
           fill
           priority
           sizes="62vw"
-          className="object-cover object-left"
+          className="object-contain object-right-bottom"
         />
       </motion.div>
 

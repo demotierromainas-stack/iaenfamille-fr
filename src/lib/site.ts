@@ -14,6 +14,12 @@ export const site = {
 } as const;
 
 /**
+ * Rendu du logo : "image" utilise le médaillon fourni par le client,
+ * "vector" le sigle redessiné. Bascule d'une ligne pour comparer.
+ */
+export const LOGO_MODE: "image" | "vector" = "image";
+
+/**
  * Le client hésite encore entre « Stages en présentiel » et « Stages en villa »
  * (les deux apparaissent dans les maquettes). Tout passe par cette constante :
  * un seul changement ici met à jour la nav, les cartes et les CTA.

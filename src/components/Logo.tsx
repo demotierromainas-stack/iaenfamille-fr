@@ -1,10 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { site } from "@/lib/site";
+import { site, LOGO_MODE } from "@/lib/site";
 
 /**
- * Reprend le sigle « IA » en médaillon des maquettes, puis « en famille ».
- * Version vectorielle : reste nette et s'adapte au fond clair ou sombre.
+ * Deux rendus possibles, pilotés par LOGO_MODE dans src/lib/site.ts :
+ *
+ * - "image"  : le médaillon fourni par le client. Fidèle, mais c'est un dessin
+ *              au trait fin qui perd sa lisibilité en dessous de ~96 px.
+ * - "vector" : sigle « IA » redessiné + « en famille » en texte. Net à toute
+ *              taille et cohérent avec les maquettes du site.
  */
 export function Logo({
   variant = "light",
@@ -15,6 +20,26 @@ export function Logo({
   className?: string;
 }) {
   const onDark = variant === "light";
+
+  if (LOGO_MODE === "image") {
+    return (
+      <Link
+        href="/"
+        aria-label={`${site.name} — accueil`}
+        className={cn("group inline-flex items-center gap-2.5", className)}
+      >
+        <Image
+          src="/images/brand/logo.png"
+          alt=""
+          width={46}
+          height={46}
+          priority
+          className="size-11 shrink-0 rounded-full transition-transform duration-300 group-hover:scale-105"
+        />
+        <span className="sr-only">{site.name}</span>
+      </Link>
+    );
+  }
 
   return (
     <Link
