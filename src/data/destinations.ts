@@ -33,7 +33,7 @@ export const destinations: Destination[] = [
       "Une bastide en Provence, entre lavandes et oliviers, pour une semaine de création en famille.",
     tone: "france",
     heroLabel: "Bastide provençale et champs de lavande",
-    image: "/images/home/dest-france.webp",
+    image: "/images/home/dest-france-hd.webp",
     intro:
       "Une bastide en pierre au milieu des lavandes, à une heure de la mer. Le format le plus simple à organiser : on y vient en voiture ou en train, et le dépaysement commence quand même au portail.",
     atouts: [
@@ -106,7 +106,7 @@ export const destinations: Destination[] = [
       "Une villa les pieds dans l'eau, entre ateliers créatifs le matin et lagon l'après-midi.",
     tone: "maurice",
     heroLabel: "Plage de sable blanc et lagon turquoise",
-    image: "/images/home/dest-ile-maurice.webp",
+    image: "/images/home/dest-ile-maurice-hd.webp",
     intro:
       "Une villa ouverte sur le lagon, où l'atelier du matin se termine les pieds dans le sable. Le format le plus dépaysant, et celui où les familles restent souvent quelques jours de plus.",
     atouts: [
@@ -179,7 +179,7 @@ export const destinations: Destination[] = [
       "Au cœur d'une ville laboratoire du futur, à la rencontre de l'innovation et de la robotique.",
     tone: "dubai",
     heroLabel: "Skyline de Dubaï au crépuscule",
-    image: "/images/home/dest-dubai.webp",
+    image: "/images/home/dest-dubai-hd.webp",
     intro:
       "La seule destination où la ville fait partie du programme. Entre deux ateliers, on va voir de près ce dont on parle : robotique, musées du futur, architecture.",
     atouts: [

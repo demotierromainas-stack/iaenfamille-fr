@@ -16,7 +16,7 @@ export function Confiance() {
 
             <div className="relative grid items-center gap-8 lg:grid-cols-[auto_1.3fr_1.2fr]">
               <Image
-                src="/images/enfants/bouclier.webp"
+                src="/images/enfants/bouclier-hd.webp"
                 alt=""
                 width={140}
                 height={140}

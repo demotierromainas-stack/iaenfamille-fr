@@ -8,7 +8,7 @@ import { Button } from "@/components/Button";
 import { principeStage } from "@/data/stages";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const IMG = "/images/stages/hero-stages-v2.webp";
+const IMG = "/images/stages/hero-stages-hd.webp";
 const ALT = "Villa avec piscine au coucher du soleil, sous les palmiers";
 
 export function HeroStages() {

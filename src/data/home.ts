@@ -62,7 +62,7 @@ export const offers: {
     image: {
       label: "Mère utilisant un ordinateur portable",
       tone: "warm",
-      src: "/images/home/formations-parents.webp",
+      src: "/images/home/formations-parents-hd.webp",
     },
   },
   {
@@ -76,19 +76,19 @@ export const offers: {
         range: "5–8 ans",
         text: "Découvrir et s'amuser",
         label: "Enfant 5–8 ans",
-        src: "/images/home/age-5-8.webp",
+        src: "/images/home/age-5-8-hd.webp",
       },
       {
         range: "8–11 ans",
         text: "Comprendre et créer",
         label: "Enfant 8–11 ans",
-        src: "/images/home/age-8-11.webp",
+        src: "/images/home/age-8-11-hd.webp",
       },
       {
         range: "12–16 ans",
         text: "Innover et construire",
         label: "Ado 12–16 ans",
-        src: "/images/home/age-12-16.webp",
+        src: "/images/home/age-12-16-hd.webp",
       },
     ],
     cta: "Voir tous les parcours",
@@ -110,7 +110,7 @@ export const offers: {
     image: {
       label: "Villa avec piscine au coucher du soleil",
       tone: "dubai",
-      src: "/images/home/stages-villa.webp",
+      src: "/images/home/stages-villa-hd.webp",
     },
   },
 ];
@@ -128,35 +128,35 @@ export const activites: {
     title: "Coloriages à créer",
     text: "Générez des coloriages uniques en quelques clics.",
     tone: "kids",
-    src: "/images/home/act-coloriages.webp",
+    src: "/images/home/act-coloriages-hd.webp",
   },
   {
     icon: Sparkles,
     title: "Histoires personnalisées",
     text: "Créez des histoires sur mesure avec vos personnages.",
     tone: "warm",
-    src: "/images/home/act-histoires.webp",
+    src: "/images/home/act-histoires-hd.webp",
   },
   {
     icon: Images,
     title: "Images illustrées",
     text: "Imaginez et créez des images époustouflantes.",
     tone: "maurice",
-    src: "/images/home/act-images.webp",
+    src: "/images/home/act-images-hd.webp",
   },
   {
     icon: Gamepad2,
     title: "Jeux créatifs",
     text: "Inventez des jeux, quiz et défis avec l'aide de l'IA.",
     tone: "brand",
-    src: "/images/home/act-jeux.webp",
+    src: "/images/home/act-jeux-hd.webp",
   },
   {
     icon: UsersRound,
     title: "Projets en famille",
     text: "Réalisez ensemble des projets utiles et inspirants.",
     tone: "france",
-    src: "/images/home/act-projets.webp",
+    src: "/images/home/act-projets-hd.webp",
   },
 ];
 

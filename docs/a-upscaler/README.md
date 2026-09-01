@@ -1,30 +1,34 @@
-# Images à monter en résolution
+# Images montées en résolution — terminé
 
-Ces PNG sont découpés dans les maquettes du client, **à leur résolution
-native, sans agrandissement ni accentuation**. C'est volontaire : un
-upscaler IA reconstruit beaucoup mieux le détail à partir de l'original
-que d'une image déjà agrandie.
+Les 42 visuels ont été upscalés (×4, ×6 pour les avatars d'âge) et intégrés
+au site le 1er septembre 2026. Ils vivent désormais dans `public/images/`,
+suffixés `-hd`.
 
-## Consigne
+Ce dossier ne sert plus qu'à conserver les sources : si un visuel doit être
+recadré ou retraité, repartir d'ici plutôt que de la maquette.
 
-- Facteur **×4** (×6 pour les trois `age-*`, minuscules à la source)
-- Modèle orienté **photo / réaliste** — sauf `act-coloriages`,
-  `act-histoires` et `act-projets`, qui sont des illustrations : un modèle
-  « digital art » ou « anime » y donne un meilleur résultat
-- Sortie en **PNG**, sans recadrage : garder le cadrage exact
-- Garder les **mêmes noms de fichiers**
+`originaux-non-upscales/` garde les crops en résolution native, tels que
+découpés dans les maquettes.
 
-Outils qui conviennent : Upscayl (gratuit, open source, Real-ESRGAN),
-Topaz Gigapixel, ou l'upscale de Magnific / Krea.
+## Refaire l'opération
 
-## Après l'upscale
+Si de nouveaux visuels sont découpés dans une maquette, les exporter ici en
+PNG à leur **résolution native, sans agrandissement ni accentuation** : un
+upscaler IA reconstruit mieux le détail à partir de l'original.
 
-Reposer les fichiers dans ce dossier et me le dire : je les convertis en
-WebP et je les branche dans le site. Rien d'autre à faire de ton côté —
-les chemins ne changent pas.
+Deux précautions apprises à nos dépens :
 
-## Remarque
+- **Ne jamais réécrire un fichier de ce dossier depuis un script de build.**
+  C'est arrivé aux deux heros, dont les versions upscalées ont été écrasées
+  par les crops bruts.
+- **Toujours changer le nom du fichier** quand un visuel est remplacé. Les URL
+  d'images optimisées dépendent de la taille d'écran : à nom identique,
+  certaines tailles restent servies depuis le cache du navigateur, ce qui
+  donne un site à jour sur un écran et inchangé sur un autre.
 
-Cette étape reste un pis-aller. Les visuels ayant servi à faire les
-maquettes existent probablement en pleine résolution chez le client :
-les récupérer donnera toujours un meilleur résultat qu'un upscale.
+## Visuels encore manquants
+
+Ils s'affichent en dégradé de marque portant le libellé de la photo attendue,
+et sont listés dans `docs/a-valider-client.md` : hébergement et galerie des
+trois destinations (12 photos), plus une vraie photo large pour le hero de la
+page stages, aujourd'hui un montage des trois destinations.

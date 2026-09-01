@@ -35,7 +35,7 @@ export function Offers() {
                         position={isStages ? "center" : "bottom"}
                         className={
                           isStages
-                            ? "clip-diagonal absolute inset-y-0 right-0 w-[38%]"
+                            ? "clip-diagonal absolute inset-y-0 right-0 w-[34%]"
                             : "clip-diagonal absolute bottom-0 right-0 h-[44%] w-[46%]"
                         }
                       />
@@ -47,7 +47,7 @@ export function Offers() {
                       }`}
                     >
                       <div
-                        className={`flex items-center gap-3 ${isStages ? "pr-[22%]" : ""}`}
+                        className={`flex items-center gap-3 ${isStages ? "pr-[26%]" : ""}`}
                       >
                         <IconBadge icon={offer.icon} tone={offer.tone} />
                         <h2 className="font-display text-lg font-bold tracking-tight">

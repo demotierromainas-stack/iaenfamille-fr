@@ -12,7 +12,7 @@ export function CtaEnfants() {
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-violet/10 via-brand-indigo/10 to-brand-cyan/10 ring-1 ring-brand-indigo/15">
             <div className="grid items-center gap-6 p-6 sm:p-8 lg:grid-cols-[auto_1fr_auto]">
               <Media
-                src="/images/enfants/cta-enfant.webp"
+                src="/images/enfants/cta-enfant-hd.webp"
                 label="Enfant souriant avec une tablette"
                 tone="kids"
                 sizes="220px"

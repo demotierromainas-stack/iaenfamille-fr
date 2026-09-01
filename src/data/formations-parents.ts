@@ -39,7 +39,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: BookOpen,
-    image: "/images/parents/formation-1.webp",
+    image: "/images/parents/formation-1-hd.webp",
     populaire: 1,
   },
   {
@@ -52,7 +52,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: ShieldCheck,
-    image: "/images/parents/formation-2.webp",
+    image: "/images/parents/formation-2-hd.webp",
     populaire: 2,
   },
   {
@@ -65,7 +65,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: Palette,
-    image: "/images/parents/formation-3.webp",
+    image: "/images/parents/formation-3-hd.webp",
     populaire: 3,
   },
   {
@@ -78,7 +78,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: CalendarDays,
-    image: "/images/parents/formation-4.webp",
+    image: "/images/parents/formation-4-hd.webp",
     populaire: 4,
   },
   {
@@ -91,7 +91,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: GraduationCap,
-    image: "/images/parents/formation-5.webp",
+    image: "/images/parents/formation-5-hd.webp",
     populaire: 5,
   },
   {
@@ -103,7 +103,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: Sparkles,
-    image: "/images/parents/formation-6.webp",
+    image: "/images/parents/formation-6-hd.webp",
     populaire: 6,
   },
   {
@@ -115,7 +115,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: Bot,
-    image: "/images/parents/formation-7.webp",
+    image: "/images/parents/formation-7-hd.webp",
     populaire: 7,
   },
   {
@@ -128,7 +128,7 @@ export const formationsParents: Formation[] = [
     niveau: "Intermédiaire",
     prix: 99,
     icon: ImageIcon,
-    image: "/images/parents/formation-8.webp",
+    image: "/images/parents/formation-8-hd.webp",
     populaire: 8,
   },
 ];

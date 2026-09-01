@@ -35,7 +35,7 @@ export function HeroParents() {
 
           <Reveal delay={0.1}>
             <Media
-              src="/images/parents/hero-parents.webp"
+              src="/images/parents/hero-parents-hd.webp"
               label="Deux parents et leur fille découvrant l'IA sur une tablette"
               tone="warm"
               priority
