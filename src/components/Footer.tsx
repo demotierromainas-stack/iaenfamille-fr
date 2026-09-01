@@ -28,7 +28,16 @@ export function Footer() {
       <Container className="relative py-14 sm:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.5fr]">
           <div>
-            <Logo variant="light" />
+            <div className="flex items-center gap-3">
+              <Logo variant="light" />
+              <Image
+                src="/images/brand/logo.png"
+                alt=""
+                width={96}
+                height={96}
+                className="size-14 shrink-0 rounded-full"
+              />
+            </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               L&apos;IA à vivre en famille pour créer aujourd&apos;hui,
               comprendre demain et construire le futur ensemble.

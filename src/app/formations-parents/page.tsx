@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { PageStub } from "@/components/PageStub";
+import { HeroParents } from "@/components/parents/HeroParents";
+import { FormationsGrid } from "@/components/parents/FormationsGrid";
+import { PackParents } from "@/components/parents/PackParents";
 
-export const metadata: Metadata = { title: "Formations parents" };
+export const metadata: Metadata = {
+  title: "Formations parents",
+  description:
+    "Des formations pratiques pour utiliser l'IA au quotidien, créer des activités et accompagner vos enfants avec confiance et sérénité.",
+};
 
-export default function Page() {
+export default function FormationsParentsPage() {
   return (
-    <PageStub
-      eyebrow="Formations parents"
-      title="Formations parents"
-      text="Des formations pratiques pour utiliser l'IA au quotidien, créer des activités et accompagner vos enfants avec confiance et sérénité."
-    />
+    <>
+      <HeroParents />
+      <FormationsGrid />
+      <PackParents />
+    </>
   );
 }

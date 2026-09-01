@@ -17,7 +17,7 @@ export const site = {
  * Rendu du logo : "image" utilise le médaillon fourni par le client,
  * "vector" le sigle redessiné. Bascule d'une ligne pour comparer.
  */
-export const LOGO_MODE: "image" | "vector" = "image";
+export const LOGO_MODE: "image" | "vector" = "vector";
 
 /**
  * Le client hésite encore entre « Stages en présentiel » et « Stages en villa »
