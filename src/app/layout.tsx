@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
+import { indexingAllowed } from "./robots";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  robots: indexingAllowed ? undefined : { index: false, follow: false },
   openGraph: {
     type: "website",
     locale: "fr_FR",
