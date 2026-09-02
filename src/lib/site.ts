@@ -10,7 +10,12 @@ export const site = {
   tagline: "Le site de référence en apprentissage de l'IA pour les familles",
   description:
     "L'IA à vivre en famille : formations pour les parents, parcours pour les enfants et stages en présentiel dans des lieux d'exception.",
-  email: "contact@iaenfamille.fr",
+  /**
+   * Adresse affichée publiquement, y compris sur les pages légales où elle
+   * vaut contact de l'éditeur. Distincte de l'expéditeur du formulaire
+   * (CONTACT_FROM), qui reste contact@iaenfamille.fr.
+   */
+  email: "jm.hanny@icloud.com",
 } as const;
 
 /**
