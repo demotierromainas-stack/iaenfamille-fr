@@ -16,7 +16,7 @@ export function Offers() {
   return (
     <section className="py-14 sm:py-20">
       <Container>
-        <RevealGroup className="grid gap-5 md:grid-cols-3">
+        <RevealGroup className="grid gap-5 lg:grid-cols-3">
           {offers.map((offer) => {
             const isStages = offer.tone === "orange";
             const hasSideImage = !offer.ages;
@@ -24,30 +24,14 @@ export function Offers() {
             return (
               <RevealItem key={offer.title}>
                 <LiftCard>
-                  <article className="card relative h-full overflow-hidden">
-                    {/* photo en incrustation diagonale (cartes parents et stages) */}
-                    {hasSideImage && (
-                      <Media
-                        src={offer.image.src}
-                        label={offer.image.label}
-                        tone={offer.image.tone}
-                        sizes="(max-width: 768px) 50vw, 20vw"
-                        position={isStages ? "center" : "bottom"}
-                        className={
-                          isStages
-                            ? "clip-diagonal absolute inset-y-0 right-0 w-[34%]"
-                            : "clip-diagonal absolute bottom-0 right-0 h-[44%] w-[46%]"
-                        }
-                      />
-                    )}
-
+                  <article className="card relative flex h-full flex-col overflow-hidden">
                     <div
-                      className={`relative flex h-full flex-col p-6 ${
-                        hasSideImage ? "pr-6" : ""
-                      }`}
+                      className={"relative flex flex-1 flex-col p-6"}
                     >
                       <div
-                        className={`flex items-center gap-3 ${isStages ? "pr-[26%]" : ""}`}
+                        className={`flex items-center gap-3 pr-[28%] ${
+                          isStages ? "lg:pr-[26%]" : "lg:pr-0"
+                        }`}
                       >
                         <IconBadge icon={offer.icon} tone={offer.tone} />
                         <h2 className="font-display text-lg font-bold tracking-tight">
@@ -57,14 +41,20 @@ export function Offers() {
 
                       <p
                         className={`mt-4 text-sm leading-relaxed text-muted ${
-                          isStages ? "pr-[32%]" : ""
+                          isStages ? "pr-[36%] lg:pr-[32%]" : "pr-[36%] lg:pr-0"
                         }`}
                       >
                         {offer.text}
                       </p>
 
                       {offer.bullets.length > 0 && (
-                        <ul className={`mt-5 space-y-2.5 ${isStages ? "pr-[32%]" : ""}`}>
+                        <ul
+                          className={`mt-5 space-y-2.5 ${
+                            isStages
+                              ? "pr-[36%] lg:pr-[32%]"
+                              : "pr-[36%] lg:pr-[30%]"
+                          }`}
+                        >
                           {offer.bullets.map((b) => (
                             <li
                               key={b}
@@ -116,6 +106,24 @@ export function Offers() {
                         />
                       </Link>
                     </div>
+
+                    {/* Photo : bandeau en pied de carte tant qu'on est en une
+                        colonne, incrustation diagonale dès que les cartes
+                        reprennent leur largeur. */}
+                    {hasSideImage && (
+                      <Media
+                        src={offer.image.src}
+                        label={offer.image.label}
+                        tone={offer.image.tone}
+                        sizes="(max-width: 1024px) 40vw, 20vw"
+                        position={isStages ? "center" : "bottom"}
+                        className={
+                          isStages
+                            ? "clip-diagonal absolute inset-y-0 right-0 w-[34%]"
+                            : "clip-diagonal absolute inset-y-0 right-0 w-[34%] lg:inset-y-auto lg:bottom-0 lg:h-[42%] lg:w-[42%]"
+                        }
+                      />
+                    )}
                   </article>
                 </LiftCard>
               </RevealItem>

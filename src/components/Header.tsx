@@ -13,22 +13,24 @@ import { cn } from "@/lib/cn";
 /**
  * Routes dont le hero est sombre : le header y démarre transparent en texte
  * clair, puis bascule en blanc dès que l'utilisateur scrolle.
+ *
+ * La distinction exact / préfixe compte : les pages de destination ont bien
+ * un hero sombre, mais les pages de tranche d'âge ont un hero clair — les
+ * traiter par préfixe y rendait la navigation illisible.
  */
-const DARK_HERO_ROUTES = [
-  "/",
-  "/formations-enfants",
-  "/stages-en-presentiel",
-  "/mon-compte",
-];
+const DARK_HERO_EXACT = ["/", "/formations-enfants", "/mon-compte"];
+const DARK_HERO_PREFIXES = ["/stages-en-presentiel"];
 
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const darkHero = DARK_HERO_ROUTES.some(
-    (r) => pathname === r || (r !== "/" && pathname.startsWith(r + "/")),
-  );
+  const darkHero =
+    DARK_HERO_EXACT.includes(pathname) ||
+    DARK_HERO_PREFIXES.some(
+      (r) => pathname === r || pathname.startsWith(r + "/"),
+    );
   // texte clair uniquement en haut d'une page à hero sombre
   const onDark = darkHero && !scrolled && !open;
 

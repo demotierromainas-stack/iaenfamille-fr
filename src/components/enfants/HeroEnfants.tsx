@@ -25,7 +25,7 @@ export function HeroEnfants() {
         };
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950 pt-28 text-white sm:pt-32 lg:min-h-[540px] lg:pb-14">
+    <section className="relative isolate overflow-hidden bg-navy-950 pt-24 text-white sm:pt-32 lg:min-h-[540px] lg:pb-14">
 
       <motion.div
         aria-hidden
@@ -62,13 +62,13 @@ export function HeroEnfants() {
 
           <motion.p
             {...rise(0.12)}
-            className="mt-5 max-w-md text-[17px] leading-relaxed text-white/70"
+            className="mt-4 max-w-md text-[16px] sm:mt-5 sm:text-[17px] leading-relaxed text-white/70"
           >
             Vos enfants découvrent, comprennent et créent avec l&apos;IA en
             toute sécurité.
           </motion.p>
 
-          <motion.div {...rise(0.22)} className="mt-8 flex flex-wrap gap-3">
+          <motion.div {...rise(0.22)} className="mt-7 flex flex-wrap gap-2.5 sm:gap-3">
             <Button href="#parcours" size="lg">
               Choisir un parcours
             </Button>
@@ -85,16 +85,21 @@ export function HeroEnfants() {
 
         <motion.ul
           {...rise(0.34)}
-          className="relative mt-10 grid gap-5 sm:grid-cols-3 lg:mt-12 lg:max-w-[46%]"
+          className="relative mt-8 grid grid-cols-3 gap-3 sm:mt-10 sm:gap-5 lg:mt-12 lg:max-w-[46%]"
         >
           {reassurancesEnfants.map(({ icon: Icon, titre, texte }) => (
-            <li key={titre} className="flex items-start gap-3">
+            <li
+              key={titre}
+              className="flex flex-col items-center gap-2 text-center sm:flex-row sm:items-start sm:gap-3 sm:text-left"
+            >
               <span className="grid size-9 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 backdrop-blur-sm">
                 <Icon className="size-4 text-brand-cyan" aria-hidden />
               </span>
               <span>
-                <span className="block text-[13px] font-semibold">{titre}</span>
-                <span className="block text-[11.5px] leading-snug text-white/50">
+                <span className="block text-[11.5px] font-semibold leading-tight sm:text-[13px]">
+                  {titre}
+                </span>
+                <span className="mt-0.5 hidden text-[11.5px] leading-snug text-white/50 sm:block">
                   {texte}
                 </span>
               </span>
@@ -102,7 +107,7 @@ export function HeroEnfants() {
           ))}
         </motion.ul>
 
-        <div aria-hidden className="h-[74vw] sm:h-[56vw] lg:hidden" />
+        <div aria-hidden className="h-[52vw] sm:h-[44vw] lg:hidden" />
         <span className="sr-only">{ALT}</span>
       </Container>
     </section>

@@ -46,6 +46,54 @@ suffit.
 - **Hero de la page stages** : actuellement un montage des trois photos de
   destination issues de la maquette, à remplacer par une vraie photo large
 
+## Page « À propos »
+
+Rédigée sans information sur le client. Elle décrit une posture déduite des
+maquettes — accompagner les familles, cadre sûr, apprendre ensemble — et
+**n'invente délibérément aucun fait vérifiable** : pas de date de création,
+pas de nom de fondateur, pas de chiffre (nombre de familles formées, années
+d'expérience), pas de photo d'équipe.
+
+Si le client veut une vraie page « qui sommes-nous », il faut son récit :
+qui est derrière le projet, pourquoi il l'a lancé, son parcours. Le contenu
+actuel est dans `src/data/a-propos.ts`.
+
+## Formulaire de contact
+
+Le formulaire **envoie réellement** les messages, via Resend. Testé de bout
+en bout : envoi délivré, saisie incomplète refusée côté serveur, robots
+filtrés par un champ leurre.
+
+Deux points restent en attente :
+
+- l'**adresse e-mail du client** qui recevra les demandes ; en attendant, les
+  messages arrivent sur l'adresse du compte Resend ;
+- le domaine `iaenfamille.fr` n'est **pas encore vérifié** chez Resend, donc
+  les envois partent pour l'instant d'une adresse générique. Les
+  enregistrements DNS à poser sont dans `deploy/README.md`.
+
+Et une obligation :
+
+- de quoi rédiger une vraie **politique de confidentialité** : qui traite les
+  données, combien de temps elles sont conservées, à qui elles sont
+  éventuellement transmises. Le formulaire collecte des données
+  personnelles, et elles transitent par Resend (sous-traitant à mentionner).
+  Cette page ne peut pas rester un texte de remplissage.
+
+## Mentions légales — obligation légale
+
+Elles sont **obligatoires** pour un site professionnel français, et la page
+est aujourd'hui vide de tout contenu réel. Informations à demander :
+
+- raison sociale, forme juridique et capital
+- numéro SIRET et RCS, numéro de TVA le cas échéant
+- adresse du siège
+- nom du directeur de la publication
+- coordonnées de l'hébergeur
+
+Tant que ces éléments manquent, le site ne devrait pas être mis en
+production sur son vrai domaine.
+
 ## Le libellé de l'offre
 
 « Stages en présentiel » (home) et « Stages en villa » (maquette enfants)
