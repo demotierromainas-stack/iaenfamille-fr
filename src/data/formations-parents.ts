@@ -26,6 +26,10 @@ export type Formation = {
   image: string;
   /** Ordre de la maquette, utilisé par le tri « Populaires ». */
   populaire: number;
+  /** Objectifs pédagogiques — déduits du titre, à faire valider. */
+  objectifs: string[];
+  /** À qui la formation s'adresse. */
+  pourQui: string;
 };
 
 export const formationsParents: Formation[] = [
@@ -41,6 +45,14 @@ export const formationsParents: Formation[] = [
     icon: BookOpen,
     image: "/images/parents/formation-1-hd.webp",
     populaire: 1,
+    objectifs: [
+      "Écrire une histoire où votre enfant est le héros",
+      "Générer les illustrations qui vont avec",
+      "Adapter le ton et la longueur selon l'âge",
+      "Constituer une petite bibliothèque familiale",
+    ],
+    pourQui:
+      "Les parents d'enfants de 3 à 10 ans, même sans aucune expérience de l'IA.",
   },
   {
     slug: "chatgpt-en-securite",
@@ -54,6 +66,14 @@ export const formationsParents: Formation[] = [
     icon: ShieldCheck,
     image: "/images/parents/formation-2-hd.webp",
     populaire: 2,
+    objectifs: [
+      "Configurer un compte adapté à un usage familial",
+      "Reconnaître ce que l'IA invente et le vérifier",
+      "Poser un cadre d'usage clair avec vos enfants",
+      "Savoir quoi faire face à une réponse inappropriée",
+    ],
+    pourQui:
+      "Les parents dont les enfants utilisent déjà l'IA, ou vont bientôt s'y mettre.",
   },
   {
     slug: "coloriages-uniques",
@@ -67,6 +87,14 @@ export const formationsParents: Formation[] = [
     icon: Palette,
     image: "/images/parents/formation-3-hd.webp",
     populaire: 3,
+    objectifs: [
+      "Générer des coloriages à partir d'une simple description",
+      "Obtenir un trait net, vraiment imprimable",
+      "Décliner un thème en série cohérente",
+      "Préparer une activité en quelques minutes",
+    ],
+    pourQui:
+      "Les parents et grands-parents d'enfants de 3 à 8 ans.",
   },
   {
     slug: "organiser-le-quotidien",
@@ -80,6 +108,14 @@ export const formationsParents: Formation[] = [
     icon: CalendarDays,
     image: "/images/parents/formation-4-hd.webp",
     populaire: 4,
+    objectifs: [
+      "Préparer les repas de la semaine avec ce qu'il y a dans le frigo",
+      "Gérer le calendrier familial et les activités",
+      "Rédiger plus vite les courriers et démarches",
+      "Automatiser ce qui revient chaque semaine",
+    ],
+    pourQui:
+      "Les parents qui manquent de temps — donc à peu près tous.",
   },
   {
     slug: "aide-aux-devoirs",
@@ -93,6 +129,14 @@ export const formationsParents: Formation[] = [
     icon: GraduationCap,
     image: "/images/parents/formation-5-hd.webp",
     populaire: 5,
+    objectifs: [
+      "Faire expliquer une notion à hauteur d'enfant",
+      "Générer des exercices d'entraînement supplémentaires",
+      "Repérer quand l'IA se trompe sur un exercice",
+      "Accompagner sans faire à la place",
+    ],
+    pourQui:
+      "Les parents d'enfants scolarisés du CP à la troisième.",
   },
   {
     slug: "developper-la-creativite",
@@ -105,6 +149,14 @@ export const formationsParents: Formation[] = [
     icon: Sparkles,
     image: "/images/parents/formation-6-hd.webp",
     populaire: 6,
+    objectifs: [
+      "Lancer un projet créatif à faire à plusieurs",
+      "Mélanger dessin, écriture et image générée",
+      "Transformer une idée d'enfant en projet abouti",
+      "Garder l'enfant aux commandes de sa création",
+    ],
+    pourQui:
+      "Les familles qui cherchent des activités à faire ensemble.",
   },
   {
     slug: "comprendre-lia",
@@ -117,6 +169,14 @@ export const formationsParents: Formation[] = [
     icon: Bot,
     image: "/images/parents/formation-7-hd.webp",
     populaire: 7,
+    objectifs: [
+      "Comprendre comment une IA produit une réponse",
+      "Savoir pourquoi elle se trompe avec assurance",
+      "Distinguer les usages utiles des usages risqués",
+      "Répondre aux questions de vos enfants sans être pris de court",
+    ],
+    pourQui:
+      "Les parents qui veulent comprendre avant d'utiliser.",
   },
   {
     slug: "images-et-videos-personnalisees",
@@ -130,6 +190,14 @@ export const formationsParents: Formation[] = [
     icon: ImageIcon,
     image: "/images/parents/formation-8-hd.webp",
     populaire: 8,
+    objectifs: [
+      "Décrire précisément l'image que vous avez en tête",
+      "Retoucher et décliner un visuel réussi",
+      "Réaliser une courte vidéo à partir d'images",
+      "Créer faire-part, affiches et souvenirs de famille",
+    ],
+    pourQui:
+      "Ceux qui ont déjà pris en main un premier outil d'IA.",
   },
 ];
 
