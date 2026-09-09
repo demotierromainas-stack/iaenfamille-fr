@@ -17,6 +17,7 @@ import { Media } from "@/components/Media";
 import { IconBadge } from "@/components/IconBadge";
 import { Reveal, RevealGroup, RevealItem, LiftCard } from "@/components/Reveal";
 import { formationsParents, packParents } from "@/data/formations-parents";
+import { ACHAT_HREF } from "@/lib/site";
 
 export function generateStaticParams() {
   return formationsParents.map((f) => ({ slug: f.slug }));
@@ -116,7 +117,7 @@ export default async function FormationPage({
                 <p className="mt-1 text-[12px] text-muted">
                   Paiement unique, accès à vie.
                 </p>
-                <Button href="/mon-compte" size="lg" className="mt-5 w-full">
+                <Button href={ACHAT_HREF} size="lg" className="mt-5 w-full">
                   Accéder à la formation
                 </Button>
                 <p className="mt-3 text-center text-[11.5px] text-muted">

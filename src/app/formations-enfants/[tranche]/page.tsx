@@ -8,6 +8,7 @@ import { Media } from "@/components/Media";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { parcoursEnfants, getParcours, competences } from "@/data/parcours-enfants";
+import { ACHAT_HREF } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 export function generateStaticParams() {
@@ -176,7 +177,7 @@ export default async function TranchePage({
                     ))}
                   </ul>
                   <div className="mt-7 flex flex-wrap gap-3">
-                    <Button href="/mon-compte" size="lg">
+                    <Button href={ACHAT_HREF} size="lg">
                       Commencer le parcours
                     </Button>
                     <Button href="/contact" variant="outline-light" size="lg">

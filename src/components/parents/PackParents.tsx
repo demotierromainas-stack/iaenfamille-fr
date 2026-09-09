@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { IconBadge } from "@/components/IconBadge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { garantiesParents, packParents } from "@/data/formations-parents";
+import { ACHAT_HREF, SKOOL_ACTIF } from "@/lib/site";
 
 export function PackParents() {
   const economie = packParents.prixInitial - packParents.prix;
@@ -56,7 +57,11 @@ export function PackParents() {
                   Économisez {economie} €
                 </p>
                 <a
-                  href="/mon-compte"
+                  href={ACHAT_HREF}
+                  {...(SKOOL_ACTIF && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                   className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-indigo transition-transform hover:scale-[1.02]"
                 >
                   {packParents.cta}

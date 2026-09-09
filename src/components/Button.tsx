@@ -40,12 +40,18 @@ export function Button({
   icon?: "arrow" | "none" | React.ReactNode;
   className?: string;
 }) {
+  // Un lien absolu sort du site : nouvel onglet, et on le dit aux lecteurs
+  // d'écran plutôt que de laisser la nouvelle fenêtre s'ouvrir sans prévenir.
+  const externe = /^https?:\/\//.test(href);
+
   return (
     <Link
       href={href}
+      {...(externe && { target: "_blank", rel: "noopener noreferrer" })}
       className={cn(base, variants[variant], sizes[size], className)}
     >
       {children}
+      {externe && <span className="sr-only"> (nouvel onglet)</span>}
       {icon === "arrow" ? (
         <ArrowRight
           className="size-4 transition-transform duration-200 group-hover:translate-x-1"

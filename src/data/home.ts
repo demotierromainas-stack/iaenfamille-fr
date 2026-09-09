@@ -115,6 +115,19 @@ export const offers: {
   },
 ];
 
+/**
+ * Bandeau « cours en ligne », posé sous les trois cartes d'offre. Les deux
+ * formats affichés viennent de `src/data/cours-en-ligne.ts` : seul le texte
+ * d'accroche du bandeau vit ici.
+ */
+export const coursEnLigne = {
+  eyebrow: "Cours en ligne",
+  titre: "Et s'il apprenait avec quelqu'un en face ?",
+  texte:
+    "Nos cours en visio réunissent quelques enfants du même âge autour d'un animateur, une fois par semaine. Ou juste votre enfant, s'il préfère avancer à son rythme.",
+  cta: "Découvrir les cours en ligne",
+} as const;
+
 /** « Des activités pour créer, comprendre et s'amuser » — 5 cartes. */
 export const activites: {
   icon: LucideIcon;

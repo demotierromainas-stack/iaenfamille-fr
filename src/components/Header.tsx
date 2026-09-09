@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, UserRound, X } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Logo } from "@/components/Logo";
-import { mainNav } from "@/lib/site";
+import { mainNav, SKOOL_ACTIF, SKOOL_URL } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 /**
@@ -18,9 +18,22 @@ import { cn } from "@/lib/cn";
  * un hero sombre, mais les pages de tranche d'âge ont un hero clair — les
  * traiter par préfixe y rendait la navigation illisible.
  */
-const DARK_HERO_EXACT = ["/", "/formations-enfants", "/mon-compte"];
+const DARK_HERO_EXACT = ["/", "/formations-enfants", "/cours-en-ligne"];
 const DARK_HERO_PREFIXES = ["/stages-en-presentiel"];
 
+/**
+ * « Mon compte » pointe sur la communauté Skool, qui héberge les formations —
+ * il n'y a plus de page compte sur le site. L'entrée n'est rendue que si
+ * `SKOOL_URL` est renseignée, pour ne pas afficher un bouton qui ne mène nulle
+ * part tant que la communauté n'existe pas.
+ *
+ * La nav complète bascule à `xl` et non `lg` : mesuré au navigateur, les six
+ * entrées passent sur deux lignes en dessous de ~1130 px. En dessous de `xl`,
+ * c'est le menu déroulant qui prend le relais — il liste les mêmes entrées.
+ *
+ * Raccourcir STAGES_LABEL en « Stages » suffirait à tout faire tenir dès
+ * 1024 px, si le client tranche un jour pour ce libellé.
+ */
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -70,7 +83,7 @@ export function Header() {
 
           <nav
             aria-label="Navigation principale"
-            className="hidden items-center gap-1 lg:flex"
+            className="hidden items-center gap-1 xl:flex"
           >
             {mainNav.map((item) => {
               const active = isActive(item.href);
@@ -104,18 +117,23 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Link
-              href="/mon-compte"
-              className={cn(
-                "hidden items-center gap-2 rounded-full border px-4 py-2 text-[13.5px] font-medium transition-colors sm:inline-flex",
-                onDark
-                  ? "border-white/25 text-white hover:border-white/60 hover:bg-white/10"
-                  : "border-line text-ink hover:border-brand-indigo/40 hover:text-brand-indigo",
-              )}
-            >
-              <UserRound className="size-4" aria-hidden />
-              Mon compte
-            </Link>
+            {SKOOL_ACTIF && (
+              <a
+                href={SKOOL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "hidden items-center gap-2 rounded-full border px-4 py-2 text-[13.5px] font-medium transition-colors sm:inline-flex",
+                  onDark
+                    ? "border-white/25 text-white hover:border-white/60 hover:bg-white/10"
+                    : "border-line text-ink hover:border-brand-indigo/40 hover:text-brand-indigo",
+                )}
+              >
+                <UserRound className="size-4" aria-hidden />
+                Mon compte
+                <span className="sr-only"> (nouvel onglet)</span>
+              </a>
+            )}
 
             <button
               type="button"
@@ -124,7 +142,7 @@ export function Header() {
               aria-controls="menu-mobile"
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
               className={cn(
-                "grid size-10 place-items-center rounded-full border transition-colors lg:hidden",
+                "grid size-10 place-items-center rounded-full border transition-colors xl:hidden",
                 onDark
                   ? "border-white/25 text-white"
                   : "border-line text-ink",
@@ -144,7 +162,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-line bg-white lg:hidden"
+            className="border-t border-line bg-white xl:hidden"
           >
             <Container className="py-4">
               <ul className="flex flex-col">
@@ -167,13 +185,18 @@ export function Header() {
                   </motion.li>
                 ))}
               </ul>
-              <Link
-                href="/mon-compte"
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-3 text-sm font-semibold text-white"
-              >
-                <UserRound className="size-4" aria-hidden />
-                Mon compte
-              </Link>
+              {SKOOL_ACTIF && (
+                <a
+                  href={SKOOL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-3 text-sm font-semibold text-white"
+                >
+                  <UserRound className="size-4" aria-hidden />
+                  Mon compte
+                  <span className="sr-only"> (nouvel onglet)</span>
+                </a>
+              )}
             </Container>
           </motion.div>
         )}
