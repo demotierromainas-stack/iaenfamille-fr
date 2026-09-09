@@ -5,6 +5,16 @@
 [build.environment]
   NODE_VERSION = "24"
 
+# Runtime Next.js de Netlify. Sans lui, `.next` est publié tel quel : c'est un
+# dossier de build interne, sans index.html à sa racine, donc le site répond
+# 404 partout. Le plugin le transforme en fonction serveur + assets statiques.
+#
+# Il était implicite tant qu'on déployait à la main (`netlify deploy --build`,
+# qui l'installait à la volée). Depuis que le dépôt est connecté, les builds
+# tournent sur les serveurs Netlify et il doit être déclaré ici.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 # Aperçu client : le site ne doit pas être indexé tant qu'il n'est pas en
 # production sur iaenfamille.fr. Passer NEXT_PUBLIC_ALLOW_INDEXING à "true"
 # dans les variables d'environnement Netlify le jour du lancement.
