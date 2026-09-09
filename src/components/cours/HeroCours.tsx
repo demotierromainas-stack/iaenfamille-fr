@@ -10,6 +10,10 @@ import { reassurancesCours } from "@/data/cours-en-ligne";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
+ * Même montage que le hero de la page formations enfants, et pour la même
+ * raison : le visuel est ancré EN BAS. Ancré en haut, il recouvrait le titre
+ * et le texte sur mobile, où il occupe 140 % de la largeur.
+ *
  * Le fondu vers le navy est porté par l'image elle-même, complété par le
  * masque latéral `.hero-media` à partir de lg.
  *
@@ -38,13 +42,13 @@ export function HeroCours() {
         };
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950 pt-24 text-white sm:pt-28">
+    <section className="relative isolate overflow-hidden bg-navy-950 pt-24 text-white sm:pt-32 lg:min-h-[560px] lg:pb-14">
       <motion.div
         aria-hidden
         initial={reduced ? undefined : { opacity: 0, scale: 1.04 }}
         animate={reduced ? undefined : { opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE }}
-        className="hero-media pointer-events-none absolute right-0 top-0 aspect-[2/1] w-[140%] max-w-none sm:w-[105%] lg:w-[60%]"
+        className="hero-media pointer-events-none absolute bottom-0 right-0 aspect-[2/1] w-[140%] max-w-none sm:w-[105%] lg:w-[60%]"
       >
         <Image
           src={IMG}
@@ -52,7 +56,7 @@ export function HeroCours() {
           fill
           priority
           sizes="(max-width: 1024px) 140vw, 60vw"
-          className="object-contain object-right-top"
+          className="object-contain object-right-bottom"
         />
       </motion.div>
 
@@ -93,11 +97,14 @@ export function HeroCours() {
             rythme, en toute confiance.
           </motion.p>
 
-          <motion.ul {...rise(0.24)} className="mt-6 flex flex-wrap gap-2">
+          <motion.ul
+            {...rise(0.24)}
+            className="mt-5 flex flex-wrap gap-1.5 sm:mt-6 sm:gap-2"
+          >
             {VERBES.map((v) => (
               <li
                 key={v}
-                className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[12px] font-medium text-white/75 backdrop-blur-sm"
+                className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11.5px] font-medium text-white/75 backdrop-blur-sm sm:px-3 sm:text-[12px]"
               >
                 {v}
               </li>
@@ -105,20 +112,27 @@ export function HeroCours() {
           </motion.ul>
         </div>
 
+        {/* Cinq réassurances, montage du hero enfants : sur mobile l'icône
+            passe au-dessus d'un libellé centré et le sous-titre disparaît —
+            en deux colonnes légendées, le bloc partait en lignes ragées et
+            doublait la hauteur du hero. */}
         <motion.ul
           {...rise(0.34)}
-          className="relative mt-10 grid grid-cols-2 gap-x-4 gap-y-6 border-t border-white/10 pt-8 sm:grid-cols-3 lg:mt-14 lg:grid-cols-5"
+          className="relative mt-8 flex flex-wrap justify-center gap-x-3 gap-y-5 border-t border-white/10 pt-6 sm:mt-9 sm:grid sm:grid-cols-3 sm:gap-x-4 sm:gap-y-5 sm:pt-7 lg:mt-12 lg:max-w-[54%] xl:max-w-[48%]"
         >
           {reassurancesCours.map(({ icon: Icon, titre, texte }) => (
-            <li key={titre} className="flex items-start gap-2.5">
+            <li
+              key={titre}
+              className="flex w-[calc(33.333%-0.5rem)] flex-col items-center gap-2 text-center sm:w-auto sm:flex-row sm:items-start sm:gap-2.5 sm:text-left"
+            >
               <span className="grid size-9 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 backdrop-blur-sm">
                 <Icon className="size-4 text-brand-cyan" aria-hidden />
               </span>
               <span>
-                <span className="block text-[12.5px] font-semibold leading-tight">
+                <span className="block text-[11.5px] font-semibold leading-tight sm:text-[12.5px]">
                   {titre}
                 </span>
-                <span className="mt-0.5 block text-[11px] leading-snug text-white/50">
+                <span className="mt-0.5 hidden text-balance text-[11px] leading-snug text-white/50 sm:block">
                   {texte}
                 </span>
               </span>
@@ -126,8 +140,9 @@ export function HeroCours() {
           ))}
         </motion.ul>
 
-        <div aria-hidden className="h-[46vw] pb-8 sm:h-[34vw] lg:hidden" />
-        <div aria-hidden className="hidden pb-14 lg:block" />
+        {/* Réserve la hauteur du visuel (moitié de sa largeur : 140 % puis
+            105 %) plus une marge, pour qu'aucun mot ne retombe sur la photo. */}
+        <div aria-hidden className="h-[70vw] sm:h-[56vw] lg:hidden" />
         <span className="sr-only">{ALT}</span>
       </Container>
     </section>
