@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { heroPoints } from "@/data/home";
-import { STAGES_HREF } from "@/lib/site";
+import { COURS_HREF } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -77,10 +77,10 @@ export function Hero() {
 
           <motion.div {...rise(0.22)} className="mt-7 flex flex-wrap gap-2.5 sm:gap-3">
             <Button href="/formations-parents" size="lg">
-              Découvrir les formations
+              Découvrir nos formations
             </Button>
-            <Button href={STAGES_HREF} variant="outline-light" size="lg">
-              Voir les stages
+            <Button href={COURS_HREF} variant="outline-light" size="lg">
+              Voir nos cours en ligne
             </Button>
           </motion.div>
         </div>

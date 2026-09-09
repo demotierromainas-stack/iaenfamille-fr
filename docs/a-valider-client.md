@@ -47,93 +47,91 @@ suffit.
 - **Hero de la page stages** : actuellement un montage des trois photos de
   destination issues de la maquette, à remplacer par une vraie photo large
 
-## Cours en ligne (visio) — nouvelle offre
+## Cours en ligne (visio)
 
-Demandée oralement par le client : des cours **en visio, avec un animateur**,
-en petit groupe ou en cours particulier. Périmètre retenu : **enfants
-uniquement** — les parents gardent les formations enregistrées.
+Page refondue sur la **maquette fournie par le client**
+(`docs/maquettes/cours-en-ligne-maquette.jpeg`), qui apporte enfin les
+éléments commerciaux absents de la première version.
 
-Aucune maquette, aucun élément commercial fourni. Tout le contenu de
-`src/data/cours-en-ligne.ts` est une proposition, à relire de près.
+### Ce que la maquette a tranché
 
-### Informations volontairement absentes
+| | |
+|---|---|
+| Cours individuels | **30 € / heure** |
+| Cours en petit groupe | **20 € / heure / personne**, 3 participants maximum |
+| Pack 10 h individuel | 300 € → **255 €** (−15 %), soit 25,50 €/h |
+| Pack 10 h groupe | 200 € → **170 €** (−15 %), soit 17 €/h/personne |
 
-- **Tarifs**, pour le groupe comme pour le particulier — la page renvoie vers
-  le formulaire de contact
-- **Créneaux et calendrier de la saison** — même traitement
+La tarification étant horaire, la séance de 2 h de la version précédente
+disparaît.
 
-### Hypothèses à confirmer
+### Trois écarts assumés par rapport à la maquette
 
-Ce sont des chiffres qui engagent le client dès qu'ils sont affichés :
+Décidés avec le client, à retenir si quelqu'un compare page et maquette :
 
-- **4 à 6 enfants** par groupe
-- **2 heures** par séance, pour les deux formats — durée fixée par le client
-- **1 séance par semaine** en groupe, **à la carte** en particulier
-- le **déroulé de séance** (10 min d'accueil, 20 min de découverte, 1 h 10 de
-  création, 20 min de restitution) est une hypothèse de rythme, tout comme la
-  **pause au milieu** de la phase de création
-- la **séance d'essai** annoncée dans la FAQ et le CTA final
-- le **rattrapage** en cas d'absence (autre créneau ou résumé écrit)
-- le **résumé envoyé après la séance** pour rejouer l'atelier en famille
-- « **le même animateur** pour un groupe » et « **une salle privée par
-  famille** » : à confirmer selon l'outil de visio retenu
+- **Public** : la maquette annonce « pour enfants et parents » à deux
+  endroits ; le périmètre reste **les enfants**, les parents gardant les
+  formations enregistrées.
+- **Boutons « Réserver »** : ils mènent au **formulaire de contact**, la
+  réservation n'étant pas automatisée. Ce sont les seuls boutons de vente qui
+  ne partent pas vers Skool.
+- **« À propos »** figure dans le menu de la maquette ; il en a été retiré à
+  la demande du client et reste au pied de page.
 
-### Le libellé de l'offre
+### Ce qui reste rédigé, donc à relire
 
-Tranché par le client : « **Cours en ligne** », affiché tel quel dans la nav,
-le bandeau de la home et le titre de la page. À noter que le site emploie
-aussi « en ligne » pour les formations enregistrées — les deux offres
-cohabitent sous le même mot, c'est assumé.
+- Les **réponses de la FAQ** : la maquette n'affiche que les questions,
+  l'accordéon y étant fermé. Deux engagent le client — les **moyens de
+  paiement** (carte, au moment de la réservation) et surtout les **conditions
+  d'annulation** (report ou annulation sans frais jusqu'à 24 h avant).
+- La mention « **créneaux disponibles toute la semaine** » du bandeau final.
 
-Le libellé passe par `COURS_LABEL` dans `src/lib/site.ts` : une seule ligne à
-changer s'il revient dessus. L'URL est `/cours-en-ligne`.
+### Les témoignages
 
-Le client a également demandé de retirer la pastille rose « En direct » qui
-signalait le caractère live, sur la home comme dans le hero. Le fait qu'un
-animateur soit présent reste dit en toutes lettres dans les textes.
+Sophie M. et Thomas R. sont affichés parce que le client a **confirmé qu'il
+s'agit de vraies familles**. C'est la seule raison qui les rend publiables :
+la page `/temoignages` reste vide pour la même règle, des avis fabriqués
+constituant une pratique commerciale trompeuse (art. L121-2 du code de la
+consommation). Si cette confirmation devait être retirée, il faut retirer le
+bloc.
 
-### Point d'attention : 2 heures pour les 5-8 ans
+### Les visuels
 
-La durée de 2 heures s'applique aux trois tranches d'âge. C'est long en visio
-pour les plus jeunes : à voir avec le client s'il souhaite une durée réduite
-sur le groupe 5-8 ans, ou si la pause suffit. Les durées vivent dans
-`formatsCours` (`src/data/cours-en-ligne.ts`).
+Huit visuels ont été **découpés dans les deux maquettes** — sources natives en
+PNG dans `docs/a-upscaler/` (préfixes `cours--` et `home--`), versions servies
+en `.webp`. Ils sont donc **en basse définition** : 99 à 216 px de large. À
+repasser dans l'upscaler puis à redéposer **sous un nouveau nom**, comme
+l'impose `docs/a-upscaler/README.md`.
 
-### Le visuel du hero
+Seule exception, le **hero** : le client a fourni un fichier propre en
+1760×893. Il arrivait à bords francs, le fondu vers le navy `#060a1f` a été
+gravé dedans pour qu'il ne se lise pas comme un rectangle posé sur la section
+sombre. Sa source d'origine est `docs/a-upscaler/hero-section-coursenligne.png`.
 
-Le hero reprend **exactement le traitement de la page formations enfants** :
-le visuel se fond dans le navy (le dégradé est gravé dans les pixels de
-l'image, pas en CSS) et reçoit le masque latéral `.hero-media` sur grand
-écran.
+Deux contraintes apprises en intégrant ces visuels, à respecter pour les
+prochains :
 
-C'est aussi **le même fichier**, `/images/enfants/hero-enfants-hd.webp` :
-c'est le seul visuel haute résolution du site qui montre des enfants devant un
-écran. `cta-enfant-hd.webp` ne fait que 720 × 440, trop petit pour un hero.
+- **Les photos de carte d'offre doivent être livrées en portrait étroit**
+  (ratio ~0,45, comme les existantes) : le cadre est plus haut que large et
+  `object-cover` rogne sinon les visages par le haut.
+- Un visuel destiné à une **section sombre** doit avoir ses bords fondus vers
+  `#060a1f`. À défaut, l'utilitaire `media-fondu` de `globals.css` applique un
+  masque radial, mais le résultat est meilleur quand le fondu est dans le
+  fichier.
 
-**Les deux pages partagent donc leur visuel de hero.** Pour les distinguer, il
-faut une photo dédiée — idéalement un enfant en séance de visio, casque sur
-les oreilles. À demander au client, ou à produire. Elle doit être livrée large
-(~2600 px) et avec le même fondu vers le navy `#060a1f`, puis déposée sous un
-**nouveau nom** (voir la mise en garde sur le cache dans
-`docs/a-upscaler/README.md`).
+### La home suit la même maquette
 
-### Emplacement sur la home
+`docs/maquettes/home-maquette-v2.jpeg` : les cours en ligne y deviennent une
+**quatrième carte d'offre** (la grille passe de 3 à 4 colonnes), complétée par
+un **bandeau sombre après les destinations**. Le hero perd son bouton vers les
+stages au profit de « Voir nos cours en ligne ».
 
-L'offre apparaît en **bandeau sombre sous les trois cartes**, et non en
-quatrième carte : les trois cartes gardent ainsi la mise en page de la
-maquette. Le bandeau est `src/components/home/CoursEnLigne.tsx`, son texte dans
-`src/data/home.ts` (`coursEnLigne`).
+### Navigation
 
-### Effet de bord sur la navigation
-
-L'ajout d'une entrée faisait déborder la barre de navigation. Mesuré au
+Avec l'entrée « Cours en ligne », la barre de navigation déborde. Mesuré au
 navigateur : les six entrées actuelles passent sur deux lignes en dessous de
 ~1130 px. La nav complète bascule donc à `xl` (1280 px) au lieu de `lg` ; en
-dessous, c'est le menu déroulant qui prend le relais, avec les mêmes entrées.
-
-« À propos » a par ailleurs été retiré du menu d'en-tête à la demande du
-client — la page reste au pied de page, donc toujours atteignable et toujours
-dans le sitemap.
+dessous, le menu déroulant prend le relais avec les mêmes entrées.
 
 Piste si le client veut la nav complète dès 1024 px : raccourcir
 `STAGES_LABEL` de « Stages en présentiel » à « Stages ». Testé, tout tient sur

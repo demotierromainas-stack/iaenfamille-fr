@@ -1,30 +1,26 @@
 import type { Metadata } from "next";
 import { HeroCours } from "@/components/cours/HeroCours";
-import { FormatsCours } from "@/components/cours/FormatsCours";
-import { PourquoiAnimateur } from "@/components/cours/PourquoiAnimateur";
-import { DerouleSeance } from "@/components/cours/DerouleSeance";
-import { ParAge } from "@/components/cours/ParAge";
-import { CadreCours } from "@/components/cours/CadreCours";
-import { FaqCours } from "@/components/cours/FaqCours";
+import { FormulesCours } from "@/components/cours/FormulesCours";
+import { PacksHeures } from "@/components/cours/PacksHeures";
+import { CommentCaMarche } from "@/components/cours/CommentCaMarche";
+import { AvisEtFaq } from "@/components/cours/AvisEtFaq";
 import { CtaCours } from "@/components/cours/CtaCours";
 import { COURS_LABEL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: COURS_LABEL,
   description:
-    "Des cours d'IA en visio pour les enfants, accompagnés par un animateur. En petit groupe de 4 à 6 enfants ou en cours particulier, dès 5 ans.",
+    "Des cours d'IA en visio pour les enfants, avec un formateur expert. En individuel à 30 € l'heure ou en petit groupe de 3 à 20 € l'heure, dès 5 ans.",
 };
 
 export default function CoursEnLignePage() {
   return (
     <>
       <HeroCours />
-      <FormatsCours />
-      <PourquoiAnimateur />
-      <DerouleSeance />
-      <ParAge />
-      <CadreCours />
-      <FaqCours />
+      <FormulesCours />
+      <PacksHeures />
+      <CommentCaMarche />
+      <AvisEtFaq />
       <CtaCours />
     </>
   );

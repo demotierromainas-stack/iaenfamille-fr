@@ -10,9 +10,9 @@ export default function HomePage() {
     <>
       <Hero />
       <Offers />
-      <CoursEnLigne />
       <Activites />
       <Destinations />
+      <CoursEnLigne />
       <Engagements />
     </>
   );

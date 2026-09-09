@@ -5,15 +5,18 @@ import {
   Heart,
   Images,
   Lightbulb,
+  Clock,
   Lock,
+  Monitor,
   Palette,
   Palmtree,
   ShieldCheck,
   Sparkles,
+  UserRound,
   UsersRound,
   type LucideIcon,
 } from "lucide-react";
-import { STAGES_HREF, STAGES_LABEL } from "@/lib/site";
+import { COURS_HREF, COURS_LABEL, STAGES_HREF, STAGES_LABEL } from "@/lib/site";
 import type { Tone } from "@/components/PlaceholderImage";
 
 /** Les 3 réassurances sous les CTA du hero. */
@@ -38,7 +41,7 @@ export const heroPoints: { icon: LucideIcon; title: string; text: string }[] = [
 /** Les 3 grandes cartes d'offre juste sous le hero. */
 export const offers: {
   icon: LucideIcon;
-  tone: "indigo" | "violet" | "orange";
+  tone: "indigo" | "violet" | "orange" | "cyan";
   title: string;
   text: string;
   bullets: string[];
@@ -96,6 +99,24 @@ export const offers: {
     image: { label: "Enfants en atelier", tone: "kids" },
   },
   {
+    icon: Monitor,
+    tone: "cyan",
+    title: COURS_LABEL,
+    text: "Des cours à la carte, en individuel ou en petit groupe, avec un formateur expert, depuis chez vous.",
+    bullets: [
+      "Cours individuels ou en groupe",
+      "Horaires flexibles",
+      "Tous niveaux, dès 5 ans",
+    ],
+    cta: "Découvrir les cours en ligne",
+    href: COURS_HREF,
+    image: {
+      label: "Enfant avec un casque devant son ordinateur, en cours",
+      tone: "brand",
+      src: "/images/home/cours-carte.webp",
+    },
+  },
+  {
     icon: Palmtree,
     tone: "orange",
     title: STAGES_LABEL,
@@ -116,17 +137,40 @@ export const offers: {
 ];
 
 /**
- * Bandeau « cours en ligne », posé sous les trois cartes d'offre. Les deux
- * formats affichés viennent de `src/data/cours-en-ligne.ts` : seul le texte
- * d'accroche du bandeau vit ici.
+ * Bandeau « cours en ligne », repris de la maquette client : il vient après
+ * les destinations, en bas de page, et complète la carte d'offre du haut.
+ *
+ * La maquette annonce « Enfants, ados, parents » ; le périmètre décidé reste
+ * les enfants — voir docs/a-valider-client.md.
  */
 export const coursEnLigne = {
-  eyebrow: "Cours en ligne",
-  titre: "Et s'il apprenait avec quelqu'un en face ?",
-  texte:
-    "Nos cours en visio réunissent quelques enfants du même âge autour d'un animateur, une fois par semaine. Ou juste votre enfant, s'il préfère avancer à son rythme.",
+  titre: "Des cours en ligne, où que vous soyez !",
+  texte: "Apprenez avec un formateur, à votre rythme, depuis la maison.",
+  atouts: [
+    {
+      icon: UserRound,
+      titre: "En individuel",
+      texte: "Un accompagnement personnalisé",
+    },
+    {
+      icon: UsersRound,
+      titre: "En petit groupe",
+      texte: "3 participants maximum, pour apprendre ensemble",
+    },
+    {
+      icon: Clock,
+      titre: "Horaires flexibles",
+      texte: "En journée, en soirée ou le week-end",
+    },
+    {
+      icon: Monitor,
+      titre: "Tous niveaux",
+      texte: "Des 5 ans jusqu'aux ados",
+    },
+  ] as { icon: LucideIcon; titre: string; texte: string }[],
   cta: "Découvrir les cours en ligne",
-} as const;
+  manuscrit: "Un cours aujourd'hui, des idées demain !",
+};
 
 /** « Des activités pour créer, comprendre et s'amuser » — 5 cartes. */
 export const activites: {

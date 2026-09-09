@@ -9,39 +9,56 @@ import { offers } from "@/data/home";
 const linkTone = {
   indigo: "text-brand-blue",
   violet: "text-brand-violet",
+  cyan: "text-brand-cyan",
   orange: "text-brand-orange",
 } as const;
 
+/**
+ * Les quatre offres du site, sur une ligne à partir de lg — c'est la
+ * disposition de la maquette client depuis l'ajout des cours en ligne.
+ *
+ * Deux mises en page de carte : celle des formations enfants montre les trois
+ * tranches d'âge en vignettes, les autres portent une photo incrustée en
+ * diagonale sur leur bord droit.
+ */
 export function Offers() {
   return (
     <section className="py-14 sm:py-20">
       <Container>
-        <RevealGroup className="grid gap-5 lg:grid-cols-3">
+        <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {offers.map((offer) => {
-            const isStages = offer.tone === "orange";
-            const hasSideImage = !offer.ages;
+            const avecPhoto = !offer.ages;
 
             return (
               <RevealItem key={offer.title}>
                 <LiftCard>
                   <article className="card relative flex h-full flex-col overflow-hidden">
-                    <div
-                      className={"relative flex flex-1 flex-col p-6"}
-                    >
-                      <div
-                        className={`flex items-center gap-3 pr-[28%] ${
-                          isStages ? "lg:pr-[26%]" : "lg:pr-0"
-                        }`}
-                      >
+                    {/* Les photos de carte sont des portraits étroits
+                        (~372×784). Le cadre doit rester plus haut que large,
+                        sinon `object-cover` remplit la largeur et rogne les
+                        visages par le haut. */}
+                    {avecPhoto && (
+                      <Media
+                        src={offer.image.src}
+                        label={offer.image.label}
+                        tone={offer.image.tone}
+                        sizes="(max-width: 640px) 40vw, 15vw"
+                        position="top"
+                        className="clip-diagonal absolute inset-y-0 right-0 w-[34%] lg:inset-y-auto lg:bottom-0 lg:h-[46%] lg:w-[36%]"
+                      />
+                    )}
+
+                    <div className="relative flex flex-1 flex-col p-5">
+                      <div className={avecPhoto ? "pr-[30%] lg:pr-0" : ""}>
                         <IconBadge icon={offer.icon} tone={offer.tone} />
-                        <h2 className="font-display text-lg font-bold tracking-tight">
+                        <h2 className="mt-3 font-display text-[17px] font-bold leading-tight tracking-tight">
                           {offer.title}
                         </h2>
                       </div>
 
                       <p
-                        className={`mt-4 text-sm leading-relaxed text-muted ${
-                          isStages ? "pr-[36%] lg:pr-[32%]" : "pr-[36%] lg:pr-0"
+                        className={`mt-3 text-[13px] leading-relaxed text-muted ${
+                          avecPhoto ? "pr-[36%] lg:pr-0" : ""
                         }`}
                       >
                         {offer.text}
@@ -49,19 +66,15 @@ export function Offers() {
 
                       {offer.bullets.length > 0 && (
                         <ul
-                          className={`mt-5 space-y-2.5 ${
-                            isStages
-                              ? "pr-[36%] lg:pr-[32%]"
-                              : "pr-[36%] lg:pr-[30%]"
-                          }`}
+                          className={`mt-4 space-y-2 ${avecPhoto ? "pr-[34%] lg:pr-[38%]" : ""}`}
                         >
                           {offer.bullets.map((b) => (
                             <li
                               key={b}
-                              className="flex items-start gap-2 text-[13px] text-ink/80"
+                              className="flex items-start gap-2 text-[12.5px] leading-snug text-ink/80"
                             >
                               <Check
-                                className={`mt-0.5 size-4 shrink-0 ${linkTone[offer.tone]}`}
+                                className={`mt-0.5 size-3.5 shrink-0 ${linkTone[offer.tone]}`}
                                 aria-hidden
                               />
                               {b}
@@ -71,7 +84,7 @@ export function Offers() {
                       )}
 
                       {offer.ages && (
-                        <ul className="mt-5 grid grid-cols-3 gap-2">
+                        <ul className="mt-4 grid grid-cols-3 gap-2">
                           {offer.ages.map((a) => (
                             <li
                               key={a.range}
@@ -84,10 +97,10 @@ export function Offers() {
                                 sizes="80px"
                                 className="mx-auto mb-2 aspect-square w-full rounded-lg"
                               />
-                              <span className="block text-[12px] font-bold text-ink">
+                              <span className="block text-[11.5px] font-bold text-ink">
                                 {a.range}
                               </span>
-                              <span className="mt-0.5 block text-[10px] leading-tight text-muted">
+                              <span className="mt-0.5 block text-[9.5px] leading-tight text-muted">
                                 {a.text}
                               </span>
                             </li>
@@ -95,35 +108,22 @@ export function Offers() {
                         </ul>
                       )}
 
-                      <Link
-                        href={offer.href}
-                        className={`group mt-auto inline-flex w-fit items-center gap-1.5 pt-6 text-[13px] font-semibold ${linkTone[offer.tone]}`}
+                      <div
+                        className={`mt-auto pt-5 ${avecPhoto ? "lg:pr-[38%]" : ""}`}
                       >
-                        {offer.cta}
-                        <ArrowRight
-                          className="size-4 transition-transform group-hover:translate-x-1"
-                          aria-hidden
-                        />
-                      </Link>
+                        <Link
+                          href={offer.href}
+                          className={`group inline-flex w-fit items-center gap-1.5 text-[12.5px] font-semibold leading-snug ${linkTone[offer.tone]}`}
+                        >
+                          {offer.cta}
+                          <ArrowRight
+                            className="size-3.5 shrink-0 transition-transform group-hover:translate-x-1"
+                            aria-hidden
+                          />
+                        </Link>
+                      </div>
                     </div>
 
-                    {/* Photo : bandeau en pied de carte tant qu'on est en une
-                        colonne, incrustation diagonale dès que les cartes
-                        reprennent leur largeur. */}
-                    {hasSideImage && (
-                      <Media
-                        src={offer.image.src}
-                        label={offer.image.label}
-                        tone={offer.image.tone}
-                        sizes="(max-width: 1024px) 40vw, 20vw"
-                        position={isStages ? "center" : "bottom"}
-                        className={
-                          isStages
-                            ? "clip-diagonal absolute inset-y-0 right-0 w-[34%]"
-                            : "clip-diagonal absolute inset-y-0 right-0 w-[34%] lg:inset-y-auto lg:bottom-0 lg:h-[42%] lg:w-[42%]"
-                        }
-                      />
-                    )}
                   </article>
                 </LiftCard>
               </RevealItem>

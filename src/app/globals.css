@@ -78,6 +78,19 @@ body {
     radial-gradient(50% 60% at 12% 8%, rgb(168 85 247 / 0.2), transparent 70%);
 }
 
+/* Visuel découpé dans une maquette : ses bords portent encore le fond de la
+   maquette, plus clair que le navy du site. Un masque radial les efface pour
+   qu'il se fonde dans la section sombre qui l'accueille, au lieu de se lire
+   comme une vignette rapportée. */
+@utility media-fondu {
+  mask-image: radial-gradient(ellipse 76% 76% at 50% 46%, #000 38%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 76% 76% at 50% 46%,
+    #000 38%,
+    transparent 78%
+  );
+}
+
 /* Bord oblique des photos incrustées dans les cartes d'offre */
 @utility clip-diagonal {
   clip-path: polygon(32% 0, 100% 0, 100% 100%, 0 100%);
