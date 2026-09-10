@@ -53,11 +53,14 @@ export const COURS_HREF = "/cours-en-ligne";
  * part en ligne. La renseigner suffit à tout activer.
  */
 export const SKOOL_URL: string =
-  // ⚠️ PROVISOIRE — page d'accueil de Skool, pas encore la communauté.
-  // À REMPLACER par l'URL réelle avant toute mise en production : un acheteur
-  // qui clique « Voir le pack » atterrit aujourd'hui sur le site marketing de
-  // Skool, pas sur les formations. Voir docs/a-valider-client.md.
-  "https://www.skool.com/";
+  // ⚠️ PROVISOIRE — lien fourni par le client, mais c'est son *profil*
+  // Skool : le « @ » désigne toujours un membre, jamais une communauté.
+  // Vérifié le 10/09/2026 : profil vide, aucune communauté rattachée, aucune
+  // formation en vente. À REMPLACER par l'URL de la communauté
+  // (skool.com/nom-de-la-communaute, sans « @ ») avant la mise en vente : un
+  // acheteur qui clique « Voir le pack » atterrit aujourd'hui sur une fiche de
+  // profil. Voir docs/a-valider-client.md.
+  "https://www.skool.com/@jean-maxime-hanny-7522";
 
 /** Vrai dès que la communauté existe. */
 export const SKOOL_ACTIF = SKOOL_URL !== "";

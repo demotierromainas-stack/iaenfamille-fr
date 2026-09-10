@@ -150,13 +150,18 @@ paiement, donc il reste **compatible avec l'export statique** décrit dans
 ### ⚠️ L'URL actuelle est provisoire
 
 `SKOOL_URL` dans `src/lib/site.ts` pointe aujourd'hui sur
-**`https://www.skool.com/`**, la page d'accueil de Skool — la communauté
-n'étant pas encore créée. C'est un réglage de revue, pour qu'on voie la
-différence entre les boutons de vente et les boutons de contact.
+**`https://www.skool.com/@jean-maxime-hanny-7522`**, le lien transmis par le
+client le 10/09/2026 et posé à sa demande.
 
-**À remplacer par l'URL réelle de la communauté avant toute mise en
-production.** En l'état, un acheteur qui clique « Voir le pack » atterrit sur
-le site marketing de Skool, pas sur les formations.
+**Ce n'est pas une communauté, c'est un profil membre.** Sur Skool, le « @ »
+désigne toujours une personne ; une communauté a une URL sans arobase, du type
+`skool.com/nom-de-la-communaute`. Page ouverte et vérifiée le 10/09/2026 :
+0 contribution, 0 follower, aucune communauté rattachée, aucune formation en
+vente — la bio évoque l'IA et l'immobilier, sans lien avec iaenfamille.
+
+**À remplacer par l'URL de la communauté avant la mise en vente.** En l'état,
+un acheteur qui clique « Voir le pack » atterrit sur une fiche de profil vide.
+À demander au client — il doit vraisemblablement encore créer la communauté.
 
 Une seule ligne à changer, rien d'autre. Et si l'URL est remise à `""`, les
 boutons de vente retombent proprement sur `/contact` et l'entrée « Mon
