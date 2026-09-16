@@ -1,6 +1,5 @@
 import { Hero } from "@/components/home/Hero";
 import { Offers } from "@/components/home/Offers";
-import { CoursEnLigne } from "@/components/home/CoursEnLigne";
 import { Activites } from "@/components/home/Activites";
 import { Destinations } from "@/components/home/Destinations";
 import { Engagements } from "@/components/home/Engagements";
@@ -12,7 +11,6 @@ export default function HomePage() {
       <Offers />
       <Activites />
       <Destinations />
-      <CoursEnLigne />
       <Engagements />
     </>
   );

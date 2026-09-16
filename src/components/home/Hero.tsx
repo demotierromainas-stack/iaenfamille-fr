@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { heroPoints } from "@/data/home";
-import { COURS_HREF } from "@/lib/site";
+import { STAGES_HREF } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -79,8 +79,8 @@ export function Hero() {
             <Button href="/formations-parents" size="lg">
               Découvrir nos formations
             </Button>
-            <Button href={COURS_HREF} variant="outline-light" size="lg">
-              Voir nos cours en ligne
+            <Button href={STAGES_HREF} variant="outline-light" size="lg">
+              Voir les stages
             </Button>
           </motion.div>
         </div>

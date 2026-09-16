@@ -18,7 +18,7 @@ import { cn } from "@/lib/cn";
  * un hero sombre, mais les pages de tranche d'âge ont un hero clair — les
  * traiter par préfixe y rendait la navigation illisible.
  */
-const DARK_HERO_EXACT = ["/", "/formations-enfants", "/cours-en-ligne"];
+const DARK_HERO_EXACT = ["/", "/formations-enfants"];
 const DARK_HERO_PREFIXES = ["/stages-en-presentiel"];
 
 /**

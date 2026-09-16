@@ -5,18 +5,15 @@ import {
   Heart,
   Images,
   Lightbulb,
-  Clock,
   Lock,
-  Monitor,
   Palette,
   Palmtree,
   ShieldCheck,
   Sparkles,
-  UserRound,
   UsersRound,
   type LucideIcon,
 } from "lucide-react";
-import { COURS_HREF, COURS_LABEL, STAGES_HREF, STAGES_LABEL } from "@/lib/site";
+import { STAGES_HREF, STAGES_LABEL } from "@/lib/site";
 import type { Tone } from "@/components/PlaceholderImage";
 
 /** Les 3 réassurances sous les CTA du hero. */
@@ -99,24 +96,6 @@ export const offers: {
     image: { label: "Enfants en atelier", tone: "kids" },
   },
   {
-    icon: Monitor,
-    tone: "cyan",
-    title: COURS_LABEL,
-    text: "Des cours à la carte, en individuel ou en petit groupe, avec un formateur expert, depuis chez vous.",
-    bullets: [
-      "Cours individuels ou en groupe",
-      "Horaires flexibles",
-      "Tous niveaux, dès 5 ans",
-    ],
-    cta: "Découvrir les cours en ligne",
-    href: COURS_HREF,
-    image: {
-      label: "Enfant avec un casque devant son ordinateur, en cours",
-      tone: "brand",
-      src: "/images/home/cours-carte.webp",
-    },
-  },
-  {
     icon: Palmtree,
     tone: "orange",
     title: STAGES_LABEL,
@@ -135,42 +114,6 @@ export const offers: {
     },
   },
 ];
-
-/**
- * Bandeau « cours en ligne », repris de la maquette client : il vient après
- * les destinations, en bas de page, et complète la carte d'offre du haut.
- *
- * La maquette annonce « Enfants, ados, parents » ; le périmètre décidé reste
- * les enfants — voir docs/a-valider-client.md.
- */
-export const coursEnLigne = {
-  titre: "Des cours en ligne, où que vous soyez !",
-  texte: "Apprenez avec un formateur, à votre rythme, depuis la maison.",
-  atouts: [
-    {
-      icon: UserRound,
-      titre: "En individuel",
-      texte: "Un accompagnement personnalisé",
-    },
-    {
-      icon: UsersRound,
-      titre: "En petit groupe",
-      texte: "3 participants maximum, pour apprendre ensemble",
-    },
-    {
-      icon: Clock,
-      titre: "Horaires flexibles",
-      texte: "En journée, en soirée ou le week-end",
-    },
-    {
-      icon: Monitor,
-      titre: "Tous niveaux",
-      texte: "Des 5 ans jusqu'aux ados",
-    },
-  ] as { icon: LucideIcon; titre: string; texte: string }[],
-  cta: "Découvrir les cours en ligne",
-  manuscrit: "Un cours aujourd'hui, des idées demain !",
-};
 
 /** « Des activités pour créer, comprendre et s'amuser » — 5 cartes. */
 export const activites: {

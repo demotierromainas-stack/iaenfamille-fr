@@ -33,15 +33,6 @@ export const STAGES_LABEL = "Stages en présentiel";
 export const STAGES_HREF = "/stages-en-presentiel";
 
 /**
- * Cours en visio pour les enfants, avec un animateur. Libellé tranché par le
- * client : « Cours en ligne », malgré la proximité avec les formations
- * enregistrées, elles aussi en ligne. Même principe que STAGES_LABEL — une
- * seule ligne à changer s'il revient dessus.
- */
-export const COURS_LABEL = "Cours en ligne";
-export const COURS_HREF = "/cours-en-ligne";
-
-/**
  * Communauté Skool : les formations et l'espace membre y sont hébergés plutôt
  * que sur le site, qui reste la vitrine.
  *
@@ -74,7 +65,6 @@ export const mainNav: NavItem[] = [
   { label: "Accueil", href: "/" },
   { label: "Formations parents", href: "/formations-parents" },
   { label: "Formations enfants", href: "/formations-enfants" },
-  { label: COURS_LABEL, href: COURS_HREF },
   { label: STAGES_LABEL, href: STAGES_HREF },
   { label: "Contact", href: "/contact" },
 ];
@@ -86,7 +76,6 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "Accueil", href: "/" },
       { label: "Formations parents", href: "/formations-parents" },
       { label: "Formations enfants", href: "/formations-enfants" },
-      { label: COURS_LABEL, href: COURS_HREF },
       { label: STAGES_LABEL, href: STAGES_HREF },
       { label: "À propos", href: "/a-propos" },
       { label: "Contact", href: "/contact" },

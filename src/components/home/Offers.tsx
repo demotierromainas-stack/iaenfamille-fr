@@ -18,7 +18,7 @@ const linkTone = {
 /**
  * Sur mobile, les cartes sont empilées et deux astronautes jouent à cache-cache
  * dans les intervalles : la tasse surgit de derrière la 2ᵉ carte, la planète
- * monte de derrière la 4ᵉ pour aller se cacher derrière la 3ᵉ.
+ * monte de derrière la 3ᵉ pour aller se cacher derrière la 2ᵉ.
  */
 const cachettes: Partial<
   Record<number, { nom: MascotteNom; className: string; mouvement: "surgir" | "traverser" }>
@@ -26,12 +26,11 @@ const cachettes: Partial<
   1: { nom: "tasse", className: "-top-12 right-8 w-28", mouvement: "surgir" },
   // centrée dans l'intervalle de 48 px : sa boîte de 84 px déborde de 18 px
   // de chaque côté, d'où un décalage de 66 px pour disparaître
-  3: { nom: "planete", className: "-top-[66px] right-10 aspect-[4/3] w-28", mouvement: "traverser" },
+  2: { nom: "planete", className: "-top-[66px] right-10 aspect-[4/3] w-28", mouvement: "traverser" },
 };
 
 /**
- * Les quatre offres du site, sur une ligne à partir de lg — c'est la
- * disposition de la maquette client depuis l'ajout des cours en ligne.
+ * Les trois offres du site, sur une ligne à partir de lg.
  *
  * Deux mises en page de carte : celle des formations enfants montre les trois
  * tranches d'âge en vignettes, les autres portent une photo incrustée en
@@ -46,7 +45,7 @@ export function Offers() {
         parallaxe={70}
       />
       <Container>
-        <RevealGroup className="grid gap-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+        <RevealGroup className="grid gap-12 sm:gap-5 lg:grid-cols-3">
           {offers.map((offer, index) => {
             const avecPhoto = !offer.ages;
             const cachette = cachettes[index];

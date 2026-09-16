@@ -9,6 +9,9 @@
   RewriteCond %{HTTPS} off [OR]
   RewriteCond %{HTTP_HOST} ^www\. [NC]
   RewriteRule ^ https://iaenfamille.fr%{REQUEST_URI} [R=301,L]
+
+  # Offre retirée : l'ancienne page des cours en ligne renvoie à l'accueil.
+  RewriteRule ^cours-en-ligne(/.*)?$ https://iaenfamille.fr/ [R=301,L]
 </IfModule>
 
 Options -Indexes
