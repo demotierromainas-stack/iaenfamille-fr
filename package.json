@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:production": "NEXT_PUBLIC_ALLOW_INDEXING=true next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -16,11 +17,9 @@
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "resend": "^6.25.0",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.15.13",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

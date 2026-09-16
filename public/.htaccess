@@ -1,0 +1,29 @@
+# Hébergement Infomaniak (Apache) — site exporté en statique par Next.js.
+
+Options -Indexes
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+
+# Le .env de contact.php contient la clé Resend : jamais servi.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  # Fichiers de build nommés par empreinte : cache d'un an.
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # Pages HTML : toujours revalidées, pour que les mises à jour se voient.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # Images et animations : noms stables, cache d'une semaine.
+  <FilesMatch "\.(webp|png|jpe?g|svg|ico|json|woff2)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/javascript application/javascript application/json image/svg+xml
+</IfModule>

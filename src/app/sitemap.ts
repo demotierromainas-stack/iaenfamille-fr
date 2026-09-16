@@ -6,6 +6,9 @@ import { parcoursEnfants } from "@/data/parcours-enfants";
 
 export const dynamic = "force-static";
 
+// Les URL finissent par « / » comme les pages exportées (trailingSlash) :
+// sinon chaque entrée du sitemap passerait par une redirection.
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -18,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]);
 
   const pages: MetadataRoute.Sitemap = [...statiques].map((href) => ({
-    url: `${site.url}${href === "/" ? "" : href}`,
+    url: `${site.url}${href === "/" ? "/" : `${href}/`}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: href === "/" ? 1 : 0.7,
@@ -27,19 +30,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pages,
     ...destinations.map((d) => ({
-      url: `${site.url}/stages-en-presentiel/${d.slug}`,
+      url: `${site.url}/stages-en-presentiel/${d.slug}/`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
     ...formationsParents.map((f) => ({
-      url: `${site.url}/formations/${f.slug}`,
+      url: `${site.url}/formations/${f.slug}/`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
     ...parcoursEnfants.map((p) => ({
-      url: `${site.url}/formations-enfants/${p.slug}`,
+      url: `${site.url}/formations-enfants/${p.slug}/`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.6,

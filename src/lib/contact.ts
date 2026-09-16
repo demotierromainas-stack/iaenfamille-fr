@@ -5,9 +5,9 @@
  * Resend : la clé API exposée au navigateur permettrait à n'importe qui
  * d'envoyer des e-mails depuis le domaine du client.
  *
- * Par défaut la route interne /api/contact. Sur un hébergement statique
- * (Infomaniak mutualisé), pointer NEXT_PUBLIC_CONTACT_ENDPOINT vers
- * `deploy/contact.php`, qui fait le même travail.
+ * Le site est un export statique : le relais est `public/contact.php`,
+ * déployé à la racine avec le reste. NEXT_PUBLIC_CONTACT_ENDPOINT permet de
+ * viser une autre adresse (ex. un aperçu hébergé ailleurs).
  */
 
 export type ContactMessage = {
@@ -21,7 +21,7 @@ export type EnvoiResultat =
   | { ok: true }
   | { ok: false; erreur: string };
 
-const ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "/api/contact";
+const ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "/contact.php";
 
 export async function envoyerMessage(
   data: ContactMessage & { piege?: string },

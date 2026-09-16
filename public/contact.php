@@ -1,16 +1,14 @@
 <?php
 /**
- * Relais d'envoi du formulaire de contact, pour un hébergement statique
- * (Infomaniak mutualisé), où la route /api/contact de Next n'existe pas.
+ * Relais d'envoi du formulaire de contact. Le site est un export statique
+ * (Infomaniak sans Node.js) : c'est ce script PHP qui reçoit le formulaire et
+ * appelle Resend, pour que la clé reste sur le serveur, jamais dans le
+ * navigateur.
  *
- * Fait exactement le même travail que src/app/api/contact/route.ts : la clé
- * Resend reste sur le serveur, jamais dans le navigateur.
+ * Placé dans public/, il est copié à la racine de out/ à chaque build.
  *
- * Déposer ce fichier à la racine du site, et pointer
- * NEXT_PUBLIC_CONTACT_ENDPOINT vers https://iaenfamille.fr/contact.php
- *
- * La clé se met dans un fichier .env à côté, hors du dossier public si
- * l'hébergement le permet. Ne jamais l'écrire en dur ici.
+ * La clé se met dans un fichier .env à côté, créé directement sur le serveur
+ * (jamais dans Git) et protégé par le .htaccess. Ne jamais l'écrire en dur ici.
  */
 
 header('Content-Type: application/json; charset=utf-8');
