@@ -20,7 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // --- configuration ---------------------------------------------------------
-$config = parse_ini_file(__DIR__ . '/.env');
+// Sans .env, parse_ini_file afficherait un avertissement PHP contenant le
+// chemin du serveur : on vérifie d'abord que le fichier est lisible.
+$fichier = __DIR__ . '/.env';
+$config  = is_readable($fichier) ? (parse_ini_file($fichier) ?: []) : [];
 $cle  = $config['RESEND_API_KEY']  ?? '';
 $from = $config['CONTACT_FROM']    ?? 'IA en famille <contact@iaenfamille.fr>';
 // CONTACT_TO accepte plusieurs adresses séparées par des virgules.
