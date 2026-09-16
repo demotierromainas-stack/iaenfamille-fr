@@ -62,7 +62,9 @@ export function Offers() {
                     surgir={cachette.mouvement === "surgir" ? 44 : undefined}
                     traverser={cachette.mouvement === "traverser" ? 70 : undefined}
                     delai={index}
-                    className={cn("aspect-square sm:hidden", cachette.className)}
+                    // -z-10 : elle doit passer derrière la carte précédente
+                    // aussi, pas seulement derrière la sienne.
+                    className={cn("aspect-square -z-10 sm:hidden", cachette.className)}
                   />
                 )}
                 <LiftCard>

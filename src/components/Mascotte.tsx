@@ -33,8 +33,11 @@ const VOLS: Partial<Record<MascotteNom, readonly [number, number]>> = {
  * au contenu (la fusée et le super-héros, eux, traversent l'écran), et
  * un flottement CSS l'empêche d'être figée à l'arrêt.
  *
- * Le parent doit être `relative isolate` : la mascotte se place en `-z-10`,
- * donc derrière les cartes et le texte de la section.
+ * Le parent doit être `relative isolate`. Sans z-index, la mascotte passe
+ * devant le texte courant (titres, paragraphes) mais derrière les blocs
+ * positionnés qui la suivent (cartes, bandeaux) : c'est ce qui permet de la
+ * voir dépasser d'un bandeau. Ajouter `-z-10` pour la cacher aussi derrière
+ * les blocs qui la précèdent.
  *
  * Coût maîtrisé : le lecteur (lottie_light, SVG seul) et le JSON ne sont
  * chargés qu'à l'approche du viewport, et rien n'est recalculé hors écran.
@@ -197,7 +200,7 @@ export function Mascotte({
       ref={cadre}
       aria-hidden
       className={cn(
-        "mascotte pointer-events-none absolute -z-10 select-none",
+        "mascotte pointer-events-none absolute select-none",
         className,
       )}
     >

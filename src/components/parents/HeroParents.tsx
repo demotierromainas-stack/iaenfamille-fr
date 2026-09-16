@@ -10,7 +10,7 @@ export function HeroParents() {
     <section className="relative isolate overflow-hidden bg-white pt-24 sm:pt-28">
       <Mascotte
         nom="planete"
-        className="aspect-[4/3] top-20 -right-3 w-28 xl:hidden"
+        className="aspect-[4/3] top-20 -right-3 z-10 w-28 xl:hidden"
         boucle={600}
         parallaxe={30}
         delai={4}
