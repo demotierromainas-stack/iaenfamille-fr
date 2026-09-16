@@ -1,5 +1,16 @@
 # Hébergement Infomaniak (Apache) — site exporté en statique par Next.js.
 
+# Une seule adresse : https://iaenfamille.fr. Le http et le www y sont
+# redirigés (301), pour les visiteurs comme pour Google. Méthode recommandée
+# par Infomaniak ; si une boucle de redirection apparaît un jour, remplacer
+# la condition HTTPS par : RewriteCond %{HTTP:X-Forwarded-Proto} !https
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://iaenfamille.fr%{REQUEST_URI} [R=301,L]
+</IfModule>
+
 Options -Indexes
 DirectoryIndex index.html index.php
 ErrorDocument 404 /404.html
