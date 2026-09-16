@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { ChevronRight } from "lucide-react";
 import { Container } from "@/components/Container";
 import { reassurancesCours } from "@/data/cours-en-ligne";
+import { cn } from "@/lib/cn";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -29,6 +30,11 @@ const ALT =
 /** Les cinq verbes de la maquette, posés en chapelet sous l'accroche. */
 const VERBES = ["Comprendre", "Créer", "Imaginer", "Progresser", "Ensemble"];
 
+/** Réassurances masquées sous sm, pour tenir sur une seule ligne de trois
+    comme le hero d'accueil : « 100 % en ligne » redit le titre, et les
+    horaires flexibles reviennent dans les formules juste en dessous. */
+const MASQUEES_MOBILE = new Set(["100 % en ligne", "Horaires flexibles"]);
+
 export function HeroCours() {
   const reduced = useReducedMotion();
 
@@ -48,7 +54,7 @@ export function HeroCours() {
         initial={reduced ? undefined : { opacity: 0, scale: 1.04 }}
         animate={reduced ? undefined : { opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE }}
-        className="hero-media pointer-events-none absolute bottom-0 right-0 aspect-[2/1] w-[140%] max-w-none sm:w-[105%] lg:w-[60%]"
+        className="hero-media hero-media-fondu-haut pointer-events-none absolute bottom-0 right-0 aspect-[2/1] w-[140%] max-w-none sm:w-[105%] lg:w-[60%]"
       >
         <Image
           src={IMG}
@@ -112,18 +118,20 @@ export function HeroCours() {
           </motion.ul>
         </div>
 
-        {/* Cinq réassurances, montage du hero enfants : sur mobile l'icône
-            passe au-dessus d'un libellé centré et le sous-titre disparaît —
-            en deux colonnes légendées, le bloc partait en lignes ragées et
-            doublait la hauteur du hero. */}
+        {/* Réassurances, montage du hero d'accueil : sur mobile, trois
+            seulement, l'icône au-dessus d'un libellé centré et sans
+            sous-titre, posées en avant-plan sur le haut de la photo. */}
         <motion.ul
           {...rise(0.34)}
-          className="relative mt-8 flex flex-wrap justify-center gap-x-3 gap-y-5 border-t border-white/10 pt-6 sm:mt-9 sm:grid sm:grid-cols-3 sm:gap-x-4 sm:gap-y-5 sm:pt-7 lg:mt-12 lg:max-w-[54%] xl:max-w-[48%]"
+          className="relative mt-8 grid grid-cols-3 gap-3 sm:mt-9 sm:gap-x-4 sm:gap-y-5 sm:border-t sm:border-white/10 sm:pt-7 lg:mt-12 lg:max-w-[54%] xl:max-w-[48%]"
         >
           {reassurancesCours.map(({ icon: Icon, titre, texte }) => (
             <li
               key={titre}
-              className="flex w-[calc(33.333%-0.5rem)] flex-col items-center gap-2 text-center sm:w-auto sm:flex-row sm:items-start sm:gap-2.5 sm:text-left"
+              className={cn(
+                "flex flex-col items-center gap-2 text-center sm:flex-row sm:items-start sm:gap-2.5 sm:text-left",
+                MASQUEES_MOBILE.has(titre) && "hidden sm:flex",
+              )}
             >
               <span className="grid size-9 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 backdrop-blur-sm">
                 <Icon className="size-4 text-brand-cyan" aria-hidden />
@@ -140,9 +148,10 @@ export function HeroCours() {
           ))}
         </motion.ul>
 
-        {/* Réserve la hauteur du visuel (moitié de sa largeur : 140 % puis
-            105 %) plus une marge, pour qu'aucun mot ne retombe sur la photo. */}
-        <div aria-hidden className="h-[70vw] sm:h-[56vw] lg:hidden" />
+        {/* Réserve moins que la hauteur du visuel (moitié de sa largeur :
+            70vw puis 52,5vw) : la photo remonte sous les réassurances et son
+            haut, fondu par .hero-media-fondu-haut, leur sert de fond. */}
+        <div aria-hidden className="h-[60vw] sm:h-[42vw] lg:hidden" />
         <span className="sr-only">{ALT}</span>
       </Container>
     </section>

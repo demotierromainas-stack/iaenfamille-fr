@@ -2,10 +2,17 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { engagements } from "@/data/home";
+import { Mascotte } from "@/components/Mascotte";
 
 export function Engagements() {
   return (
-    <section className="pb-14 sm:pb-20">
+    <section className="relative isolate pb-14 sm:pb-20">
+      <Mascotte
+        nom="tasse"
+        className="aspect-square -top-[4.5rem] -left-3 w-32 xl:top-1/4 xl:left-[max(0rem,calc(50%-43rem))] xl:w-48"
+        sens={-1}
+        delai={3}
+      />
       <Container>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-3xl bg-navy-950 px-6 py-10 text-white sm:px-10 sm:py-12">

@@ -9,6 +9,7 @@ import { Container } from "@/components/Container";
 import { Media } from "@/components/Media";
 import { parcoursEnfants } from "@/data/parcours-enfants";
 import { cn } from "@/lib/cn";
+import { Mascotte } from "@/components/Mascotte";
 
 const accents = {
   violet: {
@@ -33,7 +34,12 @@ export function Parcours() {
   const reduced = useReducedMotion();
 
   return (
-    <section id="parcours" className="scroll-mt-24 py-12 sm:py-16">
+    <section id="parcours" className="relative isolate scroll-mt-24 py-12 sm:py-16">
+      <Mascotte
+        nom="super-astronaute"
+        className="aspect-video -top-28 -right-14 w-80 xl:-top-14 xl:right-[max(0rem,calc(50%-47rem))] xl:w-96"
+        parallaxe={60}
+      />
       <Container>
         {/* Onglets : sur grand écran les trois colonnes restent visibles,
             les onglets servent alors de repères. En dessous de lg ils

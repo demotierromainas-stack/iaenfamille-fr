@@ -2,10 +2,17 @@ import { MessageCircle } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { Reveal } from "@/components/Reveal";
+import { Mascotte } from "@/components/Mascotte";
 
 export function CtaStages() {
   return (
-    <section className="pb-14 sm:pb-20">
+    <section className="relative isolate pb-14 sm:pb-20">
+      <Mascotte
+        nom="developpeur"
+        className="aspect-square -top-[5.5rem] left-4 w-32 md:-top-32 md:left-[max(0rem,calc(50%-26rem))] md:w-48"
+        parallaxe={30}
+        delai={1}
+      />
       <Container>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-3xl bg-navy-950 px-6 py-10 text-center text-white sm:px-10 sm:py-12">

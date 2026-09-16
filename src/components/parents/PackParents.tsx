@@ -4,12 +4,20 @@ import { IconBadge } from "@/components/IconBadge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { garantiesParents, packParents } from "@/data/formations-parents";
 import { ACHAT_HREF, SKOOL_ACTIF } from "@/lib/site";
+import { Mascotte } from "@/components/Mascotte";
 
 export function PackParents() {
   const economie = packParents.prixInitial - packParents.prix;
 
   return (
-    <section className="pb-14 sm:pb-20">
+    <section className="relative isolate pb-14 sm:pb-20">
+      <Mascotte
+        nom="tasse"
+        className="aspect-square -top-[4.5rem] right-4 w-28 md:-top-32 md:right-[max(0rem,calc(50%-20rem))] md:w-44"
+        parallaxe={25}
+        sens={-1}
+        delai={3}
+      />
       <Container>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-r from-brand-blue via-brand-indigo to-brand-purple px-6 py-8 text-white sm:px-10 sm:py-10">

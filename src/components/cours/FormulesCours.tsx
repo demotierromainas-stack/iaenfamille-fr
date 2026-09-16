@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { LiftCard, RevealGroup, RevealItem } from "@/components/Reveal";
 import { formules } from "@/data/cours-en-ligne";
 import { cn } from "@/lib/cn";
+import { Mascotte } from "@/components/Mascotte";
 
 /** Un ton par formule, comme sur la maquette : bleu à gauche, violet à droite. */
 const tons = {
@@ -32,7 +33,12 @@ const tons = {
 
 export function FormulesCours() {
   return (
-    <section id="formules" className="scroll-mt-24 py-14 sm:py-20">
+    <section id="formules" className="relative isolate scroll-mt-24 py-14 sm:py-20">
+      <Mascotte
+        nom="developpeur"
+        className="aspect-square -top-28 -right-4 w-40 xl:top-6 xl:right-[max(0rem,calc(50%-41rem))] xl:w-52"
+        delai={1}
+      />
       <Container>
         <SectionHeading
           title="Deux formules pour s'adapter à vos besoins"

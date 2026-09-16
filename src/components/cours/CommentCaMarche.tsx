@@ -3,10 +3,16 @@ import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { etapes } from "@/data/cours-en-ligne";
+import { Mascotte } from "@/components/Mascotte";
 
 export function CommentCaMarche() {
   return (
-    <section className="pb-14 sm:pb-20">
+    <section className="relative isolate pb-14 sm:pb-20">
+      <Mascotte
+        nom="fusee"
+        className="aspect-square -top-16 -left-8 w-40 xl:-top-14 xl:left-[max(0rem,calc(50%-40rem))] xl:w-48"
+        delai={2}
+      />
       <Container>
         <SectionHeading title="Comment ça fonctionne ?" />
 

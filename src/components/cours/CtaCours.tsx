@@ -4,10 +4,18 @@ import { Container } from "@/components/Container";
 import { Media } from "@/components/Media";
 import { Reveal } from "@/components/Reveal";
 import { ctaCours } from "@/data/cours-en-ligne";
+import { Mascotte } from "@/components/Mascotte";
 
 export function CtaCours() {
   return (
-    <section className="pb-14 sm:pb-20">
+    <section className="relative isolate pb-14 sm:pb-20">
+      <Mascotte
+        nom="tasse"
+        className="aspect-square -top-[4.5rem] right-4 w-28 md:-top-32 md:right-[max(0rem,calc(50%-24rem))] md:w-44"
+        parallaxe={25}
+        sens={-1}
+        delai={3}
+      />
       <Container>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-3xl bg-navy-950 text-white">

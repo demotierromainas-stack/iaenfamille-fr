@@ -6,10 +6,17 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { LiftCard, RevealGroup, RevealItem } from "@/components/Reveal";
 import { destinations } from "@/data/destinations";
 import { STAGES_HREF } from "@/lib/site";
+import { Mascotte } from "@/components/Mascotte";
 
 export function DestinationsStages() {
   return (
-    <section id="destinations" className="scroll-mt-24 pb-14 sm:pb-20">
+    <section id="destinations" className="relative isolate scroll-mt-24 pb-14 sm:pb-20">
+      <Mascotte
+        nom="planete"
+        className="aspect-[4/3] -top-12 -left-5 w-32 xl:-top-6 xl:left-[max(0rem,calc(50%-37rem))] xl:w-32"
+        boucle={600}
+        delai={4}
+      />
       <Container>
         <SectionHeading
           title="Trois destinations, un même programme"

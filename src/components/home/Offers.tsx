@@ -5,6 +5,8 @@ import { IconBadge } from "@/components/IconBadge";
 import { Media } from "@/components/Media";
 import { LiftCard, RevealGroup, RevealItem } from "@/components/Reveal";
 import { offers } from "@/data/home";
+import { cn } from "@/lib/cn";
+import { Mascotte, type MascotteNom } from "@/components/Mascotte";
 
 const linkTone = {
   indigo: "text-brand-blue",
@@ -12,6 +14,20 @@ const linkTone = {
   cyan: "text-brand-cyan",
   orange: "text-brand-orange",
 } as const;
+
+/**
+ * Sur mobile, les cartes sont empilées et deux astronautes jouent à cache-cache
+ * dans les intervalles : la tasse surgit de derrière la 2ᵉ carte, la planète
+ * monte de derrière la 4ᵉ pour aller se cacher derrière la 3ᵉ.
+ */
+const cachettes: Partial<
+  Record<number, { nom: MascotteNom; className: string; mouvement: "surgir" | "traverser" }>
+> = {
+  1: { nom: "tasse", className: "-top-12 right-8 w-28", mouvement: "surgir" },
+  // centrée dans l'intervalle de 48 px : sa boîte de 84 px déborde de 18 px
+  // de chaque côté, d'où un décalage de 66 px pour disparaître
+  3: { nom: "planete", className: "-top-[66px] right-10 aspect-[4/3] w-28", mouvement: "traverser" },
+};
 
 /**
  * Les quatre offres du site, sur une ligne à partir de lg — c'est la
@@ -23,14 +39,32 @@ const linkTone = {
  */
 export function Offers() {
   return (
-    <section className="py-14 sm:py-20">
+    <section className="relative isolate py-14 sm:py-20">
+      <Mascotte
+        nom="super-astronaute"
+        className="aspect-video -top-28 -left-14 w-80 xl:-top-16 xl:left-[max(0rem,calc(50%-46rem))] xl:w-96"
+        parallaxe={70}
+      />
       <Container>
-        <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {offers.map((offer) => {
+        <RevealGroup className="grid gap-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+          {offers.map((offer, index) => {
             const avecPhoto = !offer.ages;
+            const cachette = cachettes[index];
 
             return (
-              <RevealItem key={offer.title}>
+              // Pas d'isolate ici : la mascotte doit rester dans le contexte
+              // de la section pour passer derrière la carte précédente aussi.
+              <RevealItem key={offer.title} className="relative">
+                {cachette && (
+                  <Mascotte
+                    nom={cachette.nom}
+                    voler={false}
+                    surgir={cachette.mouvement === "surgir" ? 44 : undefined}
+                    traverser={cachette.mouvement === "traverser" ? 70 : undefined}
+                    delai={index}
+                    className={cn("aspect-square sm:hidden", cachette.className)}
+                  />
+                )}
                 <LiftCard>
                   <article className="card relative flex h-full flex-col overflow-hidden">
                     {/* Les photos de carte sont des portraits étroits

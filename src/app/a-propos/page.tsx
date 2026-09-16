@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal, RevealGroup, RevealItem, LiftCard } from "@/components/Reveal";
 import { approche, convictions, valeurs } from "@/data/a-propos";
 import { STAGES_HREF } from "@/lib/site";
+import { Mascotte } from "@/components/Mascotte";
 
 export const metadata: Metadata = {
   title: "À propos",
@@ -50,7 +51,12 @@ export default function AProposPage() {
         </Container>
       </section>
 
-      <section className="pb-14 sm:pb-20">
+      <section className="relative isolate pb-14 sm:pb-20">
+        <Mascotte
+          nom="super-astronaute"
+          className="aspect-video -top-28 -left-20 w-80 xl:hidden"
+          parallaxe={60}
+        />
         <Container>
           <RevealGroup className="grid gap-5 sm:grid-cols-2">
             {convictions.map(({ icon, titre, texte }) => (
@@ -70,7 +76,12 @@ export default function AProposPage() {
         </Container>
       </section>
 
-      <section className="pb-14 sm:pb-20">
+      <section className="relative isolate pb-14 sm:pb-20">
+        <Mascotte
+          nom="fusee"
+          className="aspect-square -top-16 -right-8 w-40 xl:-top-14 xl:right-[max(0rem,calc(50%-40rem))] xl:w-48"
+          delai={2}
+        />
         <Container>
           <SectionHeading
             title="Ce à quoi nous tenons"
@@ -96,7 +107,13 @@ export default function AProposPage() {
         </Container>
       </section>
 
-      <section className="pb-14 sm:pb-20">
+      <section className="relative isolate pb-14 sm:pb-20">
+        <Mascotte
+          nom="developpeur"
+          className="aspect-square -top-[5.5rem] left-4 w-32 xl:hidden"
+          parallaxe={30}
+          delai={1}
+        />
         <Container>
           <div className="relative isolate overflow-hidden rounded-3xl bg-navy-950 px-6 py-10 text-white sm:px-10 sm:py-12">
             <div
@@ -131,7 +148,13 @@ export default function AProposPage() {
         </Container>
       </section>
 
-      <section className="pb-16 sm:pb-24">
+      <section className="relative isolate pb-16 sm:pb-24">
+        <Mascotte
+          nom="tasse"
+          className="aspect-square -top-12 -left-5 w-32 xl:-top-6 xl:left-[max(0rem,calc(50%-30rem))] xl:w-44"
+          sens={-1}
+          delai={3}
+        />
         <Container>
           <Reveal className="mx-auto max-w-xl text-center">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-[28px]">

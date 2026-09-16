@@ -7,6 +7,7 @@ import { Clock, GraduationCap } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Media } from "@/components/Media";
 import { formationsParents, type Formation } from "@/data/formations-parents";
+import { Mascotte } from "@/components/Mascotte";
 
 const tris = {
   populaires: { label: "Populaires", fn: (a: Formation, b: Formation) => a.populaire - b.populaire },
@@ -26,7 +27,12 @@ export function FormationsGrid() {
   );
 
   return (
-    <section className="py-12 sm:py-16">
+    <section className="relative isolate py-12 sm:py-16">
+      <Mascotte
+        nom="fusee"
+        className="aspect-square -top-16 -right-8 w-40 xl:top-2 xl:left-[max(0rem,calc(50%-43rem))] xl:w-48"
+        delai={2}
+      />
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h2 className="font-display text-2xl font-bold tracking-tight sm:text-[28px]">

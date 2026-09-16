@@ -3,10 +3,17 @@ import { Media } from "@/components/Media";
 import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { competences } from "@/data/parcours-enfants";
+import { Mascotte } from "@/components/Mascotte";
 
 export function Competences() {
   return (
-    <section className="pb-12 sm:pb-16">
+    <section className="relative isolate pb-12 sm:pb-16">
+      <Mascotte
+        nom="planete"
+        className="aspect-[4/3] -top-12 -left-4 w-32 xl:-top-8 xl:left-[max(0rem,calc(50%-38rem))] xl:w-32"
+        boucle={600}
+        delai={4}
+      />
       <Container>
         <div className="card px-6 py-9 sm:px-10">
           <SectionHeading title="Les compétences développées" />

@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { Accordion } from "@/components/Accordion";
 import { Reveal } from "@/components/Reveal";
 import { faqSections } from "@/data/faq";
+import { Mascotte } from "@/components/Mascotte";
 
 export const metadata: Metadata = {
   title: "Questions fréquentes",
@@ -13,7 +14,12 @@ export const metadata: Metadata = {
 
 export default function FaqPage() {
   return (
-    <section className="pt-24 pb-16 sm:pt-28 sm:pb-24">
+    <section className="relative isolate pt-24 pb-16 sm:pt-28 sm:pb-24">
+      <Mascotte
+        nom="developpeur"
+        className="aspect-square top-24 -right-3 w-40 xl:top-20 xl:right-[max(0rem,calc(50%-34rem))] xl:w-60"
+        delai={1}
+      />
       <Container>
         <Reveal className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-indigo">

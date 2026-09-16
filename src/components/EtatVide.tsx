@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { Reveal } from "@/components/Reveal";
 import { IconBadge } from "@/components/IconBadge";
+import { Mascotte } from "@/components/Mascotte";
 
 /**
  * Page dont le contenu n'existe pas encore et ne peut pas être inventé
@@ -25,7 +26,13 @@ export function EtatVide({
   cta: { label: string; href: string };
 }) {
   return (
-    <section className="pt-24 pb-16 sm:pt-28 sm:pb-24">
+    <section className="relative isolate pt-24 pb-16 sm:pt-28 sm:pb-24">
+      <Mascotte
+        nom="tasse"
+        className="aspect-square top-10 -right-4 w-32 xl:top-20 xl:right-[max(0rem,calc(50%-34rem))] xl:w-56"
+        sens={-1}
+        delai={3}
+      />
       <Container>
         <Reveal className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-indigo">

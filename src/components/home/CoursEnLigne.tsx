@@ -4,6 +4,7 @@ import { Media } from "@/components/Media";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { coursEnLigne } from "@/data/home";
 import { COURS_HREF } from "@/lib/site";
+import { Mascotte } from "@/components/Mascotte";
 
 /**
  * Bandeau de bas de page, après les destinations. Il reprend la carte d'offre
@@ -11,7 +12,13 @@ import { COURS_HREF } from "@/lib/site";
  */
 export function CoursEnLigne() {
   return (
-    <section className="pb-14 sm:pb-20">
+    <section className="relative isolate pb-14 sm:pb-20">
+      <Mascotte
+        nom="developpeur"
+        className="aspect-square -top-[5.5rem] right-4 w-32 md:-top-32 md:right-[max(0rem,calc(50%-29rem))] md:w-52"
+        parallaxe={30}
+        delai={1}
+      />
       <Container>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-3xl bg-navy-950 px-6 py-10 text-white sm:px-10 sm:py-12">

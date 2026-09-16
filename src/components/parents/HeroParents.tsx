@@ -3,10 +3,18 @@ import { Media } from "@/components/Media";
 import { IconBadge } from "@/components/IconBadge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { argumentsParents } from "@/data/formations-parents";
+import { Mascotte } from "@/components/Mascotte";
 
 export function HeroParents() {
   return (
-    <section className="relative overflow-hidden bg-white pt-24 sm:pt-28">
+    <section className="relative isolate overflow-hidden bg-white pt-24 sm:pt-28">
+      <Mascotte
+        nom="planete"
+        className="aspect-[4/3] top-20 -right-3 w-28 xl:hidden"
+        boucle={600}
+        parallaxe={30}
+        delai={4}
+      />
       {/* voile coloré très doux, comme sur la maquette */}
       <div
         aria-hidden

@@ -4,6 +4,7 @@ import { Accordion } from "@/components/Accordion";
 import { Media } from "@/components/Media";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { faqCours, temoignagesCours } from "@/data/cours-en-ligne";
+import { Mascotte } from "@/components/Mascotte";
 
 /**
  * La maquette met les avis et la FAQ sur une même ligne, avis à gauche.
@@ -11,7 +12,14 @@ import { faqCours, temoignagesCours } from "@/data/cours-en-ligne";
  */
 export function AvisEtFaq() {
   return (
-    <section className="pb-14 sm:pb-20">
+    <section className="relative isolate pb-14 sm:pb-20">
+      <Mascotte
+        nom="planete"
+        className="aspect-[4/3] -top-6 -right-3 w-28 lg:hidden"
+        boucle={600}
+        parallaxe={30}
+        delai={4}
+      />
       <Container>
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-8">
           <div>

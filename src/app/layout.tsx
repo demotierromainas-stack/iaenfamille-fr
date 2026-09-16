@@ -51,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Aller au contenu
         </a>
         <Header />
-        <main id="contenu" className="flex-1">
+        <main id="contenu" className="flex-1 overflow-x-clip">
           {children}
         </main>
         <Footer />

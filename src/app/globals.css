@@ -129,6 +129,15 @@ body {
   -webkit-mask-image: none;
 }
 
+/* Variante pour un visuel sans fondu gravé en haut : sous lg, la photo
+   remonte derrière le contenu, donc son bord supérieur doit disparaître. */
+@media (max-width: 1023.98px) {
+  .hero-media-fondu-haut {
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
+  }
+}
+
 @media (min-width: 1024px) {
   .hero-media {
     mask-image: linear-gradient(to right, transparent 0%, #000 46%);
@@ -151,7 +160,34 @@ body {
   animation: drift 18s ease-in-out infinite;
 }
 
+/* Mascotte astronaute : apparaît en fondu une fois son SVG construit, puis
+   dérive doucement en apesanteur. */
+.mascotte > * {
+  transition: opacity 0.8s ease;
+}
+
+.mascotte:not([data-pret]) > * {
+  opacity: 0;
+}
+
+@keyframes flotte {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(2deg);
+  }
+}
+
+.animate-flotte {
+  animation: flotte 7s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-flotte {
+    animation: none;
+  }
   html {
     scroll-behavior: auto;
   }

@@ -2,10 +2,17 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { confiance } from "@/data/parcours-enfants";
+import { Mascotte } from "@/components/Mascotte";
 
 export function Confiance() {
   return (
-    <section className="pb-12 sm:pb-16">
+    <section className="relative isolate pb-12 sm:pb-16">
+      <Mascotte
+        nom="developpeur"
+        className="aspect-square -top-[5.5rem] right-4 w-32 md:-top-28 md:right-[max(0rem,calc(50%-28rem))] md:w-44"
+        parallaxe={30}
+        delai={1}
+      />
       <Container>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-3xl bg-navy-950 px-6 py-8 text-white sm:px-10">

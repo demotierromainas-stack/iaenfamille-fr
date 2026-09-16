@@ -3,10 +3,16 @@ import { IconBadge } from "@/components/IconBadge";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LiftCard, RevealGroup, RevealItem } from "@/components/Reveal";
 import { principeStage } from "@/data/stages";
+import { Mascotte } from "@/components/Mascotte";
 
 export function Principe() {
   return (
-    <section className="py-14 sm:py-20">
+    <section className="relative isolate py-14 sm:py-20">
+      <Mascotte
+        nom="super-astronaute"
+        className="aspect-video -top-28 -right-14 w-80 xl:-top-2 xl:right-[max(0rem,calc(50%-46rem))] xl:w-96"
+        parallaxe={60}
+      />
       <Container>
         <SectionHeading
           title="Quatre jours pour créer ensemble"

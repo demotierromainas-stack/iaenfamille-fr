@@ -4,6 +4,7 @@ import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { chapitres, reperesAge } from "@/data/guide";
+import { Mascotte } from "@/components/Mascotte";
 
 export const metadata: Metadata = {
   title: "Guide des parents",
@@ -14,7 +15,12 @@ export const metadata: Metadata = {
 export default function GuidePage() {
   return (
     <>
-      <section className="pt-24 pb-12 sm:pt-28">
+      <section className="relative isolate pt-24 pb-12 sm:pt-28">
+        <Mascotte
+          nom="super-astronaute"
+          className="aspect-video top-12 -right-24 w-80 xl:top-24 xl:right-[max(0rem,calc(50%-40rem))] xl:w-[30rem]"
+          parallaxe={40}
+        />
         <Container>
           <Reveal className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-indigo">
@@ -34,7 +40,13 @@ export default function GuidePage() {
         </Container>
       </section>
 
-      <section className="pb-14 sm:pb-20">
+      <section className="relative isolate pb-14 sm:pb-20">
+        <Mascotte
+          nom="fusee"
+          className="aspect-square -top-20 -left-8 w-36 xl:hidden"
+          parallaxe={30}
+          delai={2}
+        />
         <Container>
           <div className="space-y-5">
             {chapitres.map((c) => (
@@ -95,7 +107,13 @@ export default function GuidePage() {
         </Container>
       </section>
 
-      <section className="pb-16 sm:pb-24">
+      <section className="relative isolate pb-16 sm:pb-24">
+        <Mascotte
+          nom="planete"
+          className="aspect-[4/3] -top-4 -right-4 w-32 md:top-2 md:right-[max(0rem,calc(50%-26rem))] md:w-36"
+          boucle={600}
+          delai={4}
+        />
         <Container>
           <Reveal className="mx-auto max-w-xl text-center">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink">

@@ -6,6 +6,7 @@ import { IconBadge } from "@/components/IconBadge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { FormulaireContact } from "@/components/contact/FormulaireContact";
 import { site } from "@/lib/site";
+import { Mascotte } from "@/components/Mascotte";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -33,7 +34,12 @@ const reperes = [
 
 export default function ContactPage() {
   return (
-    <section className="pt-24 pb-16 sm:pt-28 sm:pb-24">
+    <section className="relative isolate pt-24 pb-16 sm:pt-28 sm:pb-24">
+      <Mascotte
+        nom="fusee"
+        className="aspect-square top-10 -right-6 w-36 xl:top-16 xl:right-[max(0rem,calc(50%-34rem))] xl:w-56"
+        delai={2}
+      />
       <Container>
         <Reveal className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-indigo">

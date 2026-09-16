@@ -6,10 +6,17 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { destinations } from "@/data/destinations";
 import { STAGES_HREF } from "@/lib/site";
+import { Mascotte } from "@/components/Mascotte";
 
 export function Destinations() {
   return (
-    <section className="pb-14 sm:pb-20">
+    <section className="relative isolate pb-14 sm:pb-20">
+      <Mascotte
+        nom="planete"
+        className="aspect-[4/3] -top-12 -left-5 w-32 xl:-top-6 xl:left-[max(0rem,calc(50%-37rem))] xl:w-32"
+        boucle={600}
+        delai={4}
+      />
       <Container>
         <SectionHeading
           title="Des destinations d'exception pour nos stages en présentiel"
