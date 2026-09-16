@@ -20,10 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // --- configuration ---------------------------------------------------------
-// Sans .env, parse_ini_file afficherait un avertissement PHP contenant le
-// chemin du serveur : on vérifie d'abord que le fichier est lisible.
+// Le .env suit la convention habituelle (commentaires en #), que le format
+// INI de PHP refuse : on retire ces lignes avant de l'analyser. Les erreurs
+// restent silencieuses, un avertissement affiché exposerait le chemin du
+// serveur ; un .env absent ou illisible revient à « non configuré ».
 $fichier = __DIR__ . '/.env';
-$config  = is_readable($fichier) ? (parse_ini_file($fichier) ?: []) : [];
+$config  = [];
+if (is_readable($fichier)) {
+    $lignes = preg_grep('/^\s*#/', file($fichier, FILE_IGNORE_NEW_LINES) ?: [], PREG_GREP_INVERT);
+    $config = @parse_ini_string(implode("\n", $lignes)) ?: [];
+}
 $cle  = $config['RESEND_API_KEY']  ?? '';
 $from = $config['CONTACT_FROM']    ?? 'IA en famille <contact@iaenfamille.fr>';
 // CONTACT_TO accepte plusieurs adresses séparées par des virgules.
