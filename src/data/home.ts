@@ -45,7 +45,8 @@ export const offers: {
   cta: string;
   href: string;
   image: { label: string; tone: Tone; src?: string };
-  ages?: { range: string; text: string; label: string; src?: string }[];
+  /** Vignettes d'âge de la carte enfants : chacune mène à son parcours. */
+  ages?: { range: string; text: string; label: string; href: string; src?: string }[];
 }[] = [
   {
     icon: UsersRound,
@@ -74,18 +75,21 @@ export const offers: {
     ages: [
       {
         range: "5–8 ans",
+        href: "/formations-enfants/5-8-ans",
         text: "Découvrir et s'amuser",
         label: "Enfant 5–8 ans",
         src: "/images/home/age-5-8-hd.webp",
       },
       {
         range: "8–11 ans",
+        href: "/formations-enfants/8-11-ans",
         text: "Comprendre et créer",
         label: "Enfant 8–11 ans",
         src: "/images/home/age-8-11-hd.webp",
       },
       {
         range: "12–16 ans",
+        href: "/formations-enfants/12-16-ans",
         text: "Innover et construire",
         label: "Ado 12–16 ans",
         src: "/images/home/age-12-16-hd.webp",

@@ -121,23 +121,27 @@ export function Offers() {
                       {offer.ages && (
                         <ul className="mt-4 grid grid-cols-3 gap-2">
                           {offer.ages.map((a) => (
-                            <li
-                              key={a.range}
-                              className="rounded-xl border border-line bg-surface/60 p-2 text-center"
-                            >
-                              <Media
-                                src={a.src}
-                                label={a.label}
-                                tone="kids"
-                                sizes="80px"
-                                className="mx-auto mb-2 aspect-square w-full rounded-lg"
-                              />
-                              <span className="block text-[11.5px] font-bold text-ink">
-                                {a.range}
-                              </span>
-                              <span className="mt-0.5 block text-[9.5px] leading-tight text-muted">
-                                {a.text}
-                              </span>
+                            <li key={a.range}>
+                              {/* Chaque vignette mène au parcours de sa tranche
+                                  d'âge ; le lien couvre toute la carte. */}
+                              <Link
+                                href={a.href}
+                                className="group/age block h-full rounded-xl border border-line bg-surface/60 p-2 text-center transition-colors hover:border-brand-violet/40 hover:bg-white"
+                              >
+                                <Media
+                                  src={a.src}
+                                  label={a.label}
+                                  tone="kids"
+                                  sizes="80px"
+                                  className="mx-auto mb-2 aspect-square w-full rounded-lg"
+                                />
+                                <span className="block text-[11.5px] font-bold text-ink transition-colors group-hover/age:text-brand-violet">
+                                  {a.range}
+                                </span>
+                                <span className="mt-0.5 block text-[9.5px] leading-tight text-muted">
+                                  {a.text}
+                                </span>
+                              </Link>
                             </li>
                           ))}
                         </ul>
