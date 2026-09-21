@@ -10,8 +10,10 @@
   RewriteCond %{HTTP_HOST} ^www\. [NC]
   RewriteRule ^ https://iaenfamille.fr%{REQUEST_URI} [R=301,L]
 
-  # Offre retirée : l'ancienne page des cours en ligne renvoie à l'accueil.
+  # Offres retirées : les anciennes pages renvoient à l'accueil. Le motif des
+  # stages couvre aussi les pages de destination (/stages-en-presentiel/dubai…).
   RewriteRule ^cours-en-ligne(/.*)?$ https://iaenfamille.fr/ [R=301,L]
+  RewriteRule ^stages-en-presentiel(/.*)?$ https://iaenfamille.fr/ [R=301,L]
 </IfModule>
 
 Options -Indexes

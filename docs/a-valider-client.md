@@ -1,53 +1,26 @@
 # À faire valider par le client
 
-Les pages **Stages en présentiel** et **France / Île Maurice / Dubaï** n'avaient
-pas de maquette. Leur structure a été déduite de ce que la home annonce
-(séjours de 4 jours, ateliers en famille, encadrement bienveillant), et leur
-contenu a été **rédigé faute d'information**. Tout ce qui suit est une
-proposition, pas une donnée fournie.
+Ce document rassemble ce que le site avance sans information du client, et
+qui doit donc être relu avant la mise en ligne.
 
-## Informations volontairement absentes
+## Offres retirées
 
-Elles engagent commercialement le client : rien n'a été inventé.
+Le client a abandonné deux offres. Leurs pages, données et visuels ont été
+supprimés, et leurs anciennes adresses redirigent vers l'accueil (301, voir
+`public/.htaccess`) :
 
-- **Tarifs des stages** — la page renvoie vers le formulaire de contact
-- **Dates et calendrier de la saison** — même traitement
-- Les fiches destination affichent « saison » (Printemps et été, Toute
-  l'année, Automne à printemps) : à confirmer
+- **Cours en ligne (visio)**, retirés le 16/09/2026
+- **Stages en présentiel** et les destinations France / Île Maurice / Dubaï,
+  retirés le 20/09/2026
 
-## Contenu rédigé à valider
+Ce qui les concernait a été retiré de ce document, à une exception près : la
+section « Cours en ligne » plus bas est conservée pour ses consignes sur les
+visuels, qui valent pour les prochaines images. Elle ne décrit plus le site.
 
-Tout est regroupé dans deux fichiers, faciles à corriger sans toucher au code :
+## Cours en ligne (visio) — offre retirée
 
-| Fichier | Contenu |
-|---|---|
-| `src/data/stages.ts` | Principe du séjour, déroulé d'une journée type, prestations incluses et non incluses, 5 questions/réponses de la FAQ |
-| `src/data/destinations.ts` | Pour chaque destination : chapô, 3 atouts, hébergement, programme des 4 jours, infos pratiques |
-| `src/data/cours-en-ligne.ts` | Cours en ligne : les 2 formats, apport de l'animateur, déroulé d'une séance, contenu par âge, cadre et matériel, 5 questions/réponses |
-
-Points qui méritent une relecture attentive :
-
-- Le **déroulé de journée** (atelier famille 9 h, ateliers par âge 11 h, temps
-  libre 14 h, restitution 17 h) est une hypothèse de rythme
-- Les **tailles de groupe** (6 à 8 familles) sont supposées
-- Les **hébergements décrits** (bastide provençale, villa sur le lagon,
-  résidence à Dubaï) sont plausibles mais fictifs
-- La mention « **francophone** » pour l'île Maurice et les temps de trajet
-  annoncés sont à vérifier
-
-## Visuels manquants
-
-Ces emplacements affichent aujourd'hui un dégradé de marque portant le libellé
-de la photo attendue. Ils sont tous rendus par `src/components/Media.tsx` :
-déposer les fichiers et renseigner leur chemin dans `src/data/destinations.ts`
-suffit.
-
-- **Hébergement**, une photo par destination (3)
-- **Galerie**, trois photos par destination (9)
-- **Hero de la page stages** : actuellement un montage des trois photos de
-  destination issues de la maquette, à remplacer par une vraie photo large
-
-## Cours en ligne (visio)
+> Section conservée pour ses consignes sur les visuels (plus bas). L'offre a
+> été retirée du site le 16/09/2026 : la page et ses données n'existent plus.
 
 Page refondue sur la **maquette fournie par le client**
 (`docs/maquettes/cours-en-ligne-maquette.jpeg`), qui apporte enfin les
@@ -126,16 +99,14 @@ prochains :
 un **bandeau sombre après les destinations**. Le hero perd son bouton vers les
 stages au profit de « Voir nos cours en ligne ».
 
-### Navigation
+## Navigation
 
-Avec l'entrée « Cours en ligne », la barre de navigation déborde. Mesuré au
-navigateur : les six entrées actuelles passent sur deux lignes en dessous de
-~1130 px. La nav complète bascule donc à `xl` (1280 px) au lieu de `lg` ; en
-dessous, le menu déroulant prend le relais avec les mêmes entrées.
-
-Piste si le client veut la nav complète dès 1024 px : raccourcir
-`STAGES_LABEL` de « Stages en présentiel » à « Stages ». Testé, tout tient sur
-une ligne avec de la marge.
+La barre de navigation avait basculé à `xl` (1280 px) parce que ses six
+entrées débordaient en dessous de ~1130 px. Avec le retrait des cours puis
+des stages, il n'en reste que quatre — Accueil, Formations parents,
+Formations enfants, Contact — et elles tiennent sur une ligne dès 1024 px :
+la nav complète est repassée à `lg`. En dessous, le menu déroulant prend le
+relais avec les mêmes entrées.
 
 ## Formations hébergées sur Skool
 
@@ -171,15 +142,15 @@ compte » disparaît du menu.
 
 Deux familles, et c'est voulu :
 
-| Vont sur **Skool** (vente de contenus enregistrés) | Vont sur **/contact** (vente par échange) |
+| Vont sur **Skool** (vente de contenus enregistrés) | Vont sur **/contact** |
 |---|---|
-| Accéder à la formation (8 fiches parents) | Demander un créneau (cours en ligne) |
-| Voir le pack (Pack Parents Ultime) | Demander le programme (stages) |
-| Commencer le parcours (3 tranches d'âge) | Poser une question, Demander des infos |
+| Accéder à la formation (8 fiches parents) | Poser une question, Demander des infos |
+| Voir le pack (Pack Parents Ultime) | |
+| Commencer le parcours (3 tranches d'âge) | |
 | Mon compte (en-tête et menu mobile) | |
 
-Les stages en présentiel et les cours en visio ne se vendent pas en ligne :
-ni tarif ni calendrier n'étant arrêtés, ils passent par le formulaire.
+Depuis le retrait des cours et des stages, tout ce qui se vend part sur
+Skool ; le formulaire ne reçoit plus que des demandes d'information.
 
 ### Ce qui a été rebranché
 
@@ -261,8 +232,3 @@ est aujourd'hui vide de tout contenu réel. Informations à demander :
 Tant que ces éléments manquent, le site ne devrait pas être mis en
 production sur son vrai domaine.
 
-## Le libellé de l'offre
-
-« Stages en présentiel » (home) et « Stages en villa » (maquette enfants)
-coexistaient. Le site utilise partout `STAGES_LABEL` dans `src/lib/site.ts` :
-si le client tranche pour l'autre, une seule ligne est à changer.

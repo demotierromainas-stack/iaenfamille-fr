@@ -9,7 +9,7 @@ export const site = {
   url: "https://iaenfamille.fr",
   tagline: "Le site de référence en apprentissage de l'IA pour les familles",
   description:
-    "L'IA à vivre en famille : formations pour les parents, parcours pour les enfants et stages en présentiel dans des lieux d'exception.",
+    "L'IA à vivre en famille : des formations pour les parents et des parcours adaptés à chaque âge pour les enfants.",
   /**
    * Adresse affichée publiquement, y compris sur les pages légales où elle
    * vaut contact de l'éditeur. Distincte de l'expéditeur du formulaire
@@ -23,14 +23,6 @@ export const site = {
  * "vector" le sigle redessiné. Bascule d'une ligne pour comparer.
  */
 export const LOGO_MODE: "image" | "vector" = "vector";
-
-/**
- * Le client hésite encore entre « Stages en présentiel » et « Stages en villa »
- * (les deux apparaissent dans les maquettes). Tout passe par cette constante :
- * un seul changement ici met à jour la nav, les cartes et les CTA.
- */
-export const STAGES_LABEL = "Stages en présentiel";
-export const STAGES_HREF = "/stages-en-presentiel";
 
 /**
  * Communauté Skool : les formations et l'espace membre y sont hébergés plutôt
@@ -65,7 +57,6 @@ export const mainNav: NavItem[] = [
   { label: "Accueil", href: "/" },
   { label: "Formations parents", href: "/formations-parents" },
   { label: "Formations enfants", href: "/formations-enfants" },
-  { label: STAGES_LABEL, href: STAGES_HREF },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -76,7 +67,6 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "Accueil", href: "/" },
       { label: "Formations parents", href: "/formations-parents" },
       { label: "Formations enfants", href: "/formations-enfants" },
-      { label: STAGES_LABEL, href: STAGES_HREF },
       { label: "À propos", href: "/a-propos" },
       { label: "Contact", href: "/contact" },
     ],

@@ -9,7 +9,7 @@ import { Mascotte } from "@/components/Mascotte";
 export const metadata: Metadata = {
   title: "Questions fréquentes",
   description:
-    "Âge minimum, prérequis, accès aux formations, déroulé des stages, protection des données : les réponses aux questions que se posent les parents.",
+    "Âge minimum, prérequis, accès aux formations, protection des données : les réponses aux questions que se posent les parents.",
 };
 
 export default function FaqPage() {

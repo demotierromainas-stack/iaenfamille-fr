@@ -6,7 +6,6 @@ import { Media } from "@/components/Media";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal, RevealGroup, RevealItem, LiftCard } from "@/components/Reveal";
 import { approche, convictions, valeurs } from "@/data/a-propos";
-import { STAGES_HREF } from "@/lib/site";
 import { Mascotte } from "@/components/Mascotte";
 
 export const metadata: Metadata = {
@@ -39,7 +38,7 @@ export default function AProposPage() {
 
             <Reveal delay={0.1}>
               <Media
-                src="/images/parents/hero-parents-hd.webp"
+                src="/images/parents/hero-parents-v2.webp"
                 label="Des parents et leur enfant découvrant l'IA ensemble"
                 tone="warm"
                 priority
@@ -123,7 +122,7 @@ export default function AProposPage() {
             <div className="relative">
               <SectionHeading
                 title="Comment nous travaillons"
-                subtitle="Le même fil conducteur, que ce soit en ligne ou en présentiel."
+                subtitle="Le même fil conducteur, des formations parents aux parcours enfants."
                 onDark
               />
               <RevealGroup className="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -161,15 +160,15 @@ export default function AProposPage() {
               Par où commencer ?
             </h2>
             <p className="mt-3 text-[15px] leading-relaxed text-muted">
-              Les formations en ligne pour avancer à votre rythme, les stages
-              pour tout découvrir en quatre jours.
+              Les formations parents pour avancer à votre rythme, les parcours
+              enfants pour apprendre à leur hauteur.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Button href="/formations-parents" size="lg">
                 Voir les formations
               </Button>
-              <Button href={STAGES_HREF} variant="outline" size="lg">
-                Découvrir les stages
+              <Button href="/formations-enfants" variant="outline" size="lg">
+                Voir les parcours enfants
               </Button>
             </div>
           </Reveal>

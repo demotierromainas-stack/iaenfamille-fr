@@ -16,25 +16,21 @@ const linkTone = {
 } as const;
 
 /**
- * Sur mobile, les cartes sont empilées et deux astronautes jouent à cache-cache
- * dans les intervalles : la tasse surgit de derrière la 2ᵉ carte, la planète
- * monte de derrière la 3ᵉ pour aller se cacher derrière la 2ᵉ.
+ * Sur mobile, les cartes sont empilées et un astronaute joue à cache-cache dans
+ * l'intervalle : la tasse surgit de derrière la 2ᵉ carte.
  */
 const cachettes: Partial<
   Record<number, { nom: MascotteNom; className: string; mouvement: "surgir" | "traverser" }>
 > = {
   1: { nom: "tasse", className: "-top-12 right-8 w-28", mouvement: "surgir" },
-  // centrée dans l'intervalle de 48 px : sa boîte de 84 px déborde de 18 px
-  // de chaque côté, d'où un décalage de 66 px pour disparaître
-  2: { nom: "planete", className: "-top-[66px] right-10 aspect-[4/3] w-28", mouvement: "traverser" },
 };
 
 /**
- * Les trois offres du site, sur une ligne à partir de lg.
+ * Les deux offres du site, côte à côte à partir de lg.
  *
  * Deux mises en page de carte : celle des formations enfants montre les trois
- * tranches d'âge en vignettes, les autres portent une photo incrustée en
- * diagonale sur leur bord droit.
+ * tranches d'âge en vignettes, l'autre porte une photo incrustée en diagonale
+ * sur son bord droit.
  */
 export function Offers() {
   return (
@@ -45,7 +41,7 @@ export function Offers() {
         parallaxe={70}
       />
       <Container>
-        <RevealGroup className="grid gap-12 sm:gap-5 lg:grid-cols-3">
+        <RevealGroup className="grid gap-12 sm:gap-5 lg:grid-cols-2">
           {offers.map((offer, index) => {
             const avecPhoto = !offer.ages;
             const cachette = cachettes[index];

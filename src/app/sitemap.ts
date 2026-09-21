@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { site, mainNav, footerNav } from "@/lib/site";
-import { destinations } from "@/data/destinations";
 import { formationsParents } from "@/data/formations-parents";
 import { parcoursEnfants } from "@/data/parcours-enfants";
 
@@ -29,12 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...pages,
-    ...destinations.map((d) => ({
-      url: `${site.url}/stages-en-presentiel/${d.slug}/`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
     ...formationsParents.map((f) => ({
       url: `${site.url}/formations/${f.slug}/`,
       lastModified: now,

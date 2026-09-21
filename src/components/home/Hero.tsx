@@ -5,11 +5,10 @@ import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { heroPoints } from "@/data/home";
-import { STAGES_HREF } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const HERO_IMG = "/images/home/hero-famille-hd.webp";
+const HERO_IMG = "/images/home/hero-famille-v5.webp";
 const HERO_ALT =
   "Une famille réunie devant un ordinateur portable, entourée d'icônes d'intelligence artificielle";
 
@@ -29,17 +28,21 @@ export function Hero() {
     <section className="relative isolate overflow-hidden bg-navy-950 pt-24 text-white sm:pt-32 lg:min-h-[560px] lg:pb-14">
 
       {/*
-        Un seul visuel à toutes les tailles : ancré en bas à droite, il déborde
-        sur mobile pour cadrer sur la partie droite de la photo, et se replie
-        sur la moitié droite à partir de lg. Le fondu haut est gravé dans
-        l'alpha de l'image, le fondu latéral vient de .hero-media.
+        Un seul visuel à toutes les tailles. Sous lg il déborde de part et
+        d'autre en restant centré : ancré à droite, il ne laissait voir que les
+        71 % droits de l'image et coupait la mère du cadrage. À partir de lg il
+        se replie sur la moitié droite, et .hero-media en fond le bord gauche.
+
+        Le visuel n'a pas de canal alpha : il se raccorde à la section parce
+        que son propre fond est le navy du site (srgb(7,10,32)). Toute nouvelle
+        version doit conserver ce fond, sinon le bord haut deviendra franc.
       */}
       <motion.div
         aria-hidden
         initial={reduced ? undefined : { opacity: 0, scale: 1.04 }}
         animate={reduced ? undefined : { opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE }}
-        className="hero-media pointer-events-none absolute bottom-0 right-0 aspect-[1.93/1] w-[140%] max-w-none sm:w-[105%] lg:w-[62%]"
+        className="hero-media pointer-events-none absolute bottom-0 left-1/2 aspect-[1.93/1] w-[140%] max-w-none -translate-x-1/2 sm:w-[112%] lg:left-auto lg:right-0 lg:w-[62%] lg:translate-x-0"
       >
         <Image
           src={HERO_IMG}
@@ -79,8 +82,8 @@ export function Hero() {
             <Button href="/formations-parents" size="lg">
               Découvrir nos formations
             </Button>
-            <Button href={STAGES_HREF} variant="outline-light" size="lg">
-              Voir les stages
+            <Button href="/formations-enfants" variant="outline-light" size="lg">
+              Parcours enfants
             </Button>
           </motion.div>
         </div>

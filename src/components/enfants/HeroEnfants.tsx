@@ -8,7 +8,7 @@ import { Button } from "@/components/Button";
 import { reassurancesEnfants } from "@/data/parcours-enfants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const IMG = "/images/enfants/hero-enfants-hd.webp";
+const IMG = "/images/enfants/hero-enfants-v4.webp";
 const ALT =
   "Trois enfants réunis devant un ordinateur portable, entourés d'icônes d'intelligence artificielle";
 
@@ -32,7 +32,7 @@ export function HeroEnfants() {
         initial={reduced ? undefined : { opacity: 0, scale: 1.04 }}
         animate={reduced ? undefined : { opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE }}
-        className="hero-media pointer-events-none absolute bottom-0 right-0 aspect-[2/1] w-[140%] max-w-none sm:w-[105%] lg:w-[62%]"
+        className="hero-media pointer-events-none absolute bottom-0 left-1/2 aspect-[2/1] w-[140%] max-w-none -translate-x-1/2 sm:w-[112%] lg:left-auto lg:right-0 lg:w-[62%] lg:translate-x-0"
       >
         <Image
           src={IMG}

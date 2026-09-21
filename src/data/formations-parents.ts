@@ -43,7 +43,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: BookOpen,
-    image: "/images/parents/formation-1-hd.webp",
+    image: "/images/parents/formation-1-v2.webp",
     populaire: 1,
     objectifs: [
       "Écrire une histoire où votre enfant est le héros",
@@ -64,7 +64,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: ShieldCheck,
-    image: "/images/parents/formation-2-hd.webp",
+    image: "/images/parents/formation-2-v2.webp",
     populaire: 2,
     objectifs: [
       "Configurer un compte adapté à un usage familial",
@@ -85,7 +85,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: Palette,
-    image: "/images/parents/formation-3-hd.webp",
+    image: "/images/parents/formation-3-v2.webp",
     populaire: 3,
     objectifs: [
       "Générer des coloriages à partir d'une simple description",
@@ -106,7 +106,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: CalendarDays,
-    image: "/images/parents/formation-4-hd.webp",
+    image: "/images/parents/formation-4-v2.webp",
     populaire: 4,
     objectifs: [
       "Préparer les repas de la semaine avec ce qu'il y a dans le frigo",
@@ -127,7 +127,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: GraduationCap,
-    image: "/images/parents/formation-5-hd.webp",
+    image: "/images/parents/formation-5-v2.webp",
     populaire: 5,
     objectifs: [
       "Faire expliquer une notion à hauteur d'enfant",
@@ -147,7 +147,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: Sparkles,
-    image: "/images/parents/formation-6-hd.webp",
+    image: "/images/parents/formation-6-v2.webp",
     populaire: 6,
     objectifs: [
       "Lancer un projet créatif à faire à plusieurs",
@@ -167,7 +167,7 @@ export const formationsParents: Formation[] = [
     niveau: "Débutant",
     prix: 99,
     icon: Bot,
-    image: "/images/parents/formation-7-hd.webp",
+    image: "/images/parents/formation-7-v2.webp",
     populaire: 7,
     objectifs: [
       "Comprendre comment une IA produit une réponse",
@@ -188,7 +188,7 @@ export const formationsParents: Formation[] = [
     niveau: "Intermédiaire",
     prix: 99,
     icon: ImageIcon,
-    image: "/images/parents/formation-8-hd.webp",
+    image: "/images/parents/formation-8-v2.webp",
     populaire: 8,
     objectifs: [
       "Décrire précisément l'image que vous avez en tête",

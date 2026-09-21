@@ -54,26 +54,6 @@ export const faqSections: {
     ],
   },
   {
-    titre: "Les stages en présentiel",
-    questions: [
-      {
-        question: "Faut-il venir en famille complète ?",
-        reponse:
-          "Au moins un parent et un enfant. Beaucoup viennent à deux, d'autres avec fratrie et grands-parents. Les ateliers s'adaptent.",
-      },
-      {
-        question: "Que faut-il apporter ?",
-        reponse:
-          "Un ordinateur portable ou une tablette par famille suffit. Nous prêtons du matériel à celles qui n'en ont pas.",
-      },
-      {
-        question: "Quand ont lieu les stages et combien coûtent-ils ?",
-        reponse:
-          "Les dates et tarifs de la prochaine saison sont communiqués sur demande. Écrivez-nous en précisant la destination qui vous intéresse.",
-      },
-    ],
-  },
-  {
     titre: "Sécurité et données",
     questions: [
       {

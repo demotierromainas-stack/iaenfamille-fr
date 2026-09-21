@@ -17,6 +17,8 @@ import { Media } from "@/components/Media";
 import { IconBadge } from "@/components/IconBadge";
 import { Reveal, RevealGroup, RevealItem, LiftCard } from "@/components/Reveal";
 import { formationsParents, packParents } from "@/data/formations-parents";
+import { accentAt, accentClasses } from "@/lib/accents";
+import { cn } from "@/lib/cn";
 import { ACHAT_HREF } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -50,12 +52,17 @@ export default async function FormationPage({
 
   return (
     <>
-      <section className="pt-24 pb-12 sm:pt-28">
+      <section className="relative isolate overflow-hidden pt-24 pb-12 sm:pt-28">
+        {/* Lavis de marque : la fiche était entièrement blanche et indigo. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 voile-couleur"
+        />
         <Container>
           <Reveal>
             <Link
               href="/formations-parents"
-              className="group inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-muted transition-colors hover:text-brand-indigo"
+              className="group inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-muted transition-colors hover:text-brand-violet"
             >
               <ArrowLeft
                 className="size-4 transition-transform group-hover:-translate-x-0.5"
@@ -68,8 +75,8 @@ export default async function FormationPage({
           <div className="mt-6 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
             <Reveal>
               <div className="flex items-center gap-3">
-                <IconBadge icon={f.icon} tone="indigo" size="lg" />
-                <span className="rounded-full bg-brand-indigo/10 px-3 py-1 text-[11px] font-semibold text-brand-indigo">
+                <IconBadge icon={f.icon} tone="violet" size="lg" />
+                <span className="rounded-full bg-brand-violet/10 px-3 py-1 text-[11px] font-semibold text-brand-violet ring-1 ring-brand-violet/20">
                   Formation parents
                 </span>
               </div>
@@ -83,34 +90,41 @@ export default async function FormationPage({
 
               <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-[13px]">
                 <div className="flex items-center gap-2">
-                  <Clock className="size-4 text-brand-indigo" aria-hidden />
+                  <Clock className="size-4 text-brand-violet" aria-hidden />
                   <dt className="sr-only">Durée</dt>
                   <dd className="font-semibold text-ink">{f.duree}</dd>
                 </div>
                 <div className="flex items-center gap-2">
-                  <GraduationCap className="size-4 text-brand-indigo" aria-hidden />
+                  <GraduationCap className="size-4 text-brand-cyan" aria-hidden />
                   <dt className="sr-only">Niveau</dt>
                   <dd className="font-semibold text-ink">{f.niveau}</dd>
                 </div>
               </dl>
 
-              <p className="mt-6 rounded-xl bg-surface p-4 text-[13px] leading-relaxed text-muted">
+              <p className="mt-6 rounded-xl bg-gradient-to-br from-brand-violet/12 to-brand-cyan/12 p-4 text-[13px] leading-relaxed text-muted ring-1 ring-brand-violet/15">
                 <span className="font-semibold text-ink">Pour qui ?</span>{" "}
                 {f.pourQui}
               </p>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <Media
-                src={f.image}
-                label={f.titre}
-                tone="warm"
-                priority
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="aspect-[16/10] w-full rounded-2xl"
-              />
+              {/* Cadre dégradé de 2 px, comme sur le hero de la page parents. */}
+              <div className="rounded-[18px] bg-gradient-to-br from-brand-cyan via-brand-indigo to-brand-purple p-[2px] shadow-card">
+                <Media
+                  src={f.image}
+                  label={f.titre}
+                  tone="warm"
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="aspect-[16/10] w-full rounded-2xl"
+                />
+              </div>
 
-              <div className="card mt-5 p-6">
+              <div className="card relative mt-5 overflow-hidden p-6">
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-1 bg-gradient-brand"
+                />
                 <p className="font-display text-3xl font-extrabold text-ink">
                   {f.prix} €
                 </p>
@@ -124,7 +138,7 @@ export default async function FormationPage({
                   Ou{" "}
                   <Link
                     href="/formations-parents#pack"
-                    className="font-semibold text-brand-indigo hover:underline"
+                    className="font-semibold text-brand-violet hover:underline"
                   >
                     les 8 formations pour {packParents.prix} €
                   </Link>
@@ -139,15 +153,26 @@ export default async function FormationPage({
         <Container>
           <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
             <Reveal>
-              <div className="card h-full p-6 sm:p-8">
+              <div className="card relative h-full overflow-hidden p-6 sm:p-8">
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-1 bg-gradient-brand"
+                />
                 <h2 className="font-display text-xl font-bold tracking-tight text-ink">
                   Ce que vous saurez faire
                 </h2>
+                {/* Une puce colorée par objectif, coche blanche pour rester
+                    lisible : la liste était un empilement d'indigo pâle. */}
                 <ul className="mt-6 space-y-4">
-                  {f.objectifs.map((o) => (
+                  {f.objectifs.map((o, i) => (
                     <li key={o} className="flex items-start gap-3">
-                      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-brand-indigo/10">
-                        <Check className="size-3 text-brand-indigo" aria-hidden />
+                      <span
+                        className={cn(
+                          "mt-0.5 grid size-5 shrink-0 place-items-center rounded-full",
+                          accentClasses[accentAt(i)].filet,
+                        )}
+                      >
+                        <Check className="size-3 text-white" aria-hidden />
                       </span>
                       <span className="text-[13.5px] leading-relaxed text-ink/80">
                         {o}
@@ -162,12 +187,15 @@ export default async function FormationPage({
               <h2 className="font-display text-xl font-bold tracking-tight text-ink">
                 Comment ça se passe
               </h2>
-              {format.map(({ icon: Icon, titre, texte }) => (
+              {format.map(({ icon: Icon, titre, texte }, i) => (
                 <RevealItem key={titre}>
                   <div className="flex items-start gap-3">
-                    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-indigo/10">
-                      <Icon className="size-4 text-brand-indigo" aria-hidden />
-                    </span>
+                    <IconBadge
+                      icon={Icon}
+                      tone={accentAt(i)}
+                      size="sm"
+                      className="size-9 rounded-full"
+                    />
                     <div>
                       <h3 className="text-[13px] font-semibold text-ink">{titre}</h3>
                       <p className="mt-1 text-[11.5px] leading-snug text-muted">
@@ -188,33 +216,47 @@ export default async function FormationPage({
             Ces formations peuvent aussi vous intéresser
           </h2>
           <RevealGroup className="mt-6 grid gap-5 sm:grid-cols-3">
-            {autres.map((a) => (
-              <RevealItem key={a.slug}>
-                <LiftCard>
-                  <Link
-                    href={`/formations/${a.slug}`}
-                    className="card group flex h-full flex-col overflow-hidden"
-                  >
-                    <Media
-                      src={a.image}
-                      label={a.titre}
-                      tone="warm"
-                      sizes="(max-width: 640px) 100vw, 33vw"
-                      className="aspect-[16/9] w-full"
-                      imgClassName="transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="flex flex-1 flex-col p-4">
-                      <h3 className="font-display text-[14px] font-bold leading-snug text-ink">
-                        {a.titre}
-                      </h3>
-                      <p className="mt-auto pt-4 font-display text-lg font-extrabold text-ink">
-                        {a.prix} €
-                      </p>
-                    </div>
-                  </Link>
-                </LiftCard>
-              </RevealItem>
-            ))}
+            {autres.map((a, i) => {
+              const accent = accentClasses[accentAt(i)];
+
+              return (
+                <RevealItem key={a.slug}>
+                  <LiftCard>
+                    <Link
+                      href={`/formations/${a.slug}`}
+                      className={cn(
+                        "card group relative flex h-full flex-col overflow-hidden transition-colors",
+                        accent.bordure,
+                      )}
+                    >
+                      <span
+                        aria-hidden
+                        className={cn(
+                          "absolute inset-x-0 top-0 z-10 h-1",
+                          accent.filet,
+                        )}
+                      />
+                      <Media
+                        src={a.image}
+                        label={a.titre}
+                        tone="warm"
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className="aspect-[16/9] w-full"
+                        imgClassName="transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="flex flex-1 flex-col p-4">
+                        <h3 className="font-display text-[14px] font-bold leading-snug text-ink">
+                          {a.titre}
+                        </h3>
+                        <p className="mt-auto pt-4 font-display text-lg font-extrabold text-ink">
+                          {a.prix} €
+                        </p>
+                      </div>
+                    </Link>
+                  </LiftCard>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </Container>
       </section>

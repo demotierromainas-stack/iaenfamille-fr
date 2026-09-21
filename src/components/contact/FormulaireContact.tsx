@@ -55,8 +55,8 @@ export function FormulaireContact() {
         animate={{ opacity: 1, y: 0 }}
         className="card flex flex-col items-center p-8 text-center sm:p-10"
       >
-        <span className="grid size-14 place-items-center rounded-full bg-brand-indigo/10">
-          <Check className="size-7 text-brand-indigo" aria-hidden />
+        <span className="grid size-14 place-items-center rounded-full bg-gradient-to-br from-brand-violet to-brand-purple">
+          <Check className="size-7 text-white" aria-hidden />
         </span>
         <h2 className="mt-5 font-display text-xl font-bold text-ink">
           Merci {data.nom.split(" ")[0]} !
@@ -72,7 +72,7 @@ export function FormulaireContact() {
             setConsentement(false);
             setEtat("saisie");
           }}
-          className="mt-6 text-[13px] font-semibold text-brand-indigo hover:underline"
+          className="mt-6 text-[13px] font-semibold text-brand-violet hover:underline"
         >
           Écrire un autre message
         </button>
@@ -81,7 +81,16 @@ export function FormulaireContact() {
   }
 
   return (
-    <form onSubmit={soumettre} noValidate className="card relative p-6 sm:p-8">
+    <form
+      onSubmit={soumettre}
+      noValidate
+      className="card relative overflow-hidden p-6 sm:p-8"
+    >
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-1 bg-gradient-brand"
+      />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Champ
           id="nom"
@@ -114,7 +123,7 @@ export function FormulaireContact() {
           aria-describedby={erreurs.sujet ? "sujet-erreur" : undefined}
           className={cn(
             "mt-2 w-full rounded-xl border bg-white px-4 py-3 text-[14px] text-ink transition-colors",
-            erreurs.sujet ? "border-brand-pink" : "border-line focus:border-brand-indigo",
+            erreurs.sujet ? "border-brand-pink" : "border-line focus:border-brand-violet",
           )}
         >
           <option value="">Choisissez un sujet…</option>
@@ -141,7 +150,7 @@ export function FormulaireContact() {
           placeholder="Dites-nous en quelques mots ce dont vous avez besoin."
           className={cn(
             "mt-2 w-full resize-y rounded-xl border bg-white px-4 py-3 text-[14px] text-ink placeholder:text-muted/60 transition-colors",
-            erreurs.message ? "border-brand-pink" : "border-line focus:border-brand-indigo",
+            erreurs.message ? "border-brand-pink" : "border-line focus:border-brand-violet",
           )}
         />
         <Erreur id="message-erreur" message={erreurs.message} />
@@ -248,7 +257,7 @@ function Champ({
         aria-describedby={erreur ? `${id}-erreur` : undefined}
         className={cn(
           "mt-2 w-full rounded-xl border bg-white px-4 py-3 text-[14px] text-ink transition-colors",
-          erreur ? "border-brand-pink" : "border-line focus:border-brand-indigo",
+          erreur ? "border-brand-pink" : "border-line focus:border-brand-violet",
         )}
       />
       <Erreur id={`${id}-erreur`} message={erreur} />

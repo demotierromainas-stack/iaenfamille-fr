@@ -78,6 +78,17 @@ body {
     radial-gradient(50% 60% at 12% 8%, rgb(168 85 247 / 0.2), transparent 70%);
 }
 
+/* Pendant clair de hero-glow : un lavis violet / cyan / rose posé derrière une
+   section sur fond clair. Les pages parents, contact et formation ne portaient
+   que de l'indigo et ressortaient grises à côté du reste du site ; l'alpha
+   reste faible pour que le texte sombre garde son contraste. */
+@utility voile-couleur {
+  background:
+    radial-gradient(52% 55% at 85% 4%, rgb(139 92 246 / 0.18), transparent 70%),
+    radial-gradient(44% 46% at 6% 26%, rgb(34 211 238 / 0.14), transparent 70%),
+    radial-gradient(48% 40% at 58% 100%, rgb(236 72 153 / 0.1), transparent 70%);
+}
+
 /* Visuel découpé dans une maquette : ses bords portent encore le fond de la
    maquette, plus clair que le navy du site. Un masque radial les efface pour
    qu'il se fonde dans la section sombre qui l'accueille, au lieu de se lire
@@ -120,22 +131,19 @@ body {
   background: rgb(99 102 241 / 0.25);
 }
 
-/* Visuel de hero : sur mobile il occupe le bas de la section et se fond
-   grâce à l'alpha gravé dans l'image ; à partir de lg il glisse à droite et
-   reçoit en plus un fondu latéral. Un seul dégradé de masque, car composer
-   deux `mask-image` se fait en union et laissait un bord franc. */
-.hero-media {
-  mask-image: none;
-  -webkit-mask-image: none;
-}
+/* Visuel de hero. Le fondu suit le sens de la mise en page : sous lg le texte
+   est au-dessus du visuel, donc le haut se dissout ; à partir de lg le texte
+   passe à gauche, donc c'est le bord gauche qui s'efface. Un seul dégradé de
+   masque à la fois, car composer deux `mask-image` se fait en union et
+   laissait un bord franc.
 
-/* Variante pour un visuel sans fondu gravé en haut : sous lg, la photo
-   remonte derrière le contenu, donc son bord supérieur doit disparaître. */
-@media (max-width: 1023.98px) {
-  .hero-media-fondu-haut {
-    mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
-  }
+   Les 28 % sont calés sur les visuels actuels, dont les personnages ont le
+   haut du crâne vers 22 % de la hauteur : le fondu effleure les cheveux sans
+   entamer les visages. Un visuel plus haut dans le cadre demandera de baisser
+   cette valeur. */
+.hero-media {
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 28%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 28%);
 }
 
 @media (min-width: 1024px) {

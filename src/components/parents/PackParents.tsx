@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { IconBadge } from "@/components/IconBadge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { garantiesParents, packParents } from "@/data/formations-parents";
+import { accentAt } from "@/lib/accents";
 import { ACHAT_HREF, SKOOL_ACTIF } from "@/lib/site";
 import { Mascotte } from "@/components/Mascotte";
 
@@ -10,7 +11,7 @@ export function PackParents() {
   const economie = packParents.prixInitial - packParents.prix;
 
   return (
-    <section className="relative isolate pb-14 sm:pb-20">
+    <section id="pack" className="relative isolate scroll-mt-24 pb-14 sm:pb-20">
       <Mascotte
         nom="tasse"
         className="aspect-square -top-[4.5rem] right-4 w-28 md:-top-32 md:right-[max(0rem,calc(50%-20rem))] md:w-44"
@@ -20,13 +21,16 @@ export function PackParents() {
       />
       <Container>
         <Reveal>
-          <div className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-r from-brand-blue via-brand-indigo to-brand-purple px-6 py-8 text-white sm:px-10 sm:py-10">
+          {/* Le violet passe devant l'indigo dans le dégradé, et un halo rose
+              creuse le coin gauche : le bandeau était le seul aplat coloré de
+              la page, autant qu'il porte la couleur de la marque. */}
+          <div className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-r from-brand-blue via-brand-violet to-brand-purple px-6 py-8 text-white sm:px-10 sm:py-10">
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 opacity-40"
               style={{
                 background:
-                  "radial-gradient(45% 70% at 82% 40%, rgb(255 255 255 / 0.28), transparent 70%)",
+                  "radial-gradient(45% 70% at 82% 40%, rgb(255 255 255 / 0.28), transparent 70%), radial-gradient(55% 80% at 4% 100%, rgb(236 72 153 / 0.55), transparent 70%)",
               }}
             />
 
@@ -70,7 +74,7 @@ export function PackParents() {
                     target: "_blank",
                     rel: "noopener noreferrer",
                   })}
-                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-indigo transition-transform hover:scale-[1.02]"
+                  className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-violet transition-transform hover:scale-[1.02]"
                 >
                   {packParents.cta}
                 </a>
@@ -80,10 +84,10 @@ export function PackParents() {
         </Reveal>
 
         <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {garantiesParents.map(({ icon, titre, texte }) => (
+          {garantiesParents.map(({ icon, titre, texte }, i) => (
             <RevealItem key={titre}>
               <div className="flex items-start gap-3">
-                <IconBadge icon={icon} tone="light" />
+                <IconBadge icon={icon} tone={accentAt(i)} />
                 <div>
                   <h3 className="text-[13px] font-semibold text-ink">{titre}</h3>
                   <p className="mt-1 text-[11.5px] leading-snug text-muted">

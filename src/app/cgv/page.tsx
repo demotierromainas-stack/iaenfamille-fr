@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Conditions générales de vente",
   description:
-    "Les conditions applicables à l'achat de nos formations en ligne et de nos stages.",
+    "Les conditions applicables à l'achat de nos formations en ligne.",
 };
 
 export default function CgvPage() {
@@ -17,9 +17,8 @@ export default function CgvPage() {
     >
       <Article titre="Objet">
         <p>
-          Les présentes conditions régissent la vente des formations en ligne et
-          des stages en présentiel proposés sur {site.domain} par{" "}
-          <AComplet>raison sociale</AComplet>.
+          Les présentes conditions régissent la vente des formations en ligne
+          proposées sur {site.domain} par <AComplet>raison sociale</AComplet>.
         </p>
         <p>
           Toute commande implique l&apos;acceptation pleine et entière des
@@ -32,10 +31,6 @@ export default function CgvPage() {
           Les prix sont indiqués en euros, toutes taxes comprises. Les
           formations parents sont proposées à 99 € l&apos;unité, et le Pack
           Parents Ultime réunissant les huit formations à 499 €.
-        </p>
-        <p>
-          Les tarifs des stages en présentiel sont communiqués sur demande, en
-          fonction de la destination et de la saison.
         </p>
         <p>
           Le paiement s&apos;effectue en ligne au moment de la commande.{" "}
@@ -67,18 +62,6 @@ export default function CgvPage() {
           accord exprès avant la fin du délai légal, le droit de rétractation ne
           s&apos;applique plus au titre de l&apos;article L221-28 13°. La
           garantie commerciale de 30 jours reste, elle, acquise.
-        </p>
-      </Article>
-
-      <Article titre="Stages en présentiel">
-        <p>
-          L&apos;inscription à un stage est confirmée à réception de
-          l&apos;acompte. Les conditions d&apos;annulation, le calendrier des
-          versements et les prestations incluses sont détaillés dans le contrat
-          de séjour remis avant toute inscription.
-        </p>
-        <p>
-          <AComplet>conditions d&apos;annulation et barème à définir avec le client</AComplet>
         </p>
       </Article>
 

@@ -72,7 +72,6 @@ export function validerMessage(data: ContactMessage) {
 export const sujetsContact = [
   "Une question sur les formations parents",
   "Une question sur les parcours enfants",
-  "Les stages en présentiel",
   "Un problème technique",
   "Autre",
 ] as const;

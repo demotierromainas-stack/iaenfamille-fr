@@ -5,13 +5,14 @@ import { Container } from "@/components/Container";
 import { IconBadge } from "@/components/IconBadge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { FormulaireContact } from "@/components/contact/FormulaireContact";
+import { accentAt } from "@/lib/accents";
 import { site } from "@/lib/site";
 import { Mascotte } from "@/components/Mascotte";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Une question sur nos formations ou nos stages ? Écrivez-nous, nous répondons sous 48 heures ouvrées.",
+    "Une question sur nos formations parents ou nos parcours enfants ? Écrivez-nous, nous répondons sous 48 heures ouvrées.",
 };
 
 const reperes = [
@@ -35,6 +36,12 @@ const reperes = [
 export default function ContactPage() {
   return (
     <section className="relative isolate pt-24 pb-16 sm:pt-28 sm:pb-24">
+      {/* La page n'était qu'un formulaire blanc sur fond gris : le lavis de
+          marque lui rend la couleur du reste du site. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 voile-couleur"
+      />
       <Mascotte
         nom="fusee"
         className="aspect-square top-10 -right-6 w-36 xl:top-16 xl:right-[max(0rem,calc(50%-34rem))] xl:w-56"
@@ -42,16 +49,16 @@ export default function ContactPage() {
       />
       <Container>
         <Reveal className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-indigo">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-violet">
             Contact
           </p>
           <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.25rem)] font-extrabold leading-[1.02] tracking-tight text-navy-900">
-            Parlons de votre famille
+            Parlons de <span className="text-gradient">votre famille</span>
           </h1>
           <p className="mt-5 text-[15px] leading-relaxed text-muted">
             Une question sur une formation, un doute sur la tranche d&apos;âge de
-            votre enfant, ou l&apos;envie d&apos;en savoir plus sur un stage ?
-            Écrivez-nous, on vous répond.
+            votre enfant, ou l&apos;envie d&apos;en savoir plus avant de vous
+            lancer ? Écrivez-nous, on vous répond.
           </p>
         </Reveal>
 
@@ -62,8 +69,12 @@ export default function ContactPage() {
 
           <div className="space-y-5">
             <Reveal delay={0.08}>
-              <div className="card p-6">
-                <IconBadge icon={Mail} tone="indigo" />
+              <div className="card relative overflow-hidden p-6">
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-violet to-brand-purple"
+                />
+                <IconBadge icon={Mail} tone="violet" />
                 <h2 className="mt-4 font-display text-[15px] font-bold text-ink">
                   Par e-mail
                 </h2>
@@ -72,20 +83,24 @@ export default function ContactPage() {
                 </p>
                 <a
                   href={`mailto:${site.email}`}
-                  className="mt-3 inline-block text-[13px] font-semibold text-brand-indigo hover:underline"
+                  className="mt-3 inline-block text-[13px] font-semibold text-brand-violet hover:underline"
                 >
                   {site.email}
                 </a>
               </div>
             </Reveal>
 
+            {/* Une teinte par repère : les trois pastilles étaient identiques. */}
             <RevealGroup className="card space-y-5 p-6" stagger={0.07}>
-              {reperes.map(({ icon: Icon, titre, texte }) => (
+              {reperes.map(({ icon: Icon, titre, texte }, i) => (
                 <RevealItem key={titre}>
                   <div className="flex items-start gap-3">
-                    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-indigo/10">
-                      <Icon className="size-4 text-brand-indigo" aria-hidden />
-                    </span>
+                    <IconBadge
+                      icon={Icon}
+                      tone={accentAt(i)}
+                      size="sm"
+                      className="size-9 rounded-full"
+                    />
                     <div>
                       <h3 className="text-[13px] font-semibold text-ink">{titre}</h3>
                       <p className="mt-1 text-[11.5px] leading-snug text-muted">
@@ -98,17 +113,17 @@ export default function ContactPage() {
             </RevealGroup>
 
             <Reveal delay={0.14}>
-              <div className="rounded-2xl bg-brand-indigo/5 p-6 ring-1 ring-brand-indigo/15">
+              <div className="rounded-2xl bg-gradient-to-br from-brand-violet/12 via-brand-indigo/8 to-brand-cyan/12 p-6 ring-1 ring-brand-violet/20">
                 <h2 className="font-display text-[15px] font-bold text-ink">
                   La réponse est peut-être déjà là
                 </h2>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-muted">
                   Beaucoup de questions reviennent : âge minimum, prérequis,
-                  déroulé des stages.
+                  accès aux formations.
                 </p>
                 <Link
                   href="/faq"
-                  className="mt-3 inline-block text-[13px] font-semibold text-brand-indigo hover:underline"
+                  className="mt-3 inline-block text-[13px] font-semibold text-brand-violet hover:underline"
                 >
                   Voir les questions fréquentes
                 </Link>

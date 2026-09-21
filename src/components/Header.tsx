@@ -14,12 +14,11 @@ import { cn } from "@/lib/cn";
  * Routes dont le hero est sombre : le header y démarre transparent en texte
  * clair, puis bascule en blanc dès que l'utilisateur scrolle.
  *
- * La distinction exact / préfixe compte : les pages de destination ont bien
- * un hero sombre, mais les pages de tranche d'âge ont un hero clair — les
- * traiter par préfixe y rendait la navigation illisible.
+ * La correspondance est exacte, jamais par préfixe : les pages de tranche
+ * d'âge ont un hero clair, et les traiter par préfixe y rendait la navigation
+ * illisible.
  */
-const DARK_HERO_EXACT = ["/", "/formations-enfants"];
-const DARK_HERO_PREFIXES = ["/stages-en-presentiel"];
+const DARK_HERO_EXACT = ["/", "/formations-parents", "/formations-enfants"];
 
 /**
  * « Mon compte » pointe sur la communauté Skool, qui héberge les formations —
@@ -27,23 +26,20 @@ const DARK_HERO_PREFIXES = ["/stages-en-presentiel"];
  * `SKOOL_URL` est renseignée, pour ne pas afficher un bouton qui ne mène nulle
  * part tant que la communauté n'existe pas.
  *
- * La nav complète bascule à `xl` et non `lg` : mesuré au navigateur, les six
- * entrées passent sur deux lignes en dessous de ~1130 px. En dessous de `xl`,
- * c'est le menu déroulant qui prend le relais — il liste les mêmes entrées.
- *
- * Raccourcir STAGES_LABEL en « Stages » suffirait à tout faire tenir dès
- * 1024 px, si le client tranche un jour pour ce libellé.
+ * La nav complète s'affiche dès `lg` : les quatre entrées restantes, le logo et
+ * « Mon compte » tiennent sur une ligne à partir de 1024 px. En dessous, c'est
+ * le menu déroulant qui prend le relais — il liste les mêmes entrées.
  */
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const darkHero =
-    DARK_HERO_EXACT.includes(pathname) ||
-    DARK_HERO_PREFIXES.some(
-      (r) => pathname === r || pathname.startsWith(r + "/"),
-    );
+  // `trailingSlash: true` (next.config.ts) fait rendre « /formations-parents/ »
+  // à usePathname(). Sans retirer la barre finale, aucune page intérieure ne
+  // serait reconnue et l'en-tête resterait blanc sur son hero sombre.
+  const route = pathname === "/" ? pathname : pathname.replace(/\/$/, "");
+  const darkHero = DARK_HERO_EXACT.includes(route);
   // texte clair uniquement en haut d'une page à hero sombre
   const onDark = darkHero && !scrolled && !open;
 
@@ -83,7 +79,7 @@ export function Header() {
 
           <nav
             aria-label="Navigation principale"
-            className="hidden items-center gap-1 xl:flex"
+            className="hidden items-center gap-1 lg:flex"
           >
             {mainNav.map((item) => {
               const active = isActive(item.href);
@@ -142,7 +138,7 @@ export function Header() {
               aria-controls="menu-mobile"
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
               className={cn(
-                "grid size-10 place-items-center rounded-full border transition-colors xl:hidden",
+                "grid size-10 place-items-center rounded-full border transition-colors lg:hidden",
                 onDark
                   ? "border-white/25 text-white"
                   : "border-line text-ink",
@@ -162,7 +158,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-line bg-white xl:hidden"
+            className="border-t border-line bg-white lg:hidden"
           >
             <Container className="py-4">
               <ul className="flex flex-col">

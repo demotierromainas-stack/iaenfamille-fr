@@ -14,7 +14,6 @@ export type Tone =
   | "kids" // parcours enfants, multicolore
   | "france" // lavande, pierre, ocre
   | "maurice" // lagon turquoise
-  | "dubai" // nuit dorée, skyline
   | "night"; // fond sombre technologique
 
 const tones: Record<Tone, { from: string; via: string; to: string; ink: string }> = {
@@ -23,7 +22,6 @@ const tones: Record<Tone, { from: string; via: string; to: string; ink: string }
   kids: { from: "#fbbf24", via: "#f472b6", to: "#818cf8", ink: "#3b1d4a" },
   france: { from: "#c7b8f0", via: "#8b8fd6", to: "#c99a5b", ink: "#2c2340" },
   maurice: { from: "#5eead4", via: "#22d3ee", to: "#0ea5e9", ink: "#04343f" },
-  dubai: { from: "#fcd34d", via: "#f59e0b", to: "#4c1d95", ink: "#2b1a03" },
   night: { from: "#131a3d", via: "#312e81", to: "#0a0e2a", ink: "#e0e7ff" },
 };
 

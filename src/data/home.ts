@@ -7,13 +7,11 @@ import {
   Lightbulb,
   Lock,
   Palette,
-  Palmtree,
   ShieldCheck,
   Sparkles,
   UsersRound,
   type LucideIcon,
 } from "lucide-react";
-import { STAGES_HREF, STAGES_LABEL } from "@/lib/site";
 import type { Tone } from "@/components/PlaceholderImage";
 
 /** Les 3 réassurances sous les CTA du hero. */
@@ -35,7 +33,7 @@ export const heroPoints: { icon: LucideIcon; title: string; text: string }[] = [
   },
 ];
 
-/** Les 3 grandes cartes d'offre juste sous le hero. */
+/** Les 2 grandes cartes d'offre juste sous le hero. */
 export const offers: {
   icon: LucideIcon;
   tone: "indigo" | "violet" | "orange" | "cyan";
@@ -63,7 +61,7 @@ export const offers: {
     image: {
       label: "Mère utilisant un ordinateur portable",
       tone: "warm",
-      src: "/images/home/formations-parents-hd.webp",
+      src: "/images/home/formations-parents-v2.webp",
     },
   },
   {
@@ -78,44 +76,26 @@ export const offers: {
         href: "/formations-enfants/5-8-ans",
         text: "Découvrir et s'amuser",
         label: "Enfant 5–8 ans",
-        src: "/images/home/age-5-8-hd.webp",
+        src: "/images/home/age-5-8-v2.webp",
       },
       {
         range: "8–11 ans",
         href: "/formations-enfants/8-11-ans",
         text: "Comprendre et créer",
         label: "Enfant 8–11 ans",
-        src: "/images/home/age-8-11-hd.webp",
+        src: "/images/home/age-8-11-v2.webp",
       },
       {
         range: "12–16 ans",
         href: "/formations-enfants/12-16-ans",
         text: "Innover et construire",
         label: "Ado 12–16 ans",
-        src: "/images/home/age-12-16-hd.webp",
+        src: "/images/home/age-12-16-v2.webp",
       },
     ],
     cta: "Voir tous les parcours",
     href: "/formations-enfants",
     image: { label: "Enfants en atelier", tone: "kids" },
-  },
-  {
-    icon: Palmtree,
-    tone: "orange",
-    title: STAGES_LABEL,
-    text: "Des expériences immersives de 4 jours pour parents et enfants dans des lieux d'exception.",
-    bullets: [
-      "Ateliers pratiques en famille",
-      "Encadrement bienveillant",
-      "Séjours inoubliables",
-    ],
-    cta: "Découvrir les stages",
-    href: STAGES_HREF,
-    image: {
-      label: "Villa avec piscine au coucher du soleil",
-      tone: "dubai",
-      src: "/images/home/stages-villa-hd.webp",
-    },
   },
 ];
 
@@ -160,7 +140,7 @@ export const activites: {
     title: "Projets en famille",
     text: "Réalisez ensemble des projets utiles et inspirants.",
     tone: "france",
-    src: "/images/home/act-projets-hd.webp",
+    src: "/images/home/act-projets-v2.webp",
   },
 ];
 
