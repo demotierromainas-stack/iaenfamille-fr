@@ -76,21 +76,21 @@ export const offers: {
         href: "/formations-enfants/5-8-ans",
         text: "Découvrir et s'amuser",
         label: "Enfant 5–8 ans",
-        src: "/images/home/age-5-8-v2.webp",
+        src: "/images/home/age-5-8-v3.webp",
       },
       {
         range: "8–11 ans",
         href: "/formations-enfants/8-11-ans",
         text: "Comprendre et créer",
         label: "Enfant 8–11 ans",
-        src: "/images/home/age-8-11-v2.webp",
+        src: "/images/home/age-8-11-v3.webp",
       },
       {
         range: "12–16 ans",
         href: "/formations-enfants/12-16-ans",
         text: "Innover et construire",
         label: "Ado 12–16 ans",
-        src: "/images/home/age-12-16-v2.webp",
+        src: "/images/home/age-12-16-v3.webp",
       },
     ],
     cta: "Voir tous les parcours",
@@ -140,7 +140,7 @@ export const activites: {
     title: "Projets en famille",
     text: "Réalisez ensemble des projets utiles et inspirants.",
     tone: "france",
-    src: "/images/home/act-projets-v2.webp",
+    src: "/images/home/act-projets-v3.webp",
   },
 ];
 

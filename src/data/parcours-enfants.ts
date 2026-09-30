@@ -28,7 +28,7 @@ export const parcoursEnfants: Parcours[] = [
     slug: "5-8-ans",
     tranche: "5–8 ans",
     accroche: "Découvrir en jouant",
-    avatar: "/images/home/age-5-8-v2.webp",
+    avatar: "/images/home/age-5-8-v3.webp",
     accent: "violet",
     ateliers: [
       {
@@ -52,7 +52,7 @@ export const parcoursEnfants: Parcours[] = [
     slug: "8-11-ans",
     tranche: "8–11 ans",
     accroche: "Comprendre et créer",
-    avatar: "/images/home/age-8-11-v2.webp",
+    avatar: "/images/home/age-8-11-v3.webp",
     accent: "blue",
     ateliers: [
       {
@@ -81,7 +81,7 @@ export const parcoursEnfants: Parcours[] = [
     slug: "12-16-ans",
     tranche: "12–16 ans",
     accroche: "Créer et construire",
-    avatar: "/images/home/age-12-16-v2.webp",
+    avatar: "/images/home/age-12-16-v3.webp",
     accent: "teal",
     ateliers: [
       {
