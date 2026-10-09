@@ -104,9 +104,3 @@ Une fois vérifié, `CONTACT_FROM` peut utiliser une adresse `@iaenfamille.fr`.
 
 Ces enregistrements portent sur des sous-domaines : ils ne touchent pas à la
 messagerie Infomaniak du domaine.
-
-## Aperçu client — Netlify
-
-Netlify publie le même export statique (`publish = "out"`). `contact.php` ne
-s'y exécute pas : le formulaire n'envoie rien sur l'aperçu. Ne pas définir
-`NEXT_PUBLIC_ALLOW_INDEXING` sur Netlify, pour que l'aperçu reste non indexé.
