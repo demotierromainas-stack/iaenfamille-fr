@@ -15,11 +15,14 @@ import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { Media } from "@/components/Media";
 import { IconBadge } from "@/components/IconBadge";
+import { DonneesStructurees } from "@/components/DonneesStructurees";
 import { Reveal, RevealGroup, RevealItem, LiftCard } from "@/components/Reveal";
 import { formationsParents, packParents } from "@/data/formations-parents";
 import { accentAt, accentClasses } from "@/lib/accents";
 import { cn } from "@/lib/cn";
 import { ACHAT_HREF } from "@/lib/site";
+import { metadonnees } from "@/lib/metadonnees";
+import { cours, filDAriane } from "@/lib/donnees-structurees";
 
 export function generateStaticParams() {
   return formationsParents.map((f) => ({ slug: f.slug }));
@@ -31,7 +34,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const f = formationsParents.find((x) => x.slug === slug);
   if (!f) return { title: "Formation" };
-  return { title: f.titre, description: f.resume };
+  return metadonnees({
+    titre: f.titre,
+    // Durée et niveau sont affichés sur la fiche : ils précisent l'offre et
+    // portent les résumés courts au-dessus de ~70 caractères.
+    description: `${f.resume} Formation vidéo de ${f.duree}, niveau ${f.niveau.toLowerCase()}.`,
+    chemin: `/formations/${f.slug}`,
+  });
 }
 
 const format = [
@@ -52,6 +61,14 @@ export default async function FormationPage({
 
   return (
     <>
+      <DonneesStructurees donnees={cours(f)} />
+      <DonneesStructurees
+        donnees={filDAriane([
+          { nom: "Accueil", href: "/" },
+          { nom: "Formations parents", href: "/formations-parents" },
+          { nom: f.titre, href: `/formations/${f.slug}` },
+        ])}
+      />
       <section className="relative isolate overflow-hidden pt-24 pb-12 sm:pt-28">
         {/* Lavis de marque : la fiche était entièrement blanche et indigo. */}
         <div

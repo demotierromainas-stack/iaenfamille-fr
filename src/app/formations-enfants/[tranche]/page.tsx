@@ -5,11 +5,14 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { Media } from "@/components/Media";
+import { DonneesStructurees } from "@/components/DonneesStructurees";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { parcoursEnfants, getParcours, competences } from "@/data/parcours-enfants";
 import { ACHAT_HREF } from "@/lib/site";
 import { cn } from "@/lib/cn";
+import { metadonnees } from "@/lib/metadonnees";
+import { filDAriane } from "@/lib/donnees-structurees";
 
 export function generateStaticParams() {
   return parcoursEnfants.map((p) => ({ tranche: p.slug }));
@@ -21,10 +24,13 @@ export async function generateMetadata({
   const { tranche } = await params;
   const p = getParcours(tranche);
   if (!p) return { title: "Parcours" };
-  return {
-    title: `Ateliers ${p.tranche}`,
-    description: `${p.accroche} — ${p.ateliers.length} ateliers pour les ${p.tranche}.`,
-  };
+  return metadonnees({
+    titre: `Ateliers d'IA pour les ${p.tranche}`,
+    // Les titres d'ateliers sont ceux de la page : la description dit ce
+    // qu'on y trouve au lieu d'un simple décompte.
+    description: `${p.accroche} : ${p.ateliers.length} ateliers d'IA pour les ${p.tranche} — ${p.ateliers.map((a) => a.titre).join(", ")}.`,
+    chemin: `/formations-enfants/${p.slug}`,
+  });
 }
 
 const accents = {
@@ -45,6 +51,13 @@ export default async function TranchePage({
 
   return (
     <>
+      <DonneesStructurees
+        donnees={filDAriane([
+          { nom: "Accueil", href: "/" },
+          { nom: "Formations enfants", href: "/formations-enfants" },
+          { nom: p.tranche, href: `/formations-enfants/${p.slug}` },
+        ])}
+      />
       <section className={cn("pt-24 pb-12 sm:pt-28", a.fond)}>
         <Container>
           <Reveal>

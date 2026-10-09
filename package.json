@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:production": "NEXT_PUBLIC_ALLOW_INDEXING=true next build",
+    "seo": "npm run build:production && node scripts/controler-seo.mjs out --production",
     "start": "next start",
     "lint": "eslint"
   },

@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { MessagesSquare } from "lucide-react";
 import { EtatVide } from "@/components/EtatVide";
+import { metadonnees } from "@/lib/metadonnees";
 
-export const metadata: Metadata = {
-  title: "Témoignages",
+export const metadata = metadonnees({
+  titre: "Témoignages",
   description:
-    "Ce que les familles retiennent de nos formations et de nos parcours.",
-};
+    "Ce que les familles retiennent de nos formations parents et de nos parcours enfants.",
+  chemin: "/temoignages",
+});
 
 /**
  * Aucun témoignage n'est inventé : des avis fabriqués constituent une

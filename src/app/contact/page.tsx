@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Clock, Mail, MessagesSquare, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/Container";
@@ -8,12 +7,14 @@ import { FormulaireContact } from "@/components/contact/FormulaireContact";
 import { accentAt } from "@/lib/accents";
 import { site } from "@/lib/site";
 import { Mascotte } from "@/components/Mascotte";
+import { metadonnees } from "@/lib/metadonnees";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata = metadonnees({
+  titre: "Nous contacter",
   description:
     "Une question sur nos formations parents ou nos parcours enfants ? Écrivez-nous, nous répondons sous 48 heures ouvrées.",
-};
+  chemin: "/contact",
+});
 
 const reperes = [
   {

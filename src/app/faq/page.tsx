@@ -1,16 +1,17 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Accordion } from "@/components/Accordion";
 import { Reveal } from "@/components/Reveal";
 import { faqSections } from "@/data/faq";
 import { Mascotte } from "@/components/Mascotte";
+import { metadonnees } from "@/lib/metadonnees";
 
-export const metadata: Metadata = {
-  title: "Questions fréquentes",
+export const metadata = metadonnees({
+  titre: "Questions fréquentes",
   description:
     "Âge minimum, prérequis, accès aux formations, protection des données : les réponses aux questions que se posent les parents.",
-};
+  chemin: "/faq",
+});
 
 export default function FaqPage() {
   return (

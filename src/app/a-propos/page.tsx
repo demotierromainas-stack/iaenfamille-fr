@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { IconBadge } from "@/components/IconBadge";
@@ -7,12 +6,14 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal, RevealGroup, RevealItem, LiftCard } from "@/components/Reveal";
 import { approche, convictions, valeurs } from "@/data/a-propos";
 import { Mascotte } from "@/components/Mascotte";
+import { metadonnees } from "@/lib/metadonnees";
 
-export const metadata: Metadata = {
-  title: "À propos",
+export const metadata = metadonnees({
+  titre: "À propos : notre mission",
   description:
     "Notre mission : rendre l'intelligence artificielle accessible, utile et sereine pour toutes les familles.",
-};
+  chemin: "/a-propos",
+});
 
 export default function AProposPage() {
   return (

@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLegale, Article, AComplet } from "@/components/PageLegale";
 import { site } from "@/lib/site";
+import { metadonnees } from "@/lib/metadonnees";
 
-export const metadata: Metadata = {
-  title: "Conditions générales de vente",
+export const metadata = metadonnees({
+  titre: "Conditions générales de vente",
   description:
-    "Les conditions applicables à l'achat de nos formations en ligne.",
-};
+    "Prix et paiement, accès aux formations, droit de rétractation, réclamations : les conditions applicables à l'achat de nos formations en ligne.",
+  chemin: "/cgv",
+});
 
 export default function CgvPage() {
   return (

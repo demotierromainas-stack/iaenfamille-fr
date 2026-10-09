@@ -1,9 +1,9 @@
 # Mise en ligne sur Infomaniak (hébergement PHP/Apache, sans Node.js).
 #
-# À chaque push sur main : build statique de production, puis envoi du dossier
-# out/ en FTP. Seuls les fichiers modifiés sont transférés (l'action garde un
-# état de synchronisation sur le serveur). Le .env de contact.php, créé à la
-# main sur le serveur, n'est jamais touché.
+# À chaque push sur main : build statique de production, contrôle SEO, puis
+# envoi du dossier out/ en FTP. Seuls les fichiers modifiés sont transférés
+# (l'action garde un état de synchronisation sur le serveur). Le .env de
+# contact.php, créé à la main sur le serveur, n'est jamais touché.
 #
 # Identifiants à définir une fois (voir deploy/README.md) :
 #   secrets FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
@@ -27,7 +27,11 @@ jobs:
     env:
       FTP_SERVER: ${{ secrets.FTP_SERVER }}
     steps:
+      # Historique complet : le sitemap date chaque page de son dernier commit.
+      # En clone superficiel, il omettrait ces dates plutôt que d'en donner de fausses.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -38,6 +42,11 @@ jobs:
 
       - name: Build de production (indexation autorisée)
         run: npm run build:production
+
+      # Barrière : canonical, aperçus de partage, sitemap, JSON-LD, noindex…
+      # En échec, rien n'est envoyé. Détail des contrôles en tête du script.
+      - name: Contrôle SEO
+        run: node scripts/controler-seo.mjs out --production
 
       # Tant que les secrets FTP ne sont pas renseignés, le build tourne quand
       # même (il valide le code) mais rien n'est envoyé.

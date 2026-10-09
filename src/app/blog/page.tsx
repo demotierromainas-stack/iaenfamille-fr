@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { PenLine } from "lucide-react";
 import { EtatVide } from "@/components/EtatVide";
+import { metadonnees } from "@/lib/metadonnees";
 
-export const metadata: Metadata = {
-  title: "Blog",
+export const metadata = metadonnees({
+  titre: "Blog : l'IA à hauteur de famille",
   description:
     "Conseils, retours d'expérience et actualités de l'IA à hauteur de famille.",
-};
+  chemin: "/blog",
+});
 
 export default function BlogPage() {
   return (

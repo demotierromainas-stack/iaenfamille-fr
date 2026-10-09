@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
+import { IMAGE_PARTAGE, MODELE_TITRE } from "@/lib/metadonnees";
 import { indexingAllowed } from "./robots";
 import "./globals.css";
 
@@ -19,11 +20,14 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+// Valeurs de repli, pour les pages qui ne passent pas par metadonnees()
+// (la 404). Aucune URL ni titre de page ici : hérités tels quels, ils
+// donnaient à chaque page l'aperçu de partage de l'accueil.
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: `${site.name} — ${site.tagline}`,
-    template: `%s | ${site.name}`,
+    template: MODELE_TITRE,
   },
   description: site.description,
   robots: indexingAllowed ? undefined : { index: false, follow: false },
@@ -31,10 +35,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
-    description: site.description,
-    url: site.url,
+    images: [IMAGE_PARTAGE],
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
