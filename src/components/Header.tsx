@@ -50,8 +50,14 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // referme le menu mobile quand on change de page
-  useEffect(() => setOpen(false), [pathname]);
+  // referme le menu mobile quand on change de page. Comparé pendant le rendu
+  // plutôt que dans un effet : l'effet affichait d'abord la nouvelle page
+  // menu ouvert, puis relançait un rendu pour le fermer.
+  const [pageAffichee, setPageAffichee] = useState(pathname);
+  if (pathname !== pageAffichee) {
+    setPageAffichee(pathname);
+    setOpen(false);
+  }
 
   // bloque le scroll de fond quand le menu mobile est ouvert
   useEffect(() => {

@@ -48,6 +48,16 @@ jobs:
       - name: Contrôle SEO
         run: node scripts/controler-seo.mjs out --production
 
+      # Le sitemap encore en ligne sert de référence à IndexNow pour repérer
+      # les pages ajoutées, modifiées ou supprimées par cet envoi. L'adresse du
+      # site est lue dans le sitemap construit, sans la répéter ici.
+      - name: Sitemap en ligne avant l'envoi
+        if: env.FTP_SERVER != ''
+        run: |
+          SITE=$(grep -o -m1 '<loc>[^<]*' out/sitemap.xml | cut -c6-)
+          curl -sf "${SITE}sitemap.xml" -o "$RUNNER_TEMP/sitemap-avant.xml" \
+            || echo "Pas de sitemap en ligne : toutes les pages seront signalées."
+
       # Tant que les secrets FTP ne sont pas renseignés, le build tourne quand
       # même (il valide le code) mais rien n'est envoyé.
       - name: Envoi FTP vers Infomaniak
@@ -64,6 +74,13 @@ jobs:
             **/.git*
             **/.git*/**
             .env
+
+      # Après l'envoi, pour que la clé soit déjà en ligne quand le moteur la
+      # vérifie. Bing, Copilot, recherche ChatGPT, DuckDuckGo ; pas Google.
+      # Un échec est signalé en avertissement, sans faire échouer le run.
+      - name: Signalement IndexNow
+        if: env.FTP_SERVER != ''
+        run: node scripts/indexnow.mjs out/sitemap.xml "$RUNNER_TEMP/sitemap-avant.xml"
 
       - name: Secrets FTP manquants
         if: env.FTP_SERVER == ''
