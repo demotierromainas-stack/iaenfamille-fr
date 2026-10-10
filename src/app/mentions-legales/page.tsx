@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { PageLegale, Article, AComplet } from "@/components/PageLegale";
 import { site } from "@/lib/site";
-import { metadonnees } from "@/lib/metadonnees";
+import { metadonneesDe } from "@/lib/metadonnees";
 
-export const metadata = metadonnees({
-  titre: "Mentions légales",
-  description:
-    "Éditeur, directeur de la publication, hébergeur, propriété intellectuelle et données personnelles : les informations légales du site.",
-  chemin: "/mentions-legales",
-});
+export const metadata = metadonneesDe("/mentions-legales");
 
 export default function MentionsLegalesPage() {
   return (

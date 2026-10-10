@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { PageLegale, Article, AComplet } from "@/components/PageLegale";
 import { site } from "@/lib/site";
-import { metadonnees } from "@/lib/metadonnees";
+import { metadonneesDe } from "@/lib/metadonnees";
 
-export const metadata = metadonnees({
-  titre: "Conditions générales de vente",
-  description:
-    "Prix et paiement, accès aux formations, droit de rétractation, réclamations : les conditions applicables à l'achat de nos formations en ligne.",
-  chemin: "/cgv",
-});
+export const metadata = metadonneesDe("/cgv");
 
 export default function CgvPage() {
   return (

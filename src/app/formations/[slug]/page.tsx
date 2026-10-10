@@ -22,6 +22,7 @@ import { accentAt, accentClasses } from "@/lib/accents";
 import { cn } from "@/lib/cn";
 import { ACHAT_HREF } from "@/lib/site";
 import { metadonnees } from "@/lib/metadonnees";
+import { referencementFormation } from "@/data/referencement";
 import { cours, filDAriane } from "@/lib/donnees-structurees";
 
 export function generateStaticParams() {
@@ -34,13 +35,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const f = formationsParents.find((x) => x.slug === slug);
   if (!f) return { title: "Formation" };
-  return metadonnees({
-    titre: f.titre,
-    // Durée et niveau sont affichés sur la fiche : ils précisent l'offre et
-    // portent les résumés courts au-dessus de ~70 caractères.
-    description: `${f.resume} Formation vidéo de ${f.duree}, niveau ${f.niveau.toLowerCase()}.`,
-    chemin: `/formations/${f.slug}`,
-  });
+  return metadonnees({ ...referencementFormation(f), chemin: `/formations/${f.slug}` });
 }
 
 const format = [

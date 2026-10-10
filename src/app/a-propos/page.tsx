@@ -6,14 +6,9 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal, RevealGroup, RevealItem, LiftCard } from "@/components/Reveal";
 import { approche, convictions, valeurs } from "@/data/a-propos";
 import { Mascotte } from "@/components/Mascotte";
-import { metadonnees } from "@/lib/metadonnees";
+import { metadonneesDe } from "@/lib/metadonnees";
 
-export const metadata = metadonnees({
-  titre: "À propos : notre mission",
-  description:
-    "Notre mission : rendre l'intelligence artificielle accessible, utile et sereine pour toutes les familles.",
-  chemin: "/a-propos",
-});
+export const metadata = metadonneesDe("/a-propos");
 
 export default function AProposPage() {
   return (

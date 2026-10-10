@@ -20,7 +20,8 @@
  *   dossier                 Sortie statique à inspecter (défaut : out)
  *   --base-url <url>        URL canonique du site. À défaut, déduite du sitemap.
  *   --rapport               Rapporte tout sans échouer (exit 0). Pour l'audit initial.
- *   --production            Exige en plus l'absence de noindex.
+ *   --production            Exige en plus que toute page du sitemap soit indexable,
+ *                           l'accueil compris, et que robots.txt n'interdise pas le site.
  *   --no-trailing-slash     Les URL attendues n'ont pas de barre finale.
  *   --ignorer a,b           Chemins à ne pas inspecter (sous-chaînes, séparées par des virgules).
  *
@@ -265,17 +266,18 @@ function controlerPage({ html, route, racine, baseUrl, opts }) {
     }
   });
 
-  /* noindex résiduel : le verrou d'aperçu qu'on oublie de lever est la panne
-     SEO la plus coûteuse qui soit, et la plus silencieuse. */
+  /* noindex : contrôlé à l'échelle du site, dans main(). Une page peut être
+     volontairement hors index (src/data/referencement.ts) ; ce qui est une
+     panne, c'est un noindex sur une page que le sitemap annonce. */
   const robots = meta(html, "robots") ?? "";
-  if (opts.production && /noindex/i.test(robots)) erreur(`meta robots contient noindex (${robots})`);
+  const noindex = /noindex/i.test(robots);
 
   /* alt manquant. `alt=""` est légitime pour une image décorative : on ne
      signale que l'attribut absent, pas l'attribut vide. */
   const sansAlt = balises(html, "img").filter((b) => !/\salt\s*=/i.test(b)).length;
   if (sansAlt > 0) erreur(`${sansAlt} <img> sans attribut alt`);
 
-  return { constats, titre, description, robots, ogTitre: meta(html, "og:title") };
+  return { constats, titre, description, robots, noindex, ogTitre: meta(html, "og:title") };
 }
 
 /* ----------------------------------------------------------------- sitemap */
@@ -361,8 +363,29 @@ async function main() {
       }),
     );
     const routes = new Set(pages.map((p) => p.route));
-    for (const r of routes) if (!cheminsSitemap.has(r)) globaux.push(`page construite absente du sitemap : ${r}`);
+    for (const p of pages) {
+      const auSitemap = cheminsSitemap.has(p.route);
+      /* Le verrou d'aperçu oublié — la panne SEO la plus coûteuse et la plus
+         silencieuse — se voit ici : toutes les pages du sitemap en noindex. */
+      if (p.noindex && auSitemap) {
+        if (opts.production) globaux.push(`page annoncée au sitemap mais en noindex : ${p.route} (${p.robots})`);
+      } else if (!p.noindex && !auSitemap) {
+        globaux.push(`page construite absente du sitemap : ${p.route}`);
+      }
+      // Une page en noindex hors sitemap est un choix : rien à signaler.
+    }
     for (const r of cheminsSitemap) if (!routes.has(r)) globaux.push(`URL au sitemap sans page construite : ${r}`);
+  }
+
+  if (opts.production) {
+    /* Filet de sécurité : l'accueil ne sort jamais de l'index, même retiré
+       du sitemap par erreur. */
+    if (pages.find((p) => p.route === "/")?.noindex) globaux.push("l'accueil est en noindex");
+
+    const fichierRobots = path.join(racine, "robots.txt");
+    if (!existsSync(fichierRobots)) globaux.push("robots.txt absent du dossier de sortie");
+    else if (/^\s*disallow:\s*\/\s*$/im.test(await readFile(fichierRobots, "utf8")))
+      globaux.push("robots.txt interdit tout le site (Disallow: /)");
   }
 
   /* ------------------------------------------------------------- rapport */
@@ -381,11 +404,14 @@ async function main() {
   console.log("");
 
   for (const page of pages) {
+    // En production, un noindex est forcément voulu (sinon erreur plus bas) :
+    // l'afficher garde la liste des pages hors index visible dans les logs.
+    const horsIndex = opts.production && page.noindex ? "   — non indexée (choix)" : "";
     if (page.constats.length === 0) {
-      console.log(`  ok   ${page.route}`);
+      console.log(`  ok   ${page.route}${horsIndex}`);
       continue;
     }
-    console.log(`  ${page.route}`);
+    console.log(`  ${page.route}${horsIndex}`);
     for (const { niveau, message } of page.constats) {
       if (niveau === "erreur") {
         erreurs++;

@@ -1,9 +1,14 @@
 import { execFileSync } from "node:child_process";
 import type { MetadataRoute } from "next";
-import { site, mainNav, footerNav } from "@/lib/site";
+import { site } from "@/lib/site";
 import { cheminPublic } from "@/lib/metadonnees";
 import { formationsParents } from "@/data/formations-parents";
 import { parcoursEnfants } from "@/data/parcours-enfants";
+import {
+  referencementPages,
+  referencementFormation,
+  referencementParcours,
+} from "@/data/referencement";
 
 export const dynamic = "force-static";
 
@@ -13,6 +18,9 @@ export const dynamic = "force-static";
  * annonce tout le site comme modifié, et Google cesse de s'y fier.
  *
  * Ni priority ni changeFrequency : Google les ignore.
+ *
+ * Les pages listées sont celles de src/data/referencement.ts marquées
+ * `indexer: true` : une page en noindex n'a rien à faire dans le sitemap.
  */
 
 /** Où vit le contenu d'une page, quand ce n'est pas seulement son dossier. */
@@ -54,14 +62,6 @@ function modifieLe(sources: string[]) {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Les pages de navigation, sans doublon entre en-tête et pied de page.
-  const statiques = new Set<string>([
-    ...mainNav.map((n) => n.href),
-    ...footerNav.flatMap((c) => c.items.map((i) => i.href)),
-    "/confidentialite",
-    "/cgv",
-  ]);
-
   // Les URL finissent par « / » comme les pages exportées (trailingSlash) :
   // sinon chaque entrée du sitemap passerait par une redirection.
   const entree = (href: string, sources: string[]) => ({
@@ -70,12 +70,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   return [
-    ...[...statiques].map((href) => entree(href, SOURCES[href] ?? [`src/app${href}`])),
-    ...formationsParents.map((f) =>
-      entree(`/formations/${f.slug}`, ["src/app/formations/[slug]", "src/data/formations-parents.ts"]),
-    ),
-    ...parcoursEnfants.map((p) =>
-      entree(`/formations-enfants/${p.slug}`, ["src/app/formations-enfants/[tranche]", "src/data/parcours-enfants.ts"]),
-    ),
+    ...Object.entries(referencementPages)
+      .filter(([, r]) => r.indexer)
+      .map(([href]) => entree(href, SOURCES[href] ?? [`src/app${href}`])),
+    ...formationsParents
+      .filter((f) => referencementFormation(f).indexer)
+      .map((f) => entree(`/formations/${f.slug}`, ["src/app/formations/[slug]", "src/data/formations-parents.ts"])),
+    ...parcoursEnfants
+      .filter((p) => referencementParcours(p).indexer)
+      .map((p) =>
+        entree(`/formations-enfants/${p.slug}`, ["src/app/formations-enfants/[tranche]", "src/data/parcours-enfants.ts"]),
+      ),
   ];
 }

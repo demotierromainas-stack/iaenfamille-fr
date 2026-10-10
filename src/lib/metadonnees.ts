@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "./site";
+import { referencementPages, type CheminPage, type Referencement } from "@/data/referencement";
 
 /** Patron des titres de page, partagé par le layout et la fabrique. */
 export const MODELE_TITRE = `%s | ${site.name}`;
@@ -27,7 +28,9 @@ export function cheminPublic(href: string) {
 
 /**
  * Métadonnées complètes d'une page : titre, description, canonical, aperçus
- * de partage.
+ * de partage, et noindex si la page ne doit pas apparaître dans Google.
+ * Titres, descriptions et choix d'indexation se décident dans
+ * src/data/referencement.ts.
  *
  * Toutes les pages passent par ici parce que Next fusionne les `metadata`
  * de façon superficielle : une page sans `openGraph` hérite tel quel de celui
@@ -38,16 +41,12 @@ export function cheminPublic(href: string) {
 export function metadonnees({
   titre,
   description,
-  chemin,
+  indexer,
   titreAbsolu = false,
-}: {
-  /** Partie propre à la page ; le patron ajoute « | IA en famille ». */
-  titre: string;
-  description: string;
+  chemin,
+}: Referencement & {
   /** Chemin de la page, avec ou sans barre finale. */
   chemin: string;
-  /** Titre complet, sans le patron — pour l'accueil. */
-  titreAbsolu?: boolean;
 }): Metadata {
   const url = cheminPublic(chemin);
   const titreComplet = titreAbsolu ? titre : MODELE_TITRE.replace("%s", titre);
@@ -55,6 +54,10 @@ export function metadonnees({
   return {
     title: titreAbsolu ? { absolute: titre } : titre,
     description,
+    // « follow » : la page sort des résultats, mais Google suit toujours ses
+    // liens vers le reste du site. Une page indexable n'écrit rien et garde
+    // le verrou d'aperçu du layout (noindex hors production).
+    ...(indexer ? {} : { robots: { index: false, follow: true } }),
     alternates: { canonical: url },
     openGraph: {
       type: "website",
@@ -72,4 +75,9 @@ export function metadonnees({
       images: [IMAGE_PARTAGE.url],
     },
   };
+}
+
+/** Métadonnées d'une page fixe, telles que décidées dans referencement.ts. */
+export function metadonneesDe(chemin: CheminPage): Metadata {
+  return metadonnees({ ...referencementPages[chemin], chemin });
 }

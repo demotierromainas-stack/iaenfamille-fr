@@ -12,6 +12,7 @@ import { parcoursEnfants, getParcours, competences } from "@/data/parcours-enfan
 import { ACHAT_HREF } from "@/lib/site";
 import { cn } from "@/lib/cn";
 import { metadonnees } from "@/lib/metadonnees";
+import { referencementParcours } from "@/data/referencement";
 import { filDAriane } from "@/lib/donnees-structurees";
 
 export function generateStaticParams() {
@@ -24,13 +25,7 @@ export async function generateMetadata({
   const { tranche } = await params;
   const p = getParcours(tranche);
   if (!p) return { title: "Parcours" };
-  return metadonnees({
-    titre: `Ateliers d'IA pour les ${p.tranche}`,
-    // Les titres d'ateliers sont ceux de la page : la description dit ce
-    // qu'on y trouve au lieu d'un simple décompte.
-    description: `${p.accroche} : ${p.ateliers.length} ateliers d'IA pour les ${p.tranche} — ${p.ateliers.map((a) => a.titre).join(", ")}.`,
-    chemin: `/formations-enfants/${p.slug}`,
-  });
+  return metadonnees({ ...referencementParcours(p), chemin: `/formations-enfants/${p.slug}` });
 }
 
 const accents = {

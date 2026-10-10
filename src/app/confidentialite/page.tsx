@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { PageLegale, Article, AComplet } from "@/components/PageLegale";
 import { site } from "@/lib/site";
-import { metadonnees } from "@/lib/metadonnees";
+import { metadonneesDe } from "@/lib/metadonnees";
 
-export const metadata = metadonnees({
-  titre: "Politique de confidentialité",
-  description:
-    "Quelles données nous collectons, pourquoi, combien de temps, et comment exercer vos droits.",
-  chemin: "/confidentialite",
-});
+export const metadata = metadonneesDe("/confidentialite");
 
 export default function ConfidentialitePage() {
   return (

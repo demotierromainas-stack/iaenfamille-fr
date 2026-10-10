@@ -4,14 +4,9 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { chapitres, reperesAge } from "@/data/guide";
 import { Mascotte } from "@/components/Mascotte";
-import { metadonnees } from "@/lib/metadonnees";
+import { metadonneesDe } from "@/lib/metadonnees";
 
-export const metadata = metadonnees({
-  titre: "Guide des parents",
-  description:
-    "Cinq repères simples pour accompagner votre enfant dans sa découverte de l'intelligence artificielle.",
-  chemin: "/guide-des-parents",
-});
+export const metadata = metadonneesDe("/guide-des-parents");
 
 export default function GuidePage() {
   return (
