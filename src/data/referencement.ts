@@ -87,19 +87,21 @@ export const referencementPages = {
     description: "Ce que les familles retiennent de nos formations parents et de nos parcours enfants.",
     indexer: true,
   },
+  // Pages juridiques : accessibles depuis le pied de page, sans intérêt dans
+  // les résultats de recherche. Les mentions légales sortaient même en
+  // premier sur « IA en famille », avant l'accueil.
   "/cgv": {
     titre: "Conditions générales de vente",
     description:
       "Prix et paiement, accès aux formations, droit de rétractation, réclamations : les conditions applicables à l'achat de nos formations en ligne.",
-    indexer: true,
+    indexer: false,
   },
   "/confidentialite": {
     titre: "Politique de confidentialité",
     description:
       "Quelles données nous collectons, pourquoi, combien de temps, et comment exercer vos droits.",
-    indexer: true,
+    indexer: false,
   },
-  // Sortait en premier sur « IA en famille », avant l'accueil.
   "/mentions-legales": {
     titre: "Mentions légales",
     description:
